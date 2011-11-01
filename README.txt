@@ -4,6 +4,13 @@ My current plan is to make a JS bookmarklet and/or chrome extension and/or firef
 
 Please join the brainstorming session on 
 
+https://groups.google.com/group/google-reader-diaspora
+and
+http://github.com/alexch/sharebro
+
+Note that I don't want to reinvent the RSS Reader Wheel -- which seems to be what Francis is doing -- in part because Reader has the imprimatur and SSO of Google, which many people trust, and they're not retiring the API, which is actually pretty technically difficult (troll the entire RSS universe and track IDs for all posts).
+
+
 Features:
 
 * unify the various terms (share, note, item) around "share" (a la "sharebro")
