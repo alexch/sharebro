@@ -3,6 +3,7 @@ puts ENV['RACK']
 require 'sinatra'
 require 'digest/md5'
 require 'erector'
+Widget = Erector::Widget
 
 if ENV['RACK_ENV'] == 'development'
   require 'wrong'
@@ -22,6 +23,7 @@ lib = File.expand_path "#{here}/lib"
 $:<<lib
 
 require "landing_page"
+
 
 class Sharebro < Sinatra::Application
   include Erector::Mixin

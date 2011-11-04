@@ -1,3 +1,5 @@
+require "links"
+
 class LandingPage < Erector::Widgets::Page
   def page_title
     "sharebro.org"
@@ -29,12 +31,48 @@ class LandingPage < Erector::Widgets::Page
         - <a href="http://alexchaffee.com">Alex</a>
       </p>
 
-      <p>
+      HTML
+
+      widget Links
+
+      pre <<-MARKDOWN
+      
+      Road Map
+      
+       * history/summary/important links
+
+       * links to commentary (replacing my bloated http://alexch.tumblr.com/post/11868074433/why-i-love-and-how-i-use-google-reader )
+
+       * links and reviews of 
+          * alternatives
+          * enhancements   
+          * replacements  
+
+      * original development of the above, e.g.
+        * bookmarklet
+        * "share" button(s) inside new reader
+        * comment syncing
+        * personal share feeds a la http://www.google.com/reader/shared/alexch
+        * semi-private share feeds
+        * integration with G+, Tumblr, Posterous, Facebook, or wherever
+
+      I intend to delegate and borrow heavily, and avoid language wars. All the code I write will be open source, starting with http://github.com/alexch/sharebro, and with any luck this will be community-supported and free forever.
+
+      Also with any luck some of it will become obsolete if and when Google come to their collective senses.
+
+      Just so you know, my personal preference/bias is towards public shares and a pub/sub model. We are all peers and like it or not, we live in public. Might as well claim that rather than hiding from it. (Though I respect the idea of limiting one's audience and peer group too; I just think Circles went a bit too far in that direction.)
+      
+      MARKDOWN
+
+
+      p raw(<<-HTML)
         P.S. Yes, "sharebro" is 
           <a href="http://www.quora.com/Brogramming/Is-the-notion-of-brogramming-exclusionary-and-harmful-towards-women-in-computer-science">arguably sexist</a>. 
           I also own <code>onefeed.org</code> but "sharebro" is an <a href="http://www.urbandictionary.com/define.php?term=sharebro">organic term</a> that men <i>and women</i> use to describe themselves and their community, so let's run with it for a while. And brotherhood is a positive thing, right? And if I end up making an app or widget, we could name <b>it</b> Sharebro, as in a helpful little buddy, thereby maybe dodging the "don't call me bro, bro" issue.
       </p>
+    HTML
 
+    rawtext <<-HTML
     <script type="text/javascript">
     // <![CDATA[
         var _gaq = _gaq || [];
@@ -51,7 +89,6 @@ class LandingPage < Erector::Widgets::Page
 
     // ]]>
     </script>
-
     HTML
   end
 end

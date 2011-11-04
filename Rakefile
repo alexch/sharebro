@@ -20,5 +20,5 @@ task :run do
   #     # ...and the SIGTERM is passed up and kilss foreman :-(
   #   end
   # end
-  exec "foreman start"
+  exec "rerun foreman start"
 end
