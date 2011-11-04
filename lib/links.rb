@@ -102,7 +102,7 @@ class Links < Widget
       item url: "http://www.williamtoll.com/digital-strategy/marketing/google-reader-update-googles-update/"
       item url: "http://www.forbes.com/sites/erikkain/2011/10/21/the-unsocial-network-why-google-is-wrong-to-kill-off-google-reader/"
       item url: "http://www.forbes.com/sites/erikkain/2011/10/20/big-changes-coming-to-google-reader/"
-      item url: "http://theincidentaleconomist.com/wordpress/our-beloved-google-reader-is-changing/"
+      item url: "http://theincidentaleconomist.com/wordpress/our-beloved-google-reader-is-changing/", name: "Our Beloved Reader is Changing"
       item url: "http://notes.kateva.org/2011/10/google-reader-this-is-going-to-hurt.html"
       item url: "http://www.extremetech.com/computing/101011-6-google-reader-replacements", comment: "none of which are social, or even attempt Comment View"
       item name: "Why Google Matters To Us Iranians", url: "http://www.amirhm.com/2011/10/why-google-reader-gooder-matters-for-us.html"

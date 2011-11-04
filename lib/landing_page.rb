@@ -5,6 +5,11 @@ class LandingPage < Erector::Widgets::Page
     "sharebro.org"
   end
   
+  # todo: use SCSS
+  external :style, <<-CSS
+    body { font-family: arial, helvetica, sans-serif;}
+  CSS
+  
   def body_content
     rawtext <<-HTML
       <h1>sharebro.org</h1>
@@ -14,35 +19,21 @@ class LandingPage < Erector::Widgets::Page
       <p>
         Since Francis is already working on <a href="http://hivemined.org">Hive Mined</a> as a full Reader replacement I figure I should put my efforts towards enhancing the real Reader, kind of like Vijay is doing with <a href="http://ridllr.com">ridllr</a>.
       </p>
-      <p>
-        I will improve this site once I get time over the weekend. For now...
-        <ul>
-          <li>Join the 
-            <a href="https://groups.google.com/group/google-reader-diaspora">Reader Diaspora Google Group</a>
-          </li>
-          <li>Follow all the links I've been posting on my tumblr post, <a href="http://alexch.tumblr.com/post/11868074433/why-i-love-and-how-i-use-google-reader
-            ">Why I Love Google Reader</a>
-          </li>
-          <li>Follow me on <a href="https://plus.google.com/107397735779828096052/posts">Plus</a> and <a href="http://twitter.com/alexch">Twitter</a> and I'll keep you posted
-          </li>
-        </ul>
-      </p>
-      <p>
-        - <a href="http://alexchaffee.com">Alex</a>
+      <blockquote>
+        Follow me on <a href="https://plus.google.com/107397735779828096052/posts">Plus</a> and <a href="http://twitter.com/alexch">Twitter</a> and I'll keep you posted
+        <br>&nbsp;-&nbsp;<a href="http://alexchaffee.com">Alex</a>
+      </blockquote>
       </p>
 
       HTML
 
-      widget Links
+      hr
+      h1 "Road Map"
 
       pre <<-MARKDOWN
       
       Road Map
       
-       * history/summary/important links
-
-       * links to commentary (replacing my bloated http://alexch.tumblr.com/post/11868074433/why-i-love-and-how-i-use-google-reader )
-
        * links and reviews of 
           * alternatives
           * enhancements   
@@ -64,6 +55,13 @@ class LandingPage < Erector::Widgets::Page
       
       MARKDOWN
 
+      hr
+      
+      h1 "Links"
+      blockquote "(todo: move these to a separate page)"
+      widget Links
+
+      hr
 
       p raw(<<-HTML)
         P.S. Yes, "sharebro" is 
