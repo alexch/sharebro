@@ -10,14 +10,15 @@ end
 
 task :run do
   # launch browser once app is running
-  fork do
-    # should poll until port is ready
-    sleep 4
-    # only works on Mac, also always makes a new tab
-    "open http://localhost:9292/".tap do |cmd|
-      puts cmd
-      exec cmd
-    end
-  end
-  exec "rerun rackup"
+  # fork do
+  #   # should poll until port is ready
+  #   sleep 4
+  #   # only works on Mac, also always makes a new tab
+  #   "open http://localhost:5000/".tap do |cmd|
+  #     puts cmd
+  #     exec cmd
+  #     # ...and the SIGTERM is passed up and kilss foreman :-(
+  #   end
+  # end
+  exec "foreman start"
 end

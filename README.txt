@@ -65,6 +65,9 @@ Brings back the Share button and Friends to Google Reader
 "How does this work?" http://userscripts.org/topics/92423
 piremmanuel@gmail.com
 
+me: http://lipsumarium.com/greader/feed?_USER_ID=15504357426492542506
+
+http://lipsumarium.com/greader/greader-share.js
 
 http://www.google.com/reader/settings?display=import
 creates 14 JSON files, plus one XML
@@ -163,3 +166,7 @@ NOt only that, but my entire TWITTER and FACEBOOK page account pulled feeds from
 
 "See who a post was shared with in the stream"
 http://www.google.com/support/plus/bin/answer.py?hl=en&answer=1283790
+
+---
+
+
