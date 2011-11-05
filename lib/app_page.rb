@@ -62,6 +62,12 @@ div.box {
   margin: 1em .5em;
 }
 
+div.section {
+  border: 1px solid black;
+  padding: 1em;
+  margin: 1em .5em;
+  background-color: #F1F3F5;
+}
   CSS
 
   def page_title
