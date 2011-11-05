@@ -4,15 +4,23 @@ class Links < Widget
   include Sections
   
   def content
-    section "What was lost?" do
+
+    section "What just happened?" do
       
       p do
         text "Imagine if when Google announced the new Gmail UI, they also said"
         blockquote raw "Many of Gmail's social features will soon be available via Google+, so in a week's time we'll be retiring things like <em>replying</em>, <em>forwarding</em> and <em>filters</em> inside of Gmail."
-        item url: "http://googlereader.blogspot.com/2011/10/upcoming-changes-to-reader-new-look-new.html", name: "Now read this."
-        item url: "https://plus.google.com/113760695441101959932/posts/Yxj9MquTddH", name: "the announcement on Plus", comment: "where he closed comments, after hundreds of scared/sad/angry comments from Iranians who use Reader since their government blocks Facebook and Plus"
-      
+
+        a "Now read this.", href: "http://googlereader.blogspot.com/2011/10/upcoming-changes-to-reader-new-look-new.html"
+
       end
+    end
+
+    section "What was lost?" do
+      
+      item name: "Missing Features", url: "/features", comment: "see the Missing Features page on this site"
+      
+      item url: "https://plus.google.com/113760695441101959932/posts/Yxj9MquTddH", name: "the announcement on Plus", comment: "where he closed comments, after hundreds of scared/sad/angry comments from Iranians who use Reader since their government blocks Facebook and Plus. Update: comments recently reopened."
       
       item url: "http://techcrunch.com/2011/10/20/google-reader-getting-overhauled-removing-your-friends",
         name: "Google Reader Getting Overhauled, Removing Your Friends",

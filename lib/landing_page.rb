@@ -11,6 +11,13 @@ class LandingPage < AppPage
   
   def main_content
       
+      
+    section "What just happened to Google Reader?" do
+      
+      item name: "What We Lost", url: "/features", comment: "is listed on the Missing Features page on this site"
+      
+    end
+      
     p {
       text "This site is ", my, " hub for efforts to either fix Google Reader, or figure out where to go if that proves impossible."
     }

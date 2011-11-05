@@ -68,6 +68,13 @@ div.section {
   margin: 1em .5em;
   background-color: #F1F3F5;
 }
+
+div.feature {
+  background-color: #F5F3F5;  
+}
+div.feature h2 {
+  color: blue;
+}
   CSS
 
   def page_title
