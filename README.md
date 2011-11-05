@@ -1,3 +1,18 @@
+TODO (site):
+
+* remove or move extraneous text in this README file
+* table of contents per page
+* a little color
+
+TODO (app):
+
+* shared items API
+* share bookmarklet
+* see Road Map page
+
+
+---
+
 I'm on a jury right now -- yes, it has been a crazy couple of weeks, thanks for asking -- but when the trial ends I will take some time and write some code and revive some of these useful yet cruelly assassinated Reader features. At this point I'd like to gather feature requests. I'm thinking of a couple of things; nothing is set in stone.
 
 My current plan is to make a JS bookmarklet and/or chrome extension and/or firefox plugin and/or greasemonkey script that will add the old "Share" button in right next to the new "Share on Google+" button, and hopefully hack in comment syncing and RSS feeds.
@@ -7,36 +22,6 @@ https://groups.google.com/group/google-reader-diaspora
 and
 http://github.com/alexch/sharebro
 
-Note that I don't want to reinvent the RSS Reader Wheel -- which seems to be what Francis is doing -- in part because Reader has the imprimatur and SSO of Google, which many people trust, and they're not retiring the API, which is actually pretty technically difficult (troll the entire RSS universe and track IDs for all posts).
-
-
-Features:
-
-* unify the various terms (share, note, item) around "share" (a la "sharebro")
-
-* a "share" bookmarklet
-  * that automatically grabs the useful text of the page
-  * or what's selected
-  * and publishes a new item to...
-    * G+
-    * onefeed
-    * tumblr
-    * posterous
-    * hivemined
-    * etc.
-
-* an RSS feed of a person's shares
-  * that can be subscribed to in any RSS reader e.g. Nootered Reader
-  * sort of like tumblr or posterous
-  * and may in fact *be* a tumblr or posterous blog, or be synced to it
-  * exporting "stuff I've shared" as an RSS feed so others in other readers can subscribe to them, a la http://www.google.com/reader/shared/alexch
-
-* a chrome extension and/or firefox plugin
-  * that munges the new Reader UI HTML
-  * adds a "Share" button to sit next to the hideous "Share on Google+" button 
-  * easily pulls in your friends' shares as RSS subscriptions in a new "shares" Reader folder
-  * also syncs Plus comments somehow and displays them inside Reader
-  * Comment View might be tough but it's also on the bluesky list.
   
 BTW my ninja page is still there:
 http://www.google.com/reader/shared/alexch
