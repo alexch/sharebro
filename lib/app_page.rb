@@ -6,14 +6,14 @@ class AppPage < Erector::Widgets::Page
   # todo: use SCSS
   external :style, <<-CSS
 
+/* global styles and page layout */
 body { 
   font-family: arial, helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-h1,h2 {
-  font-size: 2em;
+h1,h2,h3 {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
@@ -53,6 +53,14 @@ h1,h2 {
 
 .bottom { border-top: 1px solid black;}
 .bottom p { margin:auto;}
+
+/* individual styling */
+
+div.box {
+  border: 1px solid black;
+  padding: 1em;
+  margin: 1em .5em;
+}
 
   CSS
 

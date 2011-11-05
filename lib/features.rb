@@ -3,14 +3,6 @@ require "sections"
 class Features < Widget
   include Sections
 
-  external :style, <<-CSS
-  div.box {
-    border: 1px solid black;
-    padding: 1em;
-    margin: 1em .5em;
-  }
-  CSS
-
   def feature name
     a name: sanitize(name)
     div.feature.box {
@@ -21,7 +13,7 @@ class Features < Widget
   
   def original 
     div.original.box {
-      h2 "Original Google Reader"
+      h3 "Original Google Reader"
       ul do
         yield
       end
@@ -30,7 +22,7 @@ class Features < Widget
   
   def replacement name
     div.box do
-      h2 "Replacement: #{name}"
+      h3 "Replacement: #{name}"
       ul do
         yield
       end
@@ -54,6 +46,15 @@ class Features < Widget
         li "selection-aware"
         li "con: tumblr has many odd posting formats (and chooses arbitrarily between 'quote' and 'link' and 'discussion' and 'image')"
         li "con: tumblr loses HTML and image formatting from excerpt"
+      end
+      
+      replacement "Share on Posterous" do
+        li "grabs an excerpt from the selection, including HTML and images"
+        li "clearly delineated fields for title, excerpt, and 'your comment'"
+        li "'advanced options': tags, schedule post for the future, mark as private, autopost everywhere"
+        li "'autopost everywhere': You can use Posterous to autopost to Facebook, Twitter, YouTube, Flickr, and all the other services you know and love."
+        li "'See your new post now' option"
+        p "[this bookmarklet has much improved in the past year!]"
       end
     end
     

@@ -16,9 +16,14 @@ module Sections
   end
   
   def item options = {}
+    raise "item method takes a hash" unless options.is_a? Hash
+    name = options[:name] || options[:url]
     li do
-      if options[:name] || options[:url]
-        a options[:name] || options[:url], href: options[:url]
+      if name
+        a name, href: options[:url]
+      end
+      if options[:author]
+        text " by #{options[:author]}"
       end
       if options[:comment]
         text " -- "

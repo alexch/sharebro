@@ -42,10 +42,11 @@ class Links < Widget
       item url: "http://bit.ly/GoogleReaderPetition", :text => "Save Google Reader Petition",
         comment: "probably too late, but they did get OVER NINE THOUSAND"
         
-      section "some Facebook groups have popped up too" do
+      section "some Facebook groups and events have popped up too" do
         item url: "https://www.facebook.com/groups/300995836594988/", name: "Boycott Google+ for abducting Google Reader"
         item url: "https://www.facebook.com/groups/300995836594988/", name: "Give us back our procrastination tool: we need Google Reader as it was!"
         item url: "https://www.facebook.com/pages/We-Hate-Google-Reader-Redesign/313525241998240", name: "We Hate Google-Reader Redesign"
+        item url: "https://www.facebook.com/event.php?eid=195416057199691", name: "A wake for Google Reader"
       end
       
       section "and here are some google support threads they will ignore" do
@@ -64,12 +65,13 @@ class Links < Widget
     section "UI Fixups" do
       item name: "New Google Reader Rectifier", url: "https://chrome.google.com/webstore/detail/makmndpcndgheboeifhhgehleeabhoab" , 
         comment: "Chrome Extension that fixes some whitespace and layout issues. Sharing still gone."
-      item name: "Google Reader Plus Theme fixed with a userstyles.org plugin", url: "http://userstyles.org/styles/55568/google-reader-plus-theme-fixed", 
-        comment: "i think he \"fixed\" it a bit too much but it's a start"
+      item name: "Google Reader Plus Theme fixed", url: "http://userstyles.org/styles/55568/google-reader-plus-theme-fixed", 
+        comment: "i think he \"fixed\" it a bit too much but it's a start -- hosted at userstyles.org"
       item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", 
-        comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served on the author's web site"
+        comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served off the author's web site",
+        quote: "My point in making this plugin is that the share feature should be OPEN and STANDARD. I'm willing to gather a community and define a standard way to share items (anything) via bookmarklet or even a new sharing button in ALL reader apps ! Just like you can tweet any link, you could share any feed item."
       item name: "Google Reader Compact", url: "http://userscripts.org/scripts/show/116890", 
-        comment: "userscript by lipsumar"
+        comment: "CSS munging userscript by lipsumar"
     end
     
     section "Replacement Readers" do
@@ -141,6 +143,73 @@ class Links < Widget
       item name: "Ex-Google Reader Product Manager Posts Scathing Review Of Reader Redesign" , url: "http://techcrunch.com/2011/11/02/ex-google-reader-product-manager-posts-scathing-review-of-reader-redesign/"
       item name: "Everybody Hates the New Google Reader, Especially The People Who Designed Google Reader", name: "Everybody Hates the New Google Reader, Especially The People Who Designed Google Reader", url: "http://www.betabeat.com/2011/11/02/sharebros-everybody-hates-the-new-google-reader", comment: "has some nice amusing/enraging twitter def screencaps"
       item url: "http://www.theatlanticwire.com/technology/2011/11/former-google-designer-will-clean-readers-mess-fee/44493/"
+      item name: "Hate the new Google Reader? Blame Steve Jobs.", url: "http://spenceria.wordpress.com/2011/11/02/hate-the-new-google-reader-blame-steve-jobs/",
+        quote: "Focus is good, and focus is important, but you shouldn't try to be Steve Jobs unless you're Steve Jobs."
+
+      item name: "Reader/Plus integration implemented, then hidden, now soon removed", url: "https://plus.google.com/107397735779828096052/posts/5M2xjLwo5qp"
+        
+        hr
+
+        
+        item quote: "We are witnessing the end of an era of open Internet. Soon we will all be enclosed in circles.",
+          url: "http://abarrigadeumarquitecto.blogspot.com/2011/11/google-its-like-circle.html [in portuguese]"
+
+          item url: "http://decafbad.com/blog/2011/11/01/readerpocalypse", name: "Readerocalypse by Leslie Michael Orchard 11/1/11",
+          comment: "echoes my point that circles point the wrong way, plus a good list of alternative RSS Reading and Sharing solutions, and points out that \"the changes seem to have removed most of the value from the service for me, so I'm moving on as I was invited to do\" and use services like pinboard more, instead of plus"
+
+          item name: "Louis Gray: How To Make the New Google Reader Social With Google+",
+            url: "https://plus.google.com/100535338638690515335/posts/95ZsWiCG3xS",
+            comment: "mostly good for the comments, with much lamenting and gnashing of teeth"
+            
+        item url: "https://plus.google.com/100535338638690515335/posts/95ZsWiCG3xS",
+          quote: "John Montgomery: not being able to share and read shares in a unified manner is a deal breaker. I shared 6-8 items a day and read 20-30 from my friends. Those shares? Gold. Every single one of them. Now it's all gone. These changes destroy the only part of the internet I gave a damn about."
+          
+         item name: "Dreams, discernment, and Google Reader", url: "http://massless.org/?p=174"
+         item name: "How Google Reader's Overhaul Betrayed and Irked Its Most Passionate Users (RWW)",      
+            url: "http://www.readwriteweb.com/archives/how_google_readers_overhaul_betrayed_and_irked_its.php"
+
+
+        item name: "Google Doesn't Seem to Want to Fix       Reader", 
+        url: "http://www.theatlantic.com/technology/archive/2011/11/google-doesnt-want-to-fix-reader/247858",
+        comment: "pointing 
+        out that the new Gmail UI has a feedback button, but the new Reader UI
+        doesn't -- probably just an oversight, really"
+
+        item name: "Google Reader Backlash: A Fuss Over
+        Nothing?", url: "http://www.theatlantic.com/technology/archive/2011/11/google-reader-backlash-a-fuss-over-nothing/247707/",
+        comment: "the leading question title is answered in the negative -- it actually
+        goes into great depth about how Google gutted the Sharebro features
+        and community with no viable replacement"
+        
+        item name: "Unoccupy Google Reader", author: "Jack
+        Shafer", url: "http://blogs.reuters.com/jackshafer/2011/11/03/unoccupy-google-reader/",
+        quote: "Adding extravagant white space to Google Reader is like adding white space to
+        the phone book."
+
+        item name:"Why Curated Content Matters: A Lament for Reader Share",
+          url: "http://www.geekmom.com/2011/11/why-curated-content-matters-a-lament-for-reader-share/",
+                    
+          quote: "If you used Reader Share, you're probably in mourning today. No
+        longer can you click the share button at the bottom of a post in your
+        Reader, sending it to a sidebar widget on your blog and popping it
+        into the \"people you follow\" section of your friends on Reader. No
+        longer can you count on that easy click in Reader to show you the
+        links shared by the people you follow -- those trusted curators of
+        content whose taste and judgment you rely on."
+        
+        item name:"Why Curated Content Matters: A Lament for Reader Share",
+            url: "http://www.wired.com/geekdad/2011/11/why-curated-content-matters-a-lament-for-reader-share/",
+          comment: "same as above, syndicated at Wired"
+
+          item name:"RSS vs. Streams", author: "Felicia Day",
+          url: "https://plus.google.com/u/0/110286587261352351537/posts/DsSLwxjojmj",
+          quote: "social media outlets [like Twitter and Facebook] are INFO COLANDERS! 5% of
+        your followers will see anything you post, and that's probably only
+        within 20 minutes of posting"
+
+        item name:"3 Google Reader Changes Need Repair Now",
+          url: "http://www.informationweek.com/news/internet/google/231902111"
+
         
     end
     
