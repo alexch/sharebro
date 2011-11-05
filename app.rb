@@ -22,9 +22,11 @@ here = File.expand_path File.dirname(__FILE__)
 lib = File.expand_path "#{here}/lib"
 $:<<lib
 
-require "landing_page"
-require "links_page"
-
+Dir.glob("lib/*.rb").each do |f|
+  feature = f.gsub(/^lib\//, '').gsub(/\.rb$/, '')
+  puts "requiring #{feature}"
+  require feature
+end
 
 class Sharebro < Sinatra::Application
   include Erector::Mixin
@@ -45,7 +47,15 @@ class Sharebro < Sinatra::Application
   end
 
   get "/links" do
-    LinksPage.new.to_html
+    AppPage.new(main: Links).to_html
+  end
+  
+  get "/features" do
+    AppPage.new(main: Features).to_html
+  end
+
+  get "/roadmap" do
+    AppPage.new(main: RoadMap).to_html
   end
 
 end

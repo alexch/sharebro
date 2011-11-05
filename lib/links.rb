@@ -61,12 +61,26 @@ class Links < Widget
       item quote: raw("Mein F&uuml;hrer... There are no more shared items."), url: "http://youtu.be/HpsfDEQkTf4", name: "Google Reader Downfall"
     end
     
-    section "Some Replacements and fixups" do
-      item name: "New Google Reader Rectifier", url: "https://chrome.google.com/webstore/detail/makmndpcndgheboeifhhgehleeabhoab" , comment: "Chrome Extension that fixes some whitespace and layout issues. Sharing still gone."
-      item name: "Google Reader Plus Theme fixed with a userstyles.org plugin", url: "http://userstyles.org/styles/55568/google-reader-plus-theme-fixed", comment: "i think he \"fixed\" it a bit too much but it's a start"
-      item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served on the author's web site"
-      item name: "Ridllr.com", url: "http://www.ridllr.com/", comment: "sucks in your old 'people you follow' feeds and resubscribes you to them"
-      item name: "HiveMined", url: "http://hivemined.org", comment: "Francis Cleary is writing a new RSS Reader with old-school sharing built in"
+    section "UI Fixups" do
+      item name: "New Google Reader Rectifier", url: "https://chrome.google.com/webstore/detail/makmndpcndgheboeifhhgehleeabhoab" , 
+        comment: "Chrome Extension that fixes some whitespace and layout issues. Sharing still gone."
+      item name: "Google Reader Plus Theme fixed with a userstyles.org plugin", url: "http://userstyles.org/styles/55568/google-reader-plus-theme-fixed", 
+        comment: "i think he \"fixed\" it a bit too much but it's a start"
+      item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", 
+        comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served on the author's web site"
+      item name: "Google Reader Compact", url: "http://userscripts.org/scripts/show/116890", 
+        comment: "userscript by lipsumar"
+    end
+    
+    section "Replacement Readers" do
+      item name: "HiveMined", url: "http://hivemined.org", 
+        comment: "Francis Cleary is writing a new RSS Reader with old-school sharing built in"
+      item url: "http://tt-rss.org/", name: "Tiny Tiny RSS", 
+        comment: "requires you to run your own Apache web server"
+      item url: "http://hivemined.org", name: "HiveMined", 
+        comment: "still pre-alpha"
+      item url: "http://newsblur.com", name:"NewsBlur", 
+        comment: "pretty slick, but still no social features. US$12-36 (your choice)/yr for premium"
     end
     
     section "Googlers and ex-Googlers Comment" do

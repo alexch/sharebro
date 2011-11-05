@@ -19,40 +19,41 @@ class LandingPage < AppPage
       Since Francis is already working on <a href="http://hivemined.org">Hive Mined</a> as a full Reader replacement I figure I should put my efforts towards enhancing the real Reader, kind of like Vijay is doing with <a href="http://ridllr.com">ridllr</a>.
       HTML
     }
-    blockquote raw(<<-HTML)
-      Follow me on <a href="https://plus.google.com/107397735779828096052/posts">Plus</a> and <a href="http://twitter.com/alexch">Twitter</a> and I'll keep you posted
-      <br>&nbsp;-&nbsp;<a href="http://alexchaffee.com">Alex</a>
-    HTML
-
-    hr
-    section "Road Map" do
-      pre <<-MARKDOWN
-      
-       * links and reviews of 
-          * alternatives
-          * enhancements   
-          * replacements  
-
-      * original development of the above, e.g.
-        * bookmarklet
-        * "share" button(s) inside new reader
-        * comment syncing
-        * personal share feeds a la http://www.google.com/reader/shared/alexch
-        * semi-private share feeds
-        * integration with G+, Tumblr, Posterous, Facebook, or wherever
-
-      I intend to delegate and borrow heavily, and avoid language wars. All the code I write will be open source, starting with http://github.com/alexch/sharebro, and with any luck this will be community-supported and free forever.
-
-      Also with any luck some of it will become obsolete if and when Google come to their collective senses.
-
-      Just so you know, my personal preference/bias is towards public shares and a pub/sub model. We are all peers and like it or not, we live in public. Might as well claim that rather than hiding from it. (Though I respect the idea of limiting one's audience and peer group too; I just think Circles went a bit too far in that direction.)
-      
-      MARKDOWN
+    
+    h2 "What you should do"
+    ul do
+     li {
+       text "Join the ", (a "Diaspora Google Group", :href => "https://groups.google.com/group/google-reader-diaspora")," and help us figure out how to fix Reader, or where to go if we can't"
+     }
+     li {
+       text "Join the ", (a "Sharebro Google Group", href:  "https://groups.google.com/group/sharebro"), " if you want to collaborate on solutions as a coder or tester"
+     }
+     li {
+      text "Follow me ", 
+        (a "(Alex Chaffee)", href: "http://alexchaffee.com"),
+        " on ",
+        (a "Plus", href:"https://plus.google.com/107397735779828096052/posts"),
+        " and ",
+        (a "Twitter", href: "http://twitter.com/alexch"), 
+        " and I'll keep you posted"
+      }
+      li {
+        text "Read the ",
+        (a "Missing Features", href: "/features"),
+        " list and see if we missed any (I'm sure we did but I have to go have breakfast now)"
+      }
     end
+        
+    h2 "This Site"
+    ul {
+      item name: "Links", url: "/links",
+        comment: "a collection of dozens of articles and eulogies"
+      item name: "Missing Features", url: "/features",
+        comment: "a catalog of what features were removed from Reader, and how we (and others) are trying to bring them back"
+      item name: "Road Map", url: "/roadmap",
+        comment: "a guide for developers and testers who want to contribute to this site and the tools we're building"
+    }
 
-    h1 do
-      item name: "More Links", url: "/links"
-    end
 
       p raw(<<-HTML)
         P.S. Yes, "sharebro" is 

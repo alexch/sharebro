@@ -1,6 +1,12 @@
 # intended for inclusion in an Erector widget
 module Sections
+  # todo: test
+  def sanitize s
+    s.downcase.gsub(/[^a-z0-9]/, '_')
+  end
+  
   def section name
+    a name: sanitize(name)
     div.section do
       h2 name
       ul do
