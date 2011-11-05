@@ -1,38 +1,32 @@
 require "links"
+require "app_page"
+require "sections"
 
-class LandingPage < Erector::Widgets::Page
-  def page_title
-    "sharebro.org"
+
+class LandingPage < AppPage
+  include Sections
+  def my
+    a "my", href: "http://alexchaffee.com"
   end
   
-  # todo: use SCSS
-  external :style, <<-CSS
-    body { font-family: arial, helvetica, sans-serif;}
-  CSS
-  
-  def body_content
-    rawtext <<-HTML
-      <h1>sharebro.org</h1>
-      <p>
-        This site is <a href="http://alexchaffee.com">my</a> hub for efforts to either fix Google Reader, or figure out where to go if that proves impossible.
-      </p>
-      <p>
-        Since Francis is already working on <a href="http://hivemined.org">Hive Mined</a> as a full Reader replacement I figure I should put my efforts towards enhancing the real Reader, kind of like Vijay is doing with <a href="http://ridllr.com">ridllr</a>.
-      </p>
-      <blockquote>
-        Follow me on <a href="https://plus.google.com/107397735779828096052/posts">Plus</a> and <a href="http://twitter.com/alexch">Twitter</a> and I'll keep you posted
-        <br>&nbsp;-&nbsp;<a href="http://alexchaffee.com">Alex</a>
-      </blockquote>
-      </p>
-
-      HTML
-
-      hr
-      h1 "Road Map"
-
-      pre <<-MARKDOWN
+  def main_content
       
-      Road Map
+    p {
+      text "This site is ", my, " hub for efforts to either fix Google Reader, or figure out where to go if that proves impossible."
+    }
+    p {
+      rawtext <<-HTML
+      Since Francis is already working on <a href="http://hivemined.org">Hive Mined</a> as a full Reader replacement I figure I should put my efforts towards enhancing the real Reader, kind of like Vijay is doing with <a href="http://ridllr.com">ridllr</a>.
+      HTML
+    }
+    blockquote raw(<<-HTML)
+      Follow me on <a href="https://plus.google.com/107397735779828096052/posts">Plus</a> and <a href="http://twitter.com/alexch">Twitter</a> and I'll keep you posted
+      <br>&nbsp;-&nbsp;<a href="http://alexchaffee.com">Alex</a>
+    HTML
+
+    hr
+    section "Road Map" do
+      pre <<-MARKDOWN
       
        * links and reviews of 
           * alternatives
@@ -54,14 +48,11 @@ class LandingPage < Erector::Widgets::Page
       Just so you know, my personal preference/bias is towards public shares and a pub/sub model. We are all peers and like it or not, we live in public. Might as well claim that rather than hiding from it. (Though I respect the idea of limiting one's audience and peer group too; I just think Circles went a bit too far in that direction.)
       
       MARKDOWN
+    end
 
-      hr
-      
-      h1 "Links"
-      blockquote "(todo: move these to a separate page)"
-      widget Links
-
-      hr
+    h1 do
+      item name: "More Links", url: "/links"
+    end
 
       p raw(<<-HTML)
         P.S. Yes, "sharebro" is 
@@ -70,23 +61,5 @@ class LandingPage < Erector::Widgets::Page
       </p>
     HTML
 
-    rawtext <<-HTML
-    <script type="text/javascript">
-    // <![CDATA[
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-23417120-1']);
-        _gaq.push(['_setDomainName', 'none']);
-        _gaq.push(['_setAllowLinker', true]);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-    // ]]>
-    </script>
-    HTML
   end
 end

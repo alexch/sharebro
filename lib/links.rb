@@ -1,31 +1,7 @@
+require "sections"
+
 class Links < Widget
-  def section name
-    div.section do
-      h2 name
-      ul do
-        yield
-      end
-    end
-  end
-  
-  def item options = {}
-    li do
-      if options[:name] || options[:url]
-        a options[:name] || options[:url], href: options[:url]
-      end
-      if options[:comment]
-        text " -- "
-        span.comment options[:comment]
-      end
-      if options[:quote]
-        em do 
-          blockquote options[:quote]
-        end
-      end
-      
-      yield if block_given?
-    end
-  end
+  include Sections
   
   def content
     section "What was lost?" do
@@ -46,7 +22,8 @@ class Links < Widget
       
       item url: "https://plus.google.com/109372531542734504522/posts/fHsSwwY4HUK", name: "Garrett Guillotte breaks it all down"
       
-      item url: "://purityanddanger.blogspot.com/2010/10/google-reader.html", name: "purity and danger", comment: "Dolly said it all a year ago"
+      item url: "http://purityanddanger.blogspot.com/2010/10/google-reader.html",
+        name: "purity and danger on Reader", comment: "Dolly said it all a year ago"
       
       item url: "http://alexch.tumblr.com/post/11868074433/why-i-love-and-how-i-use-google-reader",
         name: "Why I Love Google Reader"
@@ -77,6 +54,19 @@ class Links < Widget
         item url: "http://www.google.com/support/forum/p/reader/thread?tid=08e63a1af9829a1c&amp;hl=en&amp;fid=08e63a1af9829a1c0004afe7a8378fc2", name: "Why is Reader being castrated?"
       end
 
+    end
+    
+    section "Funny" do
+      item url: "https://twitter.com/#!/pinboard/status/131139094943236097", quote: "My theory is that the Senior Vice President for Bad Decisions got lured away from Yahoo to Google"
+      item quote: raw("Mein F&uuml;hrer... There are no more shared items."), url: "http://youtu.be/HpsfDEQkTf4", name: "Google Reader Downfall"
+    end
+    
+    section "Some Replacements and fixups" do
+      item name: "New Google Reader Rectifier", url: "https://chrome.google.com/webstore/detail/makmndpcndgheboeifhhgehleeabhoab" , comment: "Chrome Extension that fixes some whitespace and layout issues. Sharing still gone."
+      item name: "Google Reader Plus Theme fixed with a userstyles.org plugin", url: "http://userstyles.org/styles/55568/google-reader-plus-theme-fixed", comment: "i think he \"fixed\" it a bit too much but it's a start"
+      item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served on the author's web site"
+      item name: "Ridllr.com", url: "http://www.ridllr.com/", comment: "sucks in your old 'people you follow' feeds and resubscribes you to them"
+      item name: "HiveMined", url: "http://hivemined.org", comment: "Francis Cleary is writing a new RSS Reader with old-school sharing built in"
     end
     
     section "Googlers and ex-Googlers Comment" do
@@ -140,10 +130,6 @@ class Links < Widget
         
     end
     
-    section "Funny" do
-      item url: "https://twitter.com/#!/pinboard/status/131139094943236097", quote: "My theory is that the Senior Vice President for Bad Decisions got lured away from Yahoo to Google"
-      item quote: raw("Mein F&uuml;hrer... There are no more shared items."), url: "http://youtu.be/HpsfDEQkTf4", name: "Google Reader Downfall"
-    end
 
   end
 end

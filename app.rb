@@ -23,6 +23,7 @@ lib = File.expand_path "#{here}/lib"
 $:<<lib
 
 require "landing_page"
+require "links_page"
 
 
 class Sharebro < Sinatra::Application
@@ -41,6 +42,10 @@ class Sharebro < Sinatra::Application
 
   get "/" do
     LandingPage.new.to_html
+  end
+
+  get "/links" do
+    LinksPage.new.to_html
   end
 
 end
