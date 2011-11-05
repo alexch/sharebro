@@ -91,6 +91,36 @@ class Features < Widget
       text " on the Links page"
     end
     
+    feature "Star / Read Later" do
+      p "Some people used 'star' as 'read later'. Others used it as 'favorite'."
+    end
+    
+    feature "Sort by Magic" do
+      p "This nice feature seems to have remained."
+    end
+    
+    feature "Comments inside Reader" do
+      original do
+        li "Comments appeared beneath the shared item"
+        li "Commenter names were blue if you already followed them, and gray if they were strangers"
+        li "Clicking on a stranger's name -- say, if you liked that comment -- led to apopup box where you could follow him immediately, or click through to his or her Google Profile"
+        item name: "Comments were synchronized between Reader and Buzz", url: "https://plus.google.com/u/0/107397735779828096052/posts/SWCgajAdYkz"
+      end
+    end
+    
+    feature "Gmail Integration" do
+      original do
+        p "This was more of a Buzz feature but it worked with Reader too"
+        li {
+          text "If someone added a comment to a shared item that you had either ",
+            (b "shared"), " or ", (b "commented on"), ", it would appear in your Gmail inbox"            
+        } 
+        li "From there you could add a reply which would appear as a comment"
+        li "some G+ notifications appear in your inbox, but you have to click and visit the site before you can reply, which breaks flow"
+        url "https://plus.google.com/u/0/107397735779828096052/posts/DMCH17ysJB7"
+      end
+    end
+    
     section "Other RSS Readers" do
       text "see the section "
       a "Replacement RSS Readers", href: "links#replacement_readers"

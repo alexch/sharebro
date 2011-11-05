@@ -69,9 +69,12 @@ class Links < Widget
         comment: "i think he \"fixed\" it a bit too much but it's a start -- hosted at userstyles.org"
       item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", 
         comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served off the author's web site",
-        quote: "My point in making this plugin is that the share feature should be OPEN and STANDARD. I'm willing to gather a community and define a standard way to share items (anything) via bookmarklet or even a new sharing button in ALL reader apps ! Just like you can tweet any link, you could share any feed item."
+        quote: "My point in making this plugin is that the share feature should be OPEN and STANDARD. I'm willing to gather a community and define a standard way to share items (anything) via bookmarklet or even a new sharing button in ALL reader apps ! Just like you can tweet any link, you could share any feed item.",
+        author: "Emmanuel Pire"
       item name: "Google Reader Compact", url: "http://userscripts.org/scripts/show/116890", 
         comment: "CSS munging userscript by lipsumar"
+      p '  By the way, beware of userscripts.org! They have deliberately misleading ads. Click the "Install" button in the upper right, not any big "Download" button in the center of the page.
+    '
     end
     
     section "Replacement Readers" do
@@ -83,6 +86,8 @@ class Links < Widget
         comment: "still pre-alpha"
       item url: "http://newsblur.com", name:"NewsBlur", 
         comment: "pretty slick, but still no social features. US$12-36 (your choice)/yr for premium"
+      item url: "http://pinboard.in/howto/",
+        comment: "pinboard could be a great backend for shared item feeds"
     end
     
     section "Googlers and ex-Googlers Comment" do
@@ -210,6 +215,11 @@ class Links < Widget
         item name:"3 Google Reader Changes Need Repair Now",
           url: "http://www.informationweek.com/news/internet/google/231902111"
 
+        item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", 
+            quote: "My point in making this plugin is that the share feature should be OPEN and STANDARD. I'm willing to gather a community and define a standard way to share items (anything) via bookmarklet or even a new sharing button in ALL reader apps ! Just like you can tweet any link, you could share any feed item.",
+            author: "Emmanuel Pire"
+            
+        item name: "a pinboard tag called 'occupygooglereader'", url: "http://pinboard.in/t:occupygooglereader", comment: "mostly redundant with this list, but of course pinboard lists are RSS and ironically, this one is not :-)"
         
     end
     
