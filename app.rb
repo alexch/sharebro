@@ -43,15 +43,16 @@ load File.expand_path( "#{here}/monkey/consumer.rb")
 class Sharebro < Sinatra::Application
   include Erector::Mixin
   
-  oauth_domain = case ENV['RACK_ENV']
-    when 'production'
-      "sharebro.org"
-    else
-      "localhost"
-    end
-  
-  enable :sessions
   # todo: finer-grained and hopefully more secure session management
+  enable :sessions
+  
+  # oauth_domain = begin case ENV['RACK_ENV']
+  #   when 'production'
+  #     "sharebro.org"
+  #   else
+  #     "localhost"
+  #   end
+  # end
   # use Rack::Session::Cookie, :key => 'sharebro.rack.session',
   #                            :domain => oauth_domain,
   #                            :path => '/',
@@ -59,7 +60,7 @@ class Sharebro < Sinatra::Application
   #                            :secret => 'tetrafluoride'
   
   
-
+  
   def initialize
     super
     @here = File.expand_path(File.dirname(__FILE__))
@@ -106,16 +107,18 @@ class Sharebro < Sinatra::Application
     </body></html>
     HTML
   end
-.
+
+  def app_host
+    case ENV['RACK_ENV']
+    when 'production'
+      "sharebro.org"
+    else
+      "localhost:9292"
+    end
+  end
+
   def authorizer
-    host = case ENV['RACK_ENV']
-      when 'production'
-        "sharebro.org"
-      else
-        "localhost:9292"
-      end
-    
-    @authorizer = session[:authorizer] || Authorizer.new(:callback_url => "http://#{host}/oauth_callback" )
+    @authorizer = session[:authorizer] || Authorizer.new(:callback_url => "http://#{app_host}/oauth_callback" )
   end
   
   def access_token
