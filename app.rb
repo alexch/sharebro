@@ -105,11 +105,10 @@ class Sharebro < Sinatra::Application
 
   def authorizer
     host = case ENV['RACK_ENV']
-      when 'production'
-        "sharebro.org"
-      else
-        "localhost:9292"
-      end
+    when 'production'
+      "sharebro.org"
+    else
+      "localhost:9292"
     end
     
     @authorizer = session[:authorizer] || Authorizer.new(:callback_url => "http://#{host}/oauth_callback" )
