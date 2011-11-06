@@ -12,10 +12,12 @@ class Authorizer
     if File.exist?(config_file)
       @config = YAML::load(File.read(config_file))
     else
+      puts "#{config_file} not found"
       @config = {
-        oauth_consumer_key: ENV['oauth_consumer_key'],
-        oauth_consumer_secret: ENV['oauth_consumer_secret']
+        oauth_consumer_key: ENV['OAUTH_CONSUMER_KEY'],
+        oauth_consumer_secret: ENV['OAUTH_CONSUMER_SECRET']
       }
+      p @config
     end
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
     @scope = "http://www.google.com/reader/api/"
