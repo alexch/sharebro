@@ -25,7 +25,9 @@ here = File.expand_path File.dirname(__FILE__)
 lib = File.expand_path "#{here}/lib"
 $:<<lib
 
-Dir.glob("lib/*.rb").each do |f|
+# require all library files, in case one file forgets to include its requirements
+# alphabetize to correct for inconsistent filesystem load order
+Dir.glob("lib/*.rb").sort.each do |f|
   feature = f.gsub(/^lib\//, '').gsub(/\.rb$/, '')
   puts "requiring #{feature}"
   require feature
