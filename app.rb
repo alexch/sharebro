@@ -104,7 +104,15 @@ class Sharebro < Sinatra::Application
   end
 
   def authorizer
-    @authorizer = session[:authorizer] || Authorizer.new(:callback_url => "http://localhost:9292/oauth_callback" )
+    host = case ENV['RACK_ENV']
+      when 'production'
+        "sharebro.org"
+      else
+        "localhost:9292"
+      end
+    end
+    
+    @authorizer = session[:authorizer] || Authorizer.new(:callback_url => "http://#{host}/oauth_callback" )
   end
   
   def access_token
