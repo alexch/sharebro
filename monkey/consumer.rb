@@ -141,10 +141,6 @@ module OAuth
       OAuth::RequestToken.from_hash(self, response)
     end
 
-
-    require 'wrong'
-    include Wrong
-
     # Creates, signs and performs an http request.
     # It's recommended to use the OAuth::Token classes to set this up correctly.
     # request_options take precedence over consumer-wide options when signing
