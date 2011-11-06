@@ -31,6 +31,9 @@ Dir.glob("lib/*.rb").each do |f|
   require feature
 end
 
+# monkey patch for better oauth errors
+load "#{here}/monkey/consumer"
+
 class Sharebro < Sinatra::Application
   include Erector::Mixin
   
@@ -114,7 +117,7 @@ class Sharebro < Sinatra::Application
       oauth_token: params[:oauth_token],
     )
     session.delete(:authorizer)
-    redirect "/unread"
+    redirect "/info"
   end
   
   get "/info" do
