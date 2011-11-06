@@ -9,6 +9,10 @@ Widget = Erector::Widget
 if ENV['RACK_ENV'] == 'development'
   require 'wrong'
   include Wrong::D
+else
+  def d
+    puts "d called from #{caller.first}"
+  end
 end
 
 require 'ap'
@@ -102,7 +106,7 @@ class Sharebro < Sinatra::Application
     </body></html>
     HTML
   end
-
+.
   def authorizer
     host = case ENV['RACK_ENV']
       when 'production'
@@ -136,7 +140,6 @@ class Sharebro < Sinatra::Application
   
   get "/unread" do
     # now we have an access token, so do something with it
-    d { session }
     response = access_token.get "/reader/api/0/unread-count?output=json"
     "<pre>" + JSON.parse(response.body).ai(:plain=>true) + "</pre>"
   end
