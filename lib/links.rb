@@ -231,7 +231,7 @@ class Links < Widget
         item name: "a pinboard tag called 'occupygooglereader'", url: "http://pinboard.in/t:occupygooglereader", comment: "mostly redundant with this list, but of course pinboard lists are RSS and ironically, this one is not :-)"
         
         
-        item name: "decoupling of the Google Reader features"
+        item name: "decoupling of the Google Reader features",
           url: "http://seetolearnru.blogspot.com/2011/11/decoupling-of-google-reader-features.html"
     end
     

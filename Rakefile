@@ -23,3 +23,8 @@ task :run do
   exec "rerun rackup"
   # note: rerun doesn't work with foreman since foreman seems to eat SIGQUIT signals
 end
+
+desc "push git repo to heroku and github"
+task :push do
+  exec "git push heroku && git push"
+end
