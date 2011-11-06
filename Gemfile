@@ -7,10 +7,10 @@ gem "rdiscount"
 gem "thin"
 gem "awesome_print"
 gem "oauth"
+gem "wrong"
 
 group :development do
   gem "rake"
-  gem "wrong"
   gem "rspec"
   gem "rerun"
   gem "foreman"
