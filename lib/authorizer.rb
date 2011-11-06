@@ -7,18 +7,21 @@ class Authorizer
   attr_reader :here, :config
   attr_writer :callback_url
   def initialize options = {}
+    puts "HEREIAM"
+    
     @here = File.expand_path File.dirname(__FILE__)
     config_file = "#{here}/../oauth.yaml"
+    puts "looking for #{config_file}"
     if File.exist?(config_file)
       @config = YAML::load(File.read(config_file))
     else
       puts "#{config_file} not found"
       @config = {
-        oauth_consumer_key: ENV['OAUTH_CONSUMER_KEY'],
-        oauth_consumer_secret: ENV['OAUTH_CONSUMER_SECRET']
+        "oauth_consumer_key" => ENV['OAUTH_CONSUMER_KEY'],
+        "oauth_consumer_secret" => ENV['OAUTH_CONSUMER_SECRET']
       }
-      p @config
     end
+    p config
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
     @scope = "http://www.google.com/reader/api/"
   end
