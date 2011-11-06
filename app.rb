@@ -44,7 +44,7 @@ class Sharebro < Sinatra::Application
 
   # google oauth verification file
   get '/google66d87a0b5d48cf21.html' do
-    send_file "#{here}/favicon.ico"
+    send_file "#{here}/google66d87a0b5d48cf21.html"
   end
   
   get "/" do
