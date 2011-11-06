@@ -36,6 +36,10 @@ h1,h2,h3 {
 .top a:visited {
   color: black;
 }
+.top .status {
+  float: right;
+  
+}
 
 .main {
   margin: 1em;
@@ -93,6 +97,10 @@ div.feature h2 {
   
   def body_content
     div.top do
+      div.status do
+        a "[auth]", :href => "/auth"
+      end
+      
       h1 do
         a "sharebro.org", :href => '/'
         (span.page_name (" - " + @main.name)) if @main   # todo: be smart about class vs instance and humanize name

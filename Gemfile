@@ -5,7 +5,8 @@ gem "sinatra"
 gem "nokogiri"
 gem "rdiscount"
 gem "thin"
-# gem "ap"
+gem "awesome_print"
+gem "oauth"
 
 group :development do
   gem "rake"

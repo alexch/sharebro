@@ -7,13 +7,31 @@ research Google Reader API
   http://code.google.com/p/google-reader-api/
   http://code.google.com/p/google-reader-api/wiki/Authentication
   
+  
+  https://groups.google.com/forum/#!topic/fougrapi/RDDJpt6k1w8
+  
+  https://accounts.google.com/UpdateDomain
+  
     OAuth (preferred)
     OAuth is the preferred authentication mechanism for both web and installed apps. Using the scope https://www.google.com/reader/api/ obtain a request token, authorize it, exchange it for an access token, and make requests as usual, passing in the OAuth token in the Authorization: HTTP header. You may find the OAuth Playground useful in experimenting with all this.
 
     The https://www.google.com/reader/atom/ and https://www.google.com/reader/subscription/export scopes are supported as well for applications wish to use the Atom and OPML outputs. Additionally, HTTP versions of these HTTPS schemes are also available.
 
+  http://code.google.com/apis/youtube/2.0/developers_guide_protocol_oauth.html
   
   registering domain with Google https://accounts.google.com/UpdateDomains
+
+  Target URL path prefix: This value enables Google to reject all authorization requests ostensibly from your domain that use an incorrect domain or prefix. If you're making an AuthSub request, this URL must be identical to the prefix value of the next parameter used in your authorization requests. For example, if your next values will be something like http://example.com/authsub and/or http://example.com/feed/authsub, your prefix should be http://example.com. If you're using the OAuth interface, this URL must match the value of the oauth_consumer_key parameter.
+
+
+http://code.google.com/apis/accounts/docs/RegistrationForWebAppsAuto.html:
+  Note: If you're using OAuth with the HMAC-SHA1 signature method, you do not need to upload a certificate; instead, an OAuth "consumer secret" value is automatically generated when you register your domain.
+
+  If your application uses the HMAC-SHA1 signature algorithm, leave the certificate field blank when completing your registration. Google will generate an OAuth consumer secret value, which will display on your domain's registration page after you have completed the registration process. You will then use this value to sign requests.
+
+
+http://stakeventures.com/articles/2008/02/23/developing-oauth-clients-in-ruby
+
   
   
   http://www.niallkennedy.com/blog/2005/12/google-reader-api.html
@@ -41,6 +59,10 @@ at the top of Your Shared Items, Your Stuff, and People You Follow).
 These have an origin stream of user/-/state/com.google/post. They can
 also be deleted (in the UI they have a delete action) but I don't
 remember off-hand the URL for that.
+
+
+http://code.google.com/p/google-reader-api/wiki/ActionToken
+To protect against XSRF attacks, all state-changing methods require an action token in addition to an authentication token. The token can be fetched by making a GET request for /reader/api/0/token and should be passed in to state-changing requests (generally POST requests) with the T parameter (see ApiCommonInputs).
 
 
 
