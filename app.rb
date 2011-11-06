@@ -32,7 +32,7 @@ Dir.glob("lib/*.rb").each do |f|
 end
 
 # monkey patch for better oauth errors
-load "#{here}/monkey/consumer"
+load File.expand_path( "#{here}/monkey/consumer.rb")
 
 class Sharebro < Sinatra::Application
   include Erector::Mixin
