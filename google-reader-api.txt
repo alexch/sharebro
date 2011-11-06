@@ -1,0 +1,51 @@
+research Google Reader API
+
+  https://github.com/aurelian/grapi
+  https://github.com/aurelian/grapi/blob/master/lib/grapi/reader.rb
+   -- uses username/password
+
+  http://code.google.com/p/google-reader-api/
+  http://code.google.com/p/google-reader-api/wiki/Authentication
+  
+    OAuth (preferred)
+    OAuth is the preferred authentication mechanism for both web and installed apps. Using the scope https://www.google.com/reader/api/ obtain a request token, authorize it, exchange it for an access token, and make requests as usual, passing in the OAuth token in the Authorization: HTTP header. You may find the OAuth Playground useful in experimenting with all this.
+
+    The https://www.google.com/reader/atom/ and https://www.google.com/reader/subscription/export scopes are supported as well for applications wish to use the Atom and OPML outputs. Additionally, HTTP versions of these HTTPS schemes are also available.
+
+  
+  registering domain with Google https://accounts.google.com/UpdateDomains
+  
+  
+  http://www.niallkennedy.com/blog/2005/12/google-reader-api.html
+  http://mindsharestrategy.com/2010/google-reader-api-a-brief-tutorial/
+  http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+  http://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1/
+  http://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2/
+  http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/
+  http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+  http://christianheilmann.com/category/google/
+  https://groups.google.com/forum/#!forum/fougrapi
+  http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+
+
+"sharing (broadcast tag)"
+apparently there are two tags "broadcast" and "broadcast-friends"
+
+As far as unsharing goes, you can use an edit-tag request to remove
+the broadcast tag as you would for any other item. We don't currently
+support editing of the note once it's created.
+
+There is also the concept of "notes" in Reader, which are standalone
+items that originate purely within Reader (you can see the UI for them
+at the top of Your Shared Items, Your Stuff, and People You Follow).
+These have an origin stream of user/-/state/com.google/post. They can
+also be deleted (in the UI they have a delete action) but I don't
+remember off-hand the URL for that.
+
+
+
+RSS 2.0 spec
+  http://cyber.law.harvard.edu/rss/rss.html#ltsourcegtSubelementOfLtitemgt
+  
+  
+  http://activitystrea.ms/registry/verbs/

@@ -42,6 +42,11 @@ class Sharebro < Sinatra::Application
     send_file "#{here}/favicon.ico"
   end
 
+  # google oauth verification file
+  get '/google66d87a0b5d48cf21.html' do
+    send_file "#{here}/favicon.ico"
+  end
+  
   get "/" do
     LandingPage.new.to_html
   end

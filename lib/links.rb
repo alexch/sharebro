@@ -96,6 +96,7 @@ class Links < Widget
         comment: "pretty slick, but still no social features. US$12-36 (your choice)/yr for premium"
       item url: "http://pinboard.in/howto/",
         comment: "pinboard could be a great backend for shared item feeds"
+        item url: "http://reblog.org/", name: "reBlog", quote: "A reBlog facilitates the process of filtering and republishing relevant content from many RSS feeds. reBloggers subscribe to their favorite feeds, preview the content, and select their favorite posts. These posts are automatically published through their favorite blogging software."
     end
     
     section "Googlers and ex-Googlers Comment" do
