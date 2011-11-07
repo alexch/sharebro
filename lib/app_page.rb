@@ -20,6 +20,24 @@ h1,h2,h3 {
   -webkit-margin-end: 0;
 }
 
+a, a:visited {
+  text-decoration: none;
+}
+  a {
+  color: #0100B6;
+}
+a:visited {
+  color: #3031C2;
+}
+a:hover {
+  text-decoration: underline;
+}
+li {
+  line-height: 1.25em;
+  margin-bottom: .5em;
+}
+
+
 .top { 
   border-bottom: 1px solid black;
   margin-bottom: .5em;
@@ -61,13 +79,12 @@ h1,h2,h3 {
 /* individual styling */
 
 div.box {
-  border: 1px solid black;
   padding: 1em;
   margin: 1em .5em;
+  background-color: #F1F3F5;
 }
 
 div.section {
-  border: 1px solid black;
   padding: 1em;
   margin: 1em .5em;
   background-color: #F1F3F5;
@@ -112,7 +129,7 @@ div.feature h2 {
     end
 
     div.bottom do
-      p "We haven't figured out a license yet, but content on this site is copyright (c) Alex Chaffee unless otherwise noted. All the good stuff will be open source, though."
+      p "Content on this site is copyright (c) Alex Chaffee unless otherwise noted. All the good stuff will availble under an open source license."
     end
 
     rawtext <<-HTML

@@ -92,6 +92,10 @@ class Sharebro < Sinatra::Application
   get "/roadmap" do
     AppPage.new(main: RoadMap).to_html
   end
+
+  get "/vision" do
+    AppPage.new(main: Vision).to_html
+  end
   
   get "/auth" do
     session[:authorizer] = authorizer
