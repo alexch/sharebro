@@ -1,10 +1,7 @@
 TODO (site):
 
-* remove or move extraneous text in this README file
-* table of contents per page
-* a little color
+* better color
 * tagline
-* nav bar
 
 TODO (app):
 

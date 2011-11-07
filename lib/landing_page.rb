@@ -68,7 +68,7 @@ class LandingPage < AppPage
     end
     
     section "Get Involved" do
-      p "Want to help us make a better post-Reader world?"
+      p "Want to help us build a better Reader?"
       
      li {
        text "Join the ", (a "Diaspora Google Group", :href => "https://groups.google.com/group/google-reader-diaspora")," and help us figure out how to fix Reader, or where to go if we can't"

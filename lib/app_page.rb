@@ -145,6 +145,10 @@ div.nav li.item span.comment {
     (@main.name if @main)   # todo: be smart about class vs instance and humanize name
     ].compact.join(' - ')    
   end
+  
+  def head_content
+    meta name: "description", content: "building a system for sharing links and comments, like Google Reader used to do, but better"
+  end
     
   def main_content
     if @main
