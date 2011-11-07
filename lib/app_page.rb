@@ -61,10 +61,23 @@ li {
   
 }
 
-.main {
+.left {
+  float: left;
+  width: 14em;
+  overflow: hidden;
+}
+
+.right {
+  float: right;
+  width: 14em;
+  overflow: hidden;
+}
+
+  .main {
   margin: 1em;
   max-width: 44em;
   margin: auto;
+  padding: 0 14em;
 }
 
 .bottom {
@@ -101,19 +114,6 @@ div.feature h2 {
 
 /* (should go in Sections but I don't think externals work from Modules yet) */
 
-/*--table of contents--*/
-div.contents {
-  position: absolute;
-  top: 4em;
-  right: 1em;
-  width: 18em;
-  background-color: #f5f2f5;
-  overflow: auto;
-  padding: .5em;
-  margin: 1em;
-  
-}
-
 /*-- comments */
 li.item {
 }
@@ -125,16 +125,26 @@ li.item span.comment:before {
 }
 
 /* nav */
-div.nav {
-  float: left;
-  width: 18em;
+div.nav, div.contents {
   background-color: #f5f2f5;
   overflow: auto;
-  padding: .5em;
+  padding: .5em 2em .5em .5em;
   margin: 1em;
+}
+
+li {
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+}
+div.nav ul, div.contents ul {
+  -webkit-padding-start: 10px;
 }
 div.nav li.item span.comment {
   display: none;
+}
+div.contents div.item {
+  margin: .5em 0 1em 1em;
 }
 
 
@@ -190,7 +200,13 @@ div.nav li.item span.comment {
       end
     end
 
-    nav
+    div.left {
+      nav
+    }
+
+    div.right {
+      @extra_right = output.placeholder
+    }
 
     div.main do
       main_content

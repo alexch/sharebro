@@ -20,7 +20,7 @@ module Sections
     name = options[:name] || options[:url]
     li.item do
       if name
-        a.name name, href: options[:url]
+        a.name name, href: options[:url], title: options[:comment], alt: name
       end
       if options[:author]
         text " by #{options[:author]}"
@@ -51,15 +51,16 @@ module Sections
 
   def contents
     unless @@anchors.empty?
-      div.contents do
-        h3 "This Page"
-        ul do
+      x = capture do
+        div.contents do
+          h3 "This Page"
           @@anchors.each do |name, abbr|
-            li { a name, href: "##{abbr}" }
+            div.item { a name, href: "##{abbr}" }
           end
         end
       end
     end
+    @extra_right << x
   end
   
 end
