@@ -10,7 +10,7 @@ class LandingPage < AppPage
   end
   
   def main_content
-      
+    
     section "What just happened to Google Reader?" do
       
       text "Google ", a("removed a lot of features", href: "/features"), " from Google Reader, gutting thousands of vibrant online communities in an attempt to move their members to Google Plus."

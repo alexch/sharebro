@@ -39,6 +39,10 @@ li {
   margin-bottom: .5em;
 }
 
+pre {
+  overflow-x: auto;
+  background-color: #f5f5f5;
+}
 
 .top { 
   border-bottom: 1px solid black;
@@ -187,6 +191,7 @@ div.contents div.item {
   end
     
   def body_content
+    
     clear_anchors
     
     div.top do

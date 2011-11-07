@@ -97,8 +97,14 @@ class Sharebro < Sinatra::Application
     AppPage.new(main: Vision).to_html
   end
   
+  get "/googled" do
+    AppPage.new(main: Googled).to_html
+  end
+  
   get "/auth" do
+    session.delete(:authorizer)
     session[:authorizer] = authorizer
+    puts "redirecting to #{authorizer.authorize_url}"
     redirect authorizer.authorize_url
   end
   
@@ -137,23 +143,26 @@ class Sharebro < Sinatra::Application
       oauth_token: params[:oauth_token],
     )
     session.delete(:authorizer)
-    redirect "/info"
+    redirect "/googled"
+  end
+  
+  def fetch_json api_path
+    api_path += "?output=json" unless api_path =~ /\?output=json/  # todo: handle more params
+    d { api_path }
+    response = access_token.get api_path
+    JSON.parse(response.body)
+  end
+
+  def plain_json api_path
+    PlainPage.new(data: fetch_json(api_path)).to_html
+  end
+  
+  get "/raw" do
+    plain_json params[:api_path]
   end
   
   get "/info" do
-    response = access_token.get "/reader/api/0/user-info?output=json"
-    "<pre>" + JSON.parse(response.body).ai(:plain=>true) + "</pre>"
-  end
-  
-  get "/unread" do
-    # now we have an access token, so do something with it
-    response = access_token.get "/reader/api/0/unread-count?output=json"
-    "<pre>" + JSON.parse(response.body).ai(:plain=>true) + "</pre>"
-  end
-  
-  get "/stream_contents" do
-    response = access_token.get "/reader/api/0/stream/contents/?output=json"
-    "<pre>" + JSON.parse(response.body).ai(:plain=>true) + "</pre>"
+    plain_json "/reader/api/0/user-info?output=json"
   end
 
 end

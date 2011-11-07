@@ -6,9 +6,8 @@ class Authorizer
   
   attr_reader :here, :config
   attr_writer :callback_url
+  
   def initialize options = {}
-    puts "HEREIAM"
-    
     @here = File.expand_path File.dirname(__FILE__)
     config_file = "#{here}/../oauth.yaml"
     puts "looking for #{config_file}"
@@ -23,6 +22,7 @@ class Authorizer
     end
     p config
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
+    d { @callback_url }
     @scope = "http://www.google.com/reader/api/"
   end
   

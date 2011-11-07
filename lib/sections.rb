@@ -38,29 +38,33 @@ module Sections
     end
   end
 
-  # note: using a @@ global is a total kludge, but since we only ever render one page at a time it works
+  # note: using a global is a total kludge, but since we only ever render one page at a time it works
   # should rewrite using an Externals-type mechanism  
   def clear_anchors
-    @@anchors = []
+    Thread.current[:anchors] = []
+  end
+  
+  def anchors
+    Thread.current[:anchors] ||= []
   end
   
   def anchor name, abbr = sanitize(name)
     a name: abbr
-    (@@anchors ||= []) << [name, abbr]
+    anchors << [name, abbr]
   end
 
   def contents
-    unless @@anchors.empty?
+    unless anchors.empty?
       x = capture do
         div.contents do
           h3 "This Page"
-          @@anchors.each do |name, abbr|
+          anchors.each do |name, abbr|
             div.item { a name, href: "##{abbr}" }
           end
         end
       end
+      @extra_right << x
     end
-    @extra_right << x
   end
   
 end
