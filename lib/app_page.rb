@@ -162,6 +162,22 @@ div.contents div.item {
   
   def head_content
     meta name: "description", content: "building a system for sharing links and comments, like Google Reader used to do, but better"
+    
+    rawtext <<-HTML
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23417120-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    HTML
+    
   end
     
   def main_content
@@ -223,23 +239,5 @@ div.contents div.item {
       p "Content on this site is copyright (c) Alex Chaffee unless otherwise noted. All the good stuff will availble under an open source license."
     end
 
-    rawtext <<-HTML
-    <script type="text/javascript">
-    // <![CDATA[
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-23417120-1']);
-        _gaq.push(['_setDomainName', 'none']);
-        _gaq.push(['_setAllowLinker', true]);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-    // ]]>
-    </script>
-    HTML
   end
 end
