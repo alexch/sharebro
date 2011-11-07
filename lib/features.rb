@@ -4,7 +4,7 @@ class Features < Widget
   include Sections
 
   def feature name
-    a name: sanitize(name)
+    anchor name
     div.feature.box {
       h2 "Missing: #{name}"
       yield

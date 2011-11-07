@@ -1,6 +1,8 @@
 require "links"
 
 class AppPage < Erector::Widgets::Page
+  include Sections
+  
   needs main: nil
   
   # todo: use SCSS
@@ -96,6 +98,46 @@ div.feature {
 div.feature h2 {
   color: blue;
 }
+
+/* (should go in Sections but I don't think externals work from Modules yet) */
+
+/*--table of contents--*/
+div.contents {
+  position: absolute;
+  top: 4em;
+  right: 1em;
+  width: 18em;
+  background-color: #f5f2f5;
+  overflow: auto;
+  padding: .5em;
+  margin: 1em;
+  
+}
+
+/*-- comments */
+li.item {
+}
+li.item a.name {
+  font-weight: bold;
+}
+li.item span.comment:before {
+  content: " -- ";
+}
+
+/* nav */
+div.nav {
+  float: left;
+  width: 18em;
+  background-color: #f5f2f5;
+  overflow: auto;
+  padding: .5em;
+  margin: 1em;
+}
+div.nav li.item span.comment {
+  display: none;
+}
+
+
   CSS
 
   def page_title
@@ -111,8 +153,28 @@ div.feature h2 {
       h1 "[widget missing]"
     end
   end
-  
+    
+  def nav
+    div.nav do
+      h3 "This Site"
+      ul do
+        item name: "Home", url: "/"
+        item name: "Links", url: "/links",
+          comment: "a collection of dozens of articles and eulogies"
+        item name: "Missing Features", url: "/features",
+          comment: "a catalog of what features were removed from Reader, and how we (and others) are trying to bring them back"
+        item name: "Road Map", url: "/roadmap",
+          comment: "a guide for developers and testers who want to contribute to this site and the tools we're building"
+        item name: "Vision", url: "/vision",
+          comment: "not quite a manifesto, but more than a mission statement"
+        item name: "Source Code", url: "http://github.com/alexch/sharebro", comment: "hosted on github"
+      end
+    end
+  end
+    
   def body_content
+    clear_anchors
+    
     div.top do
       div.status do
         a "[auth]", :href => "/auth"
@@ -124,9 +186,13 @@ div.feature h2 {
       end
     end
 
+    nav
+
     div.main do
       main_content
     end
+
+    contents
 
     div.bottom do
       p "Content on this site is copyright (c) Alex Chaffee unless otherwise noted. All the good stuff will availble under an open source license."

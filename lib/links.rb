@@ -50,14 +50,14 @@ class Links < Widget
       item url: "http://bit.ly/GoogleReaderPetition", :text => "Save Google Reader Petition",
         comment: "probably too late, but they did get OVER NINE THOUSAND"
         
-      section "some Facebook groups and events have popped up too" do
+      section "some Facebook groups" do
         item url: "https://www.facebook.com/groups/300995836594988/", name: "Boycott Google+ for abducting Google Reader"
         item url: "https://www.facebook.com/groups/300995836594988/", name: "Give us back our procrastination tool: we need Google Reader as it was!"
         item url: "https://www.facebook.com/pages/We-Hate-Google-Reader-Redesign/313525241998240", name: "We Hate Google-Reader Redesign"
         item url: "https://www.facebook.com/event.php?eid=195416057199691", name: "A wake for Google Reader"
       end
       
-      section "and here are some google support threads they will ignore" do
+      section "some google support threads" do
         item url: "http://www.google.com/support/forum/p/reader/thread?tid=3ae360cc3912946f"
         item url: "http://www.google.com/support/forum/p/reader/thread?tid=3ae360cc3912946f&amp;hl=en&amp;start=80", name: "my comments are around here"
         item url: "http://www.google.com/support/forum/p/reader/thread?tid=08e63a1af9829a1c&amp;hl=en&amp;fid=08e63a1af9829a1c0004afe7a8378fc2", name: "Why is Reader being castrated?"
@@ -67,7 +67,7 @@ class Links < Widget
     
     section "Funny" do
       item url: "https://twitter.com/#!/pinboard/status/131139094943236097", quote: "My theory is that the Senior Vice President for Bad Decisions got lured away from Yahoo to Google"
-      item quote: raw("Mein F&uuml;hrer... There are no more shared items."), url: "http://youtu.be/HpsfDEQkTf4", name: "Google Reader Downfall"
+      item quote: raw("Mein F&uuml;hrer... There are no more shared items."), url: "http://youtu.be/HpsfDEQkTf4", name: "Google Reader Downfall", comment: "brilliant, even among the brilliant panoply of Downfall parodies"
     end
     
     section "UI Fixups" do
