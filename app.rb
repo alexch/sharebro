@@ -10,8 +10,8 @@ if ENV['RACK_ENV'] == 'development'
   require 'wrong'
   include Wrong::D
 else
-  def d
-    puts "d called from #{caller.first}"
+  def d msg=nil
+    puts "#{caller.first}: #{yield.inspect}"
   end
 end
 
@@ -107,12 +107,15 @@ class Sharebro < Sinatra::Application
   
   get "/googled" do
     # fetch the google user info
+    # this counts as login
     user_info = google_api.info
+    
+    GoogleData.db.create!
+    # GoogleData.clear  ## DANGER
 
     # Does the db exist?
     begin
       response = GoogleData.db.info
-      # d { response }
       GoogleData.init
     end
     
@@ -120,18 +123,26 @@ class Sharebro < Sinatra::Application
     doc = GoogleData.get(user_info['userId'], design: "user_info", view: "by_user_id", housekeeping: true)
     if doc.nil?
       puts "adding #{user_info}"
-      doc = GoogleData.put(user_info << {type: "userInfo"})
+      doc = user_info << {type_: "userInfo"}
+      resp = GoogleData.put(doc)
     else
       puts "found #{doc}"
     end
+    user_info = doc
 
     # grab the friends lists too
-    
-    
-
-
-    
-    AppPage.new(main: Googled.new(user_info: user_info)).to_html
+    doc = GoogleData.get(user_info['userId'], design: "friends", view: "by_user_id")
+    if doc.nil?
+      puts "adding friends for #{user_info}"
+      friends = google_api.friends      
+      doc = friends << {type_: "friends"}
+      resp = GoogleData.put(doc)
+    else
+      puts "found #{doc}"
+    end
+    friends = doc
+        
+    AppPage.new(main: Googled.new(user_info: user_info, friends: friends)).to_html
   end
   
   get "/auth" do

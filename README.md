@@ -6,12 +6,13 @@ Google kidnapped our sharebros! And we want them back.
 
 ## Install a local CouchDB server
 
-
 <http://www.couchbase.com/downloads/couchbase-single-server/community> (formerly CouchDBX) is the easiest way.
 
 <http://couchdb.apache.org/downloads.html> is another way but is more technically arduous.
 
 See also <http://www.google.com/search?q=couchdb+install>
+
+Once you install CouchDB, leave it as an "Admin Party" so we don't need a local password. If you figure out a way to add a password without making it hard for developers, please let me know.
 
 ## Clone the repo
 

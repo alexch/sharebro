@@ -2,7 +2,8 @@ require "couchrest"
 require 'pp'
 require "ext"
 
-class Couch
+# my wrapper around CouchRest
+class LoveSeat
   def self.reset
     @db = nil
     @server = nil
@@ -107,13 +108,14 @@ class Couch
   end
 
   def self.page(type, options = {})
-    Couch::Page.new(self, {type: type}.merge(options))
+    LoveSeat::Page.new(self, {type: type}.merge(options))
   end
 
   def self.reload doc
     db.get(doc["_id"])
   end
 
+  # destructive to doc -- should rename put! ?
   def self.put doc
     db.save_doc(doc)
   end
@@ -124,20 +126,23 @@ class Couch
     view = options[:view] || "all"
     
     if design.nil?
-      db.get(key)
+      result = db.get(key)
     else
       docs = docs(design, view, :keys => [key])
+      d { docs }
       if docs.empty?
-        doc = nil  # raise RestClient::ResourceNotFound instead?
+        result = nil  # raise RestClient::ResourceNotFound instead?
       else
-        doc = docs.pop
+        result = docs.pop
         if options[:housekeeping] and !docs.empty?
           GoogleData.delete_many(docs)
         end
       end
-      doc
+      d { result }
+      result
     end
-  rescue RestClient::ResourceNotFound
+  rescue RestClient::ResourceNotFound => e
+    p e
     return nil
   end
 

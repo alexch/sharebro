@@ -42,7 +42,7 @@ li {
 pre {
   overflow-x: auto;
   background-color: #f5f5f5;
-  max-height: 60em;
+  max-height: 30em;
 }
 
 .top { 
@@ -156,12 +156,16 @@ div.contents div.item {
   CSS
 
   def page_title
-    ["sharebro.org",
-    (@main.name if @main)   # todo: be smart about class vs instance and humanize name
-    ].compact.join(' - ')    
+    # todo: be smart about class vs instance and humanize name
+    # todo: test
+    page_name = @main && ((Class === @main) ? @main : @main.class).name
+    
+    ["sharebro.org",page_name].compact.join(' - ')    
   end
   
   def head_content
+    super
+    
     meta name: "description", content: "building a system for sharing links and comments, like Google Reader used to do, but better"
     
     rawtext <<-HTML

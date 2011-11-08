@@ -17,4 +17,8 @@ class GoogleApi
     fetch_json "/reader/api/0/user-info?output=json"
   end
   
+  def friends
+    fetch_json "/reader/api/0/friend/list"
+  end
+  
 end

@@ -1,6 +1,6 @@
 class Googled < Widget
   include Sections
-  needs :user_info
+  needs :user_info, :friends
   
   def raw_url api_path
     "/raw?api_path=#{URI.escape(api_path)}"
@@ -13,13 +13,21 @@ class Googled < Widget
     
     p "Here are some of the things we have learned about you:"
     
-    
     ul do
       item name: "user info", 
         url: raw_url("/reader/api/0/user-info"), 
         comment: "basic information like your user id and join date"
 
+      span.saved "Saved!"
       pre @user_info.ai(:plain=>true)
+
+      item name: "your friends",
+        url: raw_url("/reader/api/0/friend/list")
+
+      span.saved "Saved!"
+      pre @friends.ai(:plain=>true)
+
+      hr
       
       item name: "subscriptions", 
         url: raw_url("/reader/api/0/subscription/list"), 
@@ -41,8 +49,6 @@ class Googled < Widget
       item name: "your friends' shared items",
         url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/broadcast-friends")
 
-      item name: "your friends",
-        url: raw_url("/reader/api/0/friend/list")
 
       item name: "people who follow you",
         url: raw_url("/reader/api/0/friend/list?lookup=FOLLOWERS")
