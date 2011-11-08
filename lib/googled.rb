@@ -16,7 +16,6 @@ class Googled < Widget
       response = access_token.get "/reader/api/0/stream/contents/?output=json"
       "<pre>" + JSON.parse(response.body).ai(:plain=>true) + "</pre>"
     end
-
     
     ul do
       item name: "user info", 
@@ -40,6 +39,25 @@ class Googled < Widget
         
       item name: "your notes",
         url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/created")
+        
+      item name: "your shared items",
+        url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/broadcast")
+
+      item name: "your friends' shared items",
+        url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/broadcast-friends")
+
+      item name: "people you follow",
+        url: raw_url("/reader/api/0/friend/list")
+
+      item name: "people you follow",
+        url: raw_url("/reader/api/0/friend/list?lookup=FOLLOWING")
+
+      item name: "people who follow you",
+        url: raw_url("/reader/api/0/friend/list?lookup=FOLLOWERS")
+          
+      item name: "preferences", 
+        url: raw_url("/reader/api/0/preference/stream/list")
+
         
       end
   end

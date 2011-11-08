@@ -147,7 +147,10 @@ class Sharebro < Sinatra::Application
   end
   
   def fetch_json api_path
-    api_path += "?output=json" unless api_path =~ /\?output=json/  # todo: handle more params
+    parts = api_path.split('?')
+    params = parts[1] || ""
+    params = params.split('&') + ["output=json"]
+    api_path = parts[0] + '?' + params.join('&')
     d { api_path }
     response = access_token.get api_path
     JSON.parse(response.body)
