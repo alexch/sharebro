@@ -97,8 +97,41 @@ class Sharebro < Sinatra::Application
     AppPage.new(main: Vision).to_html
   end
   
+  def google_api
+    GoogleApi.new(access_token)
+  end
+  
+  def say msg
+    puts "" + Time.now + " - #{msg}"
+  end
+  
   get "/googled" do
-    AppPage.new(main: Googled).to_html
+    # fetch the google user info
+    user_info = google_api.info
+
+    # Does the db exist?
+    begin
+      response = GoogleData.db.info
+      # d { response }
+      GoogleData.init
+    end
+    
+    # is the user already in the db?
+    doc = GoogleData.get(user_info['userId'], design: "user_info", view: "by_user_id", housekeeping: true)
+    if doc.nil?
+      puts "adding #{user_info}"
+      doc = GoogleData.put(user_info << {type: "userInfo"})
+    else
+      puts "found #{doc}"
+    end
+
+    # grab the friends lists too
+    
+    
+
+
+    
+    AppPage.new(main: Googled.new(user_info: user_info)).to_html
   end
   
   get "/auth" do
@@ -147,13 +180,7 @@ class Sharebro < Sinatra::Application
   end
   
   def fetch_json api_path
-    parts = api_path.split('?')
-    params = parts[1] || ""
-    params = params.split('&') + ["output=json"]
-    api_path = parts[0] + '?' + params.join('&')
-    d { api_path }
-    response = access_token.get api_path
-    JSON.parse(response.body)
+    GoogleApi.new(access_token).fetch_json(api_path)
   end
 
   def plain_json api_path
@@ -164,9 +191,5 @@ class Sharebro < Sinatra::Application
     plain_json params[:api_path]
   end
   
-  get "/info" do
-    plain_json "/reader/api/0/user-info?output=json"
-  end
-
 end
 

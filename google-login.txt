@@ -1,0 +1,21 @@
+Authentication and Authorization for Google APIs
+http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html
+ClientLogin for Installed Applications
+ "accounts that use 2-step verification, SAML, or Open ID are not compatible with ClientLogin"
+ 
+
+http://code.google.com/apis/accounts/
+What are authentication and authorization?
+
+Authentication: Allow users to sign-in
+
+OpenID for Google Account Users, based on the OpenID 2.0 protocol, allows users to log into your website or web application with their Google account. When Google authenticates a user's account, it returns a user ID to your application, which allows you to collect and store user information. OpenID also allows you to get access to certain user account information, with user approval.
+
+Authorization: Access users' data
+
+The OAuth 2.0 open-standard protocol allows users to authorize access to their data, after they have been authenticated. Google supports the OAuth 2.0 protocol with bearer tokens for web and installed applications, as well as OAuth 1.0 for web applications and for installed applications.
+
+
+
+The hybrid protocol uses both OpenID and OAuth, to provide both authentication and authorization in a single-step process.
+http://step2.googlecode.com/svn/spec/openid_oauth_extension/latest/openid_oauth_extension.html

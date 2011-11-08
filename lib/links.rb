@@ -81,8 +81,13 @@ class Links < Widget
         author: "Emmanuel Pire"
       item name: "Google Reader Compact", url: "http://userscripts.org/scripts/show/116890", 
         comment: "CSS munging userscript by lipsumar"
-      p '  By the way, beware of userscripts.org! They have deliberately misleading ads. Click the "Install" button in the upper right, not any big "Download" button in the center of the page.
-    '
+      p '  By the way, beware of userscripts.org! They have deliberately misleading ads. Click the "Install" button in the upper right, not any big "Download" button in the center of the page.'
+      item name: "Google Reader Compact Minimal For Small Screen", 
+        url: "http://userscripts.org/scripts/show/116957",
+        author: "Massimiliano Ferrari"
+      item name: "Google Reader Compact (Stb)", author: "http://userscripts.org/users/369554",      
+        url: "http://userscripts.org/scripts/show/117389", 
+        comment: "via https://plus.google.com/u/0/105170258389555213273/posts/8iy46vmYt1Q; A simplified version of an existent Script > http://goo.gl/165A9"
     end
     
     section "Replacement Readers" do

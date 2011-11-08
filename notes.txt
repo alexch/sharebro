@@ -171,4 +171,7 @@ http://activitystrea.ms/registry/verbs/
 
 ---
 
+view-source:http://plu.sr/feed.php?plusr=103855919375511821531
+
+G+API: https://developers.google.com/+/api/
 

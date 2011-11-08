@@ -42,6 +42,7 @@ li {
 pre {
   overflow-x: auto;
   background-color: #f5f5f5;
+  max-height: 60em;
 }
 
 .top { 
@@ -206,6 +207,11 @@ div.contents div.item {
     end
   end
     
+    
+  def main_name
+    ((@main.is_a? Class) ? @main : @main.class).name
+  end
+
   def body_content
     
     clear_anchors
@@ -217,7 +223,7 @@ div.contents div.item {
       
       h1 do
         a "sharebro.org", :href => '/'
-        (span.page_name (" - " + @main.name)) if @main   # todo: be smart about class vs instance and humanize name
+        (span.page_name (" - " + main_name.downcase)) if @main   # todo: humanize name
       end
     end
 

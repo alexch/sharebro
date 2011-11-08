@@ -12,8 +12,50 @@ http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/
 http://christianheilmann.com/category/google/
 https://groups.google.com/forum/#!forum/fougrapi
 
+
+## friends
+
 YAY found the friend API here
 http://mobile.tutsplus.com/tutorials/mobile-web-apps/building-a-mobile-web-application-with-the-google-reader-api/
+
+
+https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M
+	FOLLOWER(0), // this person is following the user
+	FOLLOWING(1), // the user is following this person
+	CONTACT(3), // this person is in the user's contacts list
+	PENDING_FOLLOWING(4), // the user is attempting to follow this person
+	PENDING_FOLLOWER(5), // this person is attempting to follow this user
+	ALLOWED_FOLLOWING(6), // the user is allowed to follow this person
+	ALLOWED_COMMENTING(7); // the user is allowed to comment on this
+	person's shared items
+
+	The "attempting"/"allowed" states are for when not sharing publicly
+	(only with certain contact groups).
+
+	The flags value is a bitfield, the bit meanings are as follow:
+
+	IS_ME(0), // represents the current user
+	IS_HIDDEN(1), // current user has hidden this person from the list of
+	people with shared items that show up
+	IS_NEW(2), // this person is a recent addition to the user's list of
+	people that they follow
+	USES_READER(3), // this person uses reader
+	IS_BLOCKED(4), // the user has blocked this person
+	HAS_PROFILE(5), // this person has created a Google Profile
+	IS_IGNORED(6), // this person has requested to follow the user, but
+	the use has ignored the request
+	IS_NEW_FOLLOWER(7), // this person has just begun to follow the user
+	IS_ANONYMOUS(8), // this person doesn't have a display name set
+	HAS_SHARED_ITEMS(9); // this person has shared items in reader
+
+	I believe the USES_READER and HAS_SHARED_ITEMS bits are not always
+	computed (since they involve per-person lookups). Let me know if you
+	need to use them, and I can look into how loading of them is
+	triggered.
+
+Mihai
+
+https://groups.google.com/forum/#!topic/fougrapi/hHDH8W5YVSw
 
 
 
@@ -25,6 +67,9 @@ http://mobile.tutsplus.com/tutorials/mobile-web-apps/building-a-mobile-web-appli
   
   
 # OAuth
+
+http://code.google.com/apis/accounts/docs/OAuth.html
+http://code.google.com/p/google-reader-api/w/list
 
   https://groups.google.com/forum/#!topic/fougrapi/RDDJpt6k1w8  
   https://accounts.google.com/UpdateDomain
