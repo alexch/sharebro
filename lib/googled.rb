@@ -10,7 +10,7 @@ class Googled < Widget
     h1 "You have now authorized sharebro.org to peek into your google account."
     
     p "Disclaimer: This app is in active development. We will be careful about keeping this information private, and only using it how you tell us to, but this is an alpha site, so some things may fall through the cracks."
-    
+
     p "Here are some of the things we have learned about you:"
     
     ul do

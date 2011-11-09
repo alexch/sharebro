@@ -123,7 +123,7 @@ class Sharebro < Sinatra::Application
     doc = GoogleData.get(user_info['userId'], design: "user_info", view: "by_user_id", housekeeping: true)
     if doc.nil?
       puts "adding #{user_info}"
-      doc = user_info << {type_: "userInfo"}
+      doc = user_info << {"type_" => "userInfo"}
       resp = GoogleData.put(doc)
     else
       puts "found #{doc}"
@@ -135,7 +135,7 @@ class Sharebro < Sinatra::Application
     if doc.nil?
       puts "adding friends for #{user_info}"
       friends = google_api.friends      
-      doc = friends << {type_: "friends"}
+      doc = friends << {"type_" => "friends"}
       resp = GoogleData.put(doc)
     else
       puts "found #{doc}"
