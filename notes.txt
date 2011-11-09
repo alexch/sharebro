@@ -175,3 +175,14 @@ view-source:http://plu.sr/feed.php?plusr=103855919375511821531
 
 G+API: https://developers.google.com/+/api/
 
+
+---
+
+There are many confusing concepts floating around. I'm hoping to solve the communication problem here with a better UI and lexicon. 
+
+Sounds like Ridllr may be sharing to G+ as a "link blog" a la delicious or pinboard, where the sharer can't really note on the original item, and the original item is not excerpted or embedded in the shared item. Or maybe he's using the Note feature which is actually the Buzz feature and Buzz is going away. I haven't heard back from Vijay in a while so I'm not 
+
+My vision is a lot more like what Reader did, and I do want to make each shared item a proper item in itself, much like most blogs these days. E.g. look at Andrew Sullivan. Most of his posts are a few words from himself, then an excerpt, then more words, then comments from others. That matches my vision most closely. 
+
+In the middle is Plus and Facebook where there are notes and comments but the original source is sort of pushed off to the side, and not excerpted, but "snippeted" automatically, and you have to click away to read the original. In this world it's often not clear what part of the original was the interesting part, and it makes your readers and commenters go hunt for it.
+

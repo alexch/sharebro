@@ -41,6 +41,7 @@ class Googled < Widget
             user_info["userProfileId"] = friend["profileIds"].first
             user_info["userName"] = friend["displayName"]
             user_info["location"] = friend["location"]
+            user_info["photoUrl"] = friend["photoUrl"]
           end
           # todo: use 'stream' directly -- maybe skip user_info altogether and use friend data to build bro
           widget Bro, :user_info => user_info        

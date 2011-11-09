@@ -131,6 +131,7 @@ class Sharebro < Sinatra::Application
     user_info = doc
 
     # grab the friends lists too
+    # DAMMIT this isn't working
     doc = GoogleData.get(user_info['userId'], design: "friends", view: "by_user_id")
     if doc.nil?
       puts "adding friends for #{user_info}"

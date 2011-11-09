@@ -4,8 +4,11 @@ class Bro < Widget
   needs :user_info
 
   external :style, <<-CSS
+  .bro {
+    border: 1px solid #e2e2f6;
+    margin: 2px;  
+  }
   .bro table {
-    border: 1px solid black;
     text-align: left;
     margin: 2px;
   }
@@ -19,10 +22,18 @@ class Bro < Widget
   .bro td {
     margin-left: .5em;
   }
+  .bro img {
+    float: left;
+    margin: 2px;
+  }
   CSS
   
   def content
     div.bro do
+      if @user_info["photoUrl"]
+        img src: "http://s2.googleusercontent.com/#{@user_info["photoUrl"]}"
+      end
+      
       table {
         tr {
           th @user_info["userName"] || "Anonymous", :colspan => 2
