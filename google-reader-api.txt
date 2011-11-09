@@ -20,6 +20,7 @@ http://mobile.tutsplus.com/tutorials/mobile-web-apps/building-a-mobile-web-appli
 
 
 https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M
+
 	FOLLOWER(0), // this person is following the user
 	FOLLOWING(1), // the user is following this person
 	CONTACT(3), // this person is in the user's contacts list
