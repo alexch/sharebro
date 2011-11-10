@@ -210,7 +210,7 @@ class Sharebro < Sinatra::Application
 
   get "/raw" do
     path = params[:api_path]
-    PlainPage.new(path: path, data: fetch_json(path)).to_html    
+    PlainPage.new(path: path, data: fetch_json(path), login_status: login_status).to_html    
   end
   
 end
