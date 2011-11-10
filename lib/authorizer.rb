@@ -22,8 +22,10 @@ class Authorizer
     end
     p config
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
-    d { @callback_url }
     @scope = "http://www.google.com/reader/api/"
+    
+    @request_token = options[:request_token]
+    @access_token = options[:access_token]
   end
   
   def consumer
@@ -58,9 +60,9 @@ class Authorizer
   
   def access_token(params = {})
     oauth_verifier, oauth_token = params[:oauth_verifier], params[:oauth_token]
-    # d { [oauth_verifier, oauth_token] }
+
     # should we memoize access_token?
-    access_token ||= request_token.get_access_token(
+    access_token = request_token.get_access_token(
       :oauth_token => oauth_token,
       :oauth_verifier => oauth_verifier,
     )

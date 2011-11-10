@@ -129,7 +129,6 @@ class LoveSeat
       result = db.get(key)
     else
       docs = docs(design, view, :keys => [key])
-      d { docs }
       if docs.empty?
         result = nil  # raise RestClient::ResourceNotFound instead?
       else
@@ -138,7 +137,6 @@ class LoveSeat
           GoogleData.delete_many(docs)
         end
       end
-      d { result }
       result
     end
   rescue RestClient::ResourceNotFound => e

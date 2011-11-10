@@ -22,8 +22,6 @@ class Googled < Widget
       
       widget Bro, :user_info => @user_info
       
-      pre @user_info.ai(:plain=>true)
-
       item name: "your friends",
         url: raw_url("/reader/api/0/friend/list")
 

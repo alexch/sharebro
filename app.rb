@@ -43,23 +43,25 @@ load File.expand_path( "#{here}/monkey/consumer.rb")
 class Sharebro < Sinatra::Application
   include Erector::Mixin
   
-  # todo: finer-grained and hopefully more secure session management
-  enable :sessions
+  session_domain = begin case ENV['RACK_ENV']
+    when 'production'
+      "sharebro.org"
+    else
+      "localhost"
+    end
+  end
   
-  # oauth_domain = begin case ENV['RACK_ENV']
-  #   when 'production'
-  #     "sharebro.org"
-  #   else
-  #     "localhost"
-  #   end
-  # end
+  enable :sessions
+    # http://stackoverflow.com/questions/6115136/in-a-sinatra-app-on-heroku-session-is-not-shared-across-dynos
+  set :session_secret, ENV['SESSION_SECRET'] || 'tetrafluoride'
+  
+  # for some reason Rack::Session::Cookie doesn't work. Sinatra uses Rack::Session::Abstract::SessionHash -- probably monkey patches it or uses it in a weird way
   # use Rack::Session::Cookie, :key => 'sharebro.rack.session',
-  #                            :domain => oauth_domain,
+  #                            :domain => session_domain,
   #                            :path => '/',
   #                            :expire_after => 2592000,
   #                            :secret => 'tetrafluoride'
-  
-  
+
   
   def initialize
     super
@@ -67,6 +69,11 @@ class Sharebro < Sinatra::Application
   end
 
   attr_reader :here
+
+  before do
+    d { session.class }
+    d { session.to_hash }
+  end
 
   get '/favicon.ico' do
     send_file "#{here}/favicon.ico"
@@ -131,38 +138,44 @@ class Sharebro < Sinatra::Application
     user_info = doc
 
     # grab the friends lists too
-    # DAMMIT this isn't working
     doc = GoogleData.get(user_info['userId'], design: "friends", view: "by_user_id")
     if doc.nil?
-      puts "adding friends for #{user_info}"
+      puts "fetching friends for #{user_info}"
       friends = google_api.friends      
-      doc = friends << {"type_" => "friends"}
+      doc = friends << {"type_" => "friends", "userId" => user_info['userId']}
       resp = GoogleData.put(doc)
-    else
-      puts "found #{doc}"
+      d{ resp }
     end
     friends = doc
         
     AppPage.new(main: Googled.new(user_info: user_info, friends: friends)).to_html
   end
   
-  get "/auth" do
-    session.delete(:authorizer)
-    session[:authorizer] = authorizer
-    puts "redirecting to #{authorizer.authorize_url}"
-    redirect authorizer.authorize_url
+  def create_authorizer(options = {})
+    Authorizer.new({:callback_url => "http://#{app_host}/oauth_callback"} << options )
   end
-  
+
   get "/auth_needed" do
     <<-HTML
     <html><body>
     The action you just attempted requires authorization from google. 
+    <p>
     <a href="/auth">Click here</a> to start the OAuth Tango.
+    </p>
     Click "Grant Access" if you please. We won't save your credentials, nor any data we glean (though we may later, once we get accounts going).
     </body></html>
     HTML
   end
-
+  
+  get "/auth" do
+    session.delete(:request_token)
+    authorizer = create_authorizer 
+    d { authorizer.request_token }
+    session[:request_token] = authorizer.request_token #.token
+    puts "redirecting to #{authorizer.authorize_url}"
+    redirect authorizer.authorize_url
+  end
+  
   def app_host
     case ENV['RACK_ENV']
     when 'production'
@@ -172,10 +185,6 @@ class Sharebro < Sinatra::Application
     end
   end
 
-  def authorizer
-    @authorizer = session[:authorizer] || Authorizer.new(:callback_url => "http://#{app_host}/oauth_callback" )
-  end
-  
   def access_token
     # exchange the request token for an AccessToken
     # todo: memoize? store in session?
@@ -183,11 +192,12 @@ class Sharebro < Sinatra::Application
   end
   
   get "/oauth_callback" do
+    authorizer = create_authorizer(:request_token => session[:request_token])
     session[:access_token] = access_token = authorizer.access_token(
       oauth_verifier: params[:oauth_verifier], 
       oauth_token: params[:oauth_token],
     )
-    session.delete(:authorizer)
+    session.delete(:request_token)
     redirect "/googled"
   end
   

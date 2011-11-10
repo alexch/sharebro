@@ -186,3 +186,8 @@ My vision is a lot more like what Reader did, and I do want to make each shared 
 
 In the middle is Plus and Facebook where there are notes and comments but the original source is sort of pushed off to the side, and not excerpted, but "snippeted" automatically, and you have to click away to read the original. In this world it's often not clear what part of the original was the interesting part, and it makes your readers and commenters go hunt for it.
 
+---
+
+
+http://docs.disqus.com/developers/
+http://disqus.com/api/docs/
