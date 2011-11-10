@@ -62,4 +62,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * share bookmarklet
  * see min as a way to strip extranous content http://min.artequalswork.com/js/m.js
 * see Road Map page
+* shared comments
+  * see http://www.salmon-protocol.org/
+
 

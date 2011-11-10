@@ -117,6 +117,7 @@ class Links < Widget
       item name: "Fixing What Ain't Broke",
         url: "https://plus.google.com/u/0/112363215496879145560/posts/5G1T9QvYKvv",
         quote: %Q{Jason Hsu  -  What really baffles me is how many users still think the New Design is okay after pointing out all the serious usability problems. Normally as an engineer I wouldn't be arsed to make a visual aid in support of an argument, but I just had to for the atrocities committed upon Reader: (Google New Design = GND = electrical ground = "at zero potential")}
+        
     end
     
     section "Commentary" do
@@ -240,6 +241,10 @@ class Links < Widget
         
         item name: "decoupling of the Google Reader features",
           url: "http://seetolearnru.blogspot.com/2011/11/decoupling-of-google-reader-features.html"
+          
+        item author: "Chris Wetherell", 
+          url: "https://plus.google.com/u/0/101851274707291135260/posts/FipoiXvRaa3",
+          name: "There's been some interesting critical discussions of some design and product changes within Google Reader recently..."
     end
     
 
