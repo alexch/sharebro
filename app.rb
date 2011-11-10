@@ -26,15 +26,22 @@ require 'ap'
 # end
 
 here = File.expand_path File.dirname(__FILE__)
-lib = File.expand_path "#{here}/lib"
-$:<<lib
 
-# require all library files, in case one file forgets to include its requirements
-# alphabetize to correct for inconsistent filesystem load order
-Dir.glob("lib/*.rb").sort.each do |f|
-  feature = f.gsub(/^lib\//, '').gsub(/\.rb$/, '')
-  puts "requiring #{feature}"
-  require feature
+%w{lib web}.each do |dir|
+
+  # add directory to load path
+  path = File.expand_path "#{here}/#{dir}"
+  $:<<path
+
+  # require all files
+  # alphabetize to correct for inconsistent filesystem load order
+  # to be safe, all files should 'require' all their dependencies, which will 
+  # assure loading in correct (not alphabetical) order
+  Dir.glob("#{dir}/*.rb").sort.each do |f|
+    feature = f.gsub(/^lib\//, '').gsub(/\.rb$/, '')
+    puts "requiring #{feature}"
+    require feature
+  end
 end
 
 # monkey patch for better oauth errors
@@ -158,11 +165,14 @@ class Sharebro < Sinatra::Application
   get "/auth_needed" do
     <<-HTML
     <html><body>
+      
+      h1 "authorization"
+      
     The action you just attempted requires authorization from google. 
     <p>
     <a href="/auth">Click here</a> to start the OAuth Tango.
     </p>
-    Click "Grant Access" if you please. We won't save your credentials, nor any data we glean (though we may later, once we get accounts going).
+    Click "Grant Access" if you please. We won't save your credentials, but we will fetch your user info and friends list so we can rebuild your sharebros.
     </body></html>
     HTML
   end

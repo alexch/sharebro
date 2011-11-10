@@ -198,7 +198,7 @@ div.contents div.item {
       h3 "This Site"
       ul do
         item name: "Home", url: "/"
-        item name: "Auth [experimental]" ,url: "/auth", comment: "Experimental Google API integration. Save your friends before they evaporate!"
+        item name: "Google Save" ,url: "/auth", comment: "Experimental Google API integration. Save your friends before they evaporate!"
         item name: "Links", url: "/links",
           comment: "a collection of dozens of articles and eulogies"
         item name: "Missing Features", url: "/features",
