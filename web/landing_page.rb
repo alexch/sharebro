@@ -3,13 +3,11 @@ require "app_page"
 require "sections"
 
 
-class LandingPage < AppPage
-  include Sections
-  def my
-    a "my", href: "http://alexchaffee.com"
-  end
+class Landing < Widget
   
-  def main_content
+  include Sections
+  
+  def content
     
     section "What just happened to Google Reader?" do
       

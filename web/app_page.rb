@@ -3,7 +3,7 @@ require "links"
 class AppPage < Erector::Widgets::Page
   include Sections
   
-  needs main: nil
+  needs main: nil, login_status: nil
   
   # todo: use SCSS
   external :style, <<-CSS
@@ -223,10 +223,8 @@ div.contents div.item {
     clear_anchors
     
     div.top do
-      div.status do
-        a "[auth]", :href => "/auth"
-      end
-      
+      widget @login_status
+            
       h1 do
         a "sharebro.org", :href => '/'
         (span.page_name (" - " + main_name.downcase)) if @main   # todo: humanize name

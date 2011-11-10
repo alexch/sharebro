@@ -109,13 +109,13 @@ class Sharebro < Sinatra::Application
   end
   
   get "/" do
-    LandingPage.new.to_html
+    app_page(Landing).to_html
   end
 
   # build plain-widget pages
   [Links, Features, RoadMap, Vision].each do |widget|
     get "/#{widget.name.downcase}" do
-      AppPage.new(main: widget).to_html
+      app_page(widget).to_html
     end
   end
   
@@ -123,7 +123,7 @@ class Sharebro < Sinatra::Application
   
   get '/sharebros' do
     google_data = GoogleData.new(google_api)
-    AppPage.new(main: Sharebros.new(:google_data => google_data)).to_html
+    app_page(Sharebros.new(:google_data => google_data)).to_html
   end
   
   def google_api
@@ -135,11 +135,27 @@ class Sharebro < Sinatra::Application
     # todo: memoize? store in session?
     session[:access_token] || (redirect "/auth_needed")
   end
+  
+  def login_status
+    
+    if session[:access_token]
+      LoginStatus::Authenticated.new(google_data: google_data)
+    else
+      LoginStatus::Unauthenticated
+    end
+  end
 
-  get "/googled" do
+  def app_page main
+    AppPage.new(main: main, login_status: login_status)
+  end
+
+  def google_data
     google_data = GoogleData.new(google_api)
     google_data.fetch  # todo: move this to /auth or something since it primes the pump
-    AppPage.new(main: Googled.new(:google_data => google_data)).to_html
+  end
+
+  get "/googled" do
+    app_page(Googled.new(:google_data => google_data)).to_html
   end
   
   def create_authorizer(options = {})
