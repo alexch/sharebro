@@ -195,6 +195,11 @@ class Sharebro < Sinatra::Application
     session.delete(:request_token)
     redirect "/googled"
   end
+  
+  get "/unauth" do
+    session.delete(:access_token)
+    redirect "/"
+  end
 
 
   ## raw API call UI (sandboxy)
