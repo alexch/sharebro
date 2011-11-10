@@ -61,6 +61,56 @@ class LoveSeat
     view["rows"].map{|row| row["value"]}
   end
 
+
+  def self.reload doc
+    db.get(doc["_id"])
+  end
+
+  # destructive to doc -- should rename put! ?
+  def self.put doc
+    db.save_doc(doc)
+  end
+
+  # todo: omg test
+  def self.get key, options = {}
+    d(key) { options }
+    design = options[:design]
+    view = options[:view] || "all"
+    
+    if design.nil?
+      result = db.get(key)
+    else
+      docs = docs(design, view, :keys => [key])
+      if docs.empty?
+        result = nil  # raise RestClient::ResourceNotFound instead?
+      else
+        result = docs.pop
+        if options[:housekeeping] and !docs.empty?
+          GoogleData.delete_many(docs)
+        end
+      end
+      result
+    end
+  rescue RestClient::ResourceNotFound => e
+    p e
+    return nil
+  end
+
+  def self.delete doc
+    db.delete_doc(doc)
+  end
+
+  # todo: test
+  def self.delete_many docs
+    docs.each do |doc|
+      db.delete_doc(doc, true)
+    end
+    db.bulk_delete()  # flush
+  end
+  
+  
+  ### pagination
+  
   class Page
     # these are parameters
     attr_reader :couch, :type, :view_name, :size, :number, :startkey, :startid
@@ -110,50 +160,6 @@ class LoveSeat
   def self.page(type, options = {})
     LoveSeat::Page.new(self, {type: type}.merge(options))
   end
-
-  def self.reload doc
-    db.get(doc["_id"])
-  end
-
-  # destructive to doc -- should rename put! ?
-  def self.put doc
-    db.save_doc(doc)
-  end
-
-  # todo: omg test
-  def self.get key, options = {}
-    design = options[:design]
-    view = options[:view] || "all"
-    
-    if design.nil?
-      result = db.get(key)
-    else
-      docs = docs(design, view, :keys => [key])
-      if docs.empty?
-        result = nil  # raise RestClient::ResourceNotFound instead?
-      else
-        result = docs.pop
-        if options[:housekeeping] and !docs.empty?
-          GoogleData.delete_many(docs)
-        end
-      end
-      result
-    end
-  rescue RestClient::ResourceNotFound => e
-    p e
-    return nil
-  end
-
-  def self.delete doc
-    db.delete_doc(doc)
-  end
-
-  # todo: test
-  def self.delete_many docs
-    docs.each do |doc|
-      db.delete_doc(doc, true)
-    end
-    db.bulk_delete()  # flush
-  end
+  
 
 end

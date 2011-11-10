@@ -38,7 +38,7 @@ here = File.expand_path File.dirname(__FILE__)
   # to be safe, all files should 'require' all their dependencies, which will 
   # assure loading in correct (not alphabetical) order
   Dir.glob("#{dir}/*.rb").sort.each do |f|
-    feature = f.gsub(/^lib\//, '').gsub(/\.rb$/, '')
+    feature = f.gsub(/^#{dir}\//, '').gsub(/\.rb$/, '')
     puts "requiring #{feature}"
     require feature
   end
@@ -77,9 +77,26 @@ class Sharebro < Sinatra::Application
 
   attr_reader :here
 
+  def say msg
+    puts "" + Time.now + " - #{msg}"
+  end
+
+  
+  def app_host
+    case ENV['RACK_ENV']
+    when 'production'
+      "sharebro.org"
+    else
+      "localhost:9292"
+    end
+  end  
+
   before do
     d { session.class }
     d { session.to_hash }
+    
+    
+    
   end
 
   get '/favicon.ico' do
@@ -95,67 +112,34 @@ class Sharebro < Sinatra::Application
     LandingPage.new.to_html
   end
 
-  get "/links" do
-    AppPage.new(main: Links).to_html
+  # build plain-widget pages
+  [Links, Features, RoadMap, Vision].each do |widget|
+    get "/#{widget.name.downcase}" do
+      AppPage.new(main: widget).to_html
+    end
   end
   
-  get "/features" do
-    AppPage.new(main: Features).to_html
-  end
-
-  get "/roadmap" do
-    AppPage.new(main: RoadMap).to_html
-  end
-
-  get "/vision" do
-    AppPage.new(main: Vision).to_html
+  ## auth needed from here on
+  
+  get '/sharebros' do
+    google_data = GoogleData.new(google_api)
+    AppPage.new(main: Sharebros.new(:google_data => google_data)).to_html
   end
   
   def google_api
     GoogleApi.new(access_token)
   end
   
-  def say msg
-    puts "" + Time.now + " - #{msg}"
+  def access_token
+    # exchange the request token for an AccessToken
+    # todo: memoize? store in session?
+    session[:access_token] || (redirect "/auth_needed")
   end
-  
+
   get "/googled" do
-    # fetch the google user info
-    # this counts as login
-    user_info = google_api.info
-    
-    GoogleData.db.create!
-    # GoogleData.clear  ## DANGER
-
-    # Does the db exist?
-    begin
-      response = GoogleData.db.info
-      GoogleData.init
-    end
-    
-    # is the user already in the db?
-    doc = GoogleData.get(user_info['userId'], design: "user_info", view: "by_user_id", housekeeping: true)
-    if doc.nil?
-      puts "adding #{user_info}"
-      doc = user_info << {"type_" => "userInfo"}
-      resp = GoogleData.put(doc)
-    else
-      puts "found #{doc}"
-    end
-    user_info = doc
-
-    # grab the friends lists too
-    doc = GoogleData.get(user_info['userId'], design: "friends", view: "by_user_id")
-    if doc.nil?
-      puts "fetching friends for #{user_info}"
-      friends = google_api.friends      
-      doc = friends << {"type_" => "friends", "userId" => user_info['userId']}
-      resp = GoogleData.put(doc)
-      d{ resp }
-    end
-    friends = doc
-        
-    AppPage.new(main: Googled.new(user_info: user_info, friends: friends)).to_html
+    google_data = GoogleData.new(google_api)
+    google_data.fetch  # todo: move this to /auth or something since it primes the pump
+    AppPage.new(main: Googled.new(:google_data => google_data)).to_html
   end
   
   def create_authorizer(options = {})
@@ -166,13 +150,13 @@ class Sharebro < Sinatra::Application
     <<-HTML
     <html><body>
       
-      h1 "authorization"
+    h1 "authorization"
       
     The action you just attempted requires authorization from google. 
     <p>
     <a href="/auth">Click here</a> to start the OAuth Tango.
     </p>
-    Click "Grant Access" if you please. We won't save your credentials, but we will fetch your user info and friends list so we can rebuild your sharebros.
+    Click "Grant Access" if you please. We won't save your credentials, but we will fetch your user info and friends list so we can revive your sharebros.
     </body></html>
     HTML
   end
@@ -185,22 +169,7 @@ class Sharebro < Sinatra::Application
     puts "redirecting to #{authorizer.authorize_url}"
     redirect authorizer.authorize_url
   end
-  
-  def app_host
-    case ENV['RACK_ENV']
-    when 'production'
-      "sharebro.org"
-    else
-      "localhost:9292"
-    end
-  end
 
-  def access_token
-    # exchange the request token for an AccessToken
-    # todo: memoize? store in session?
-    session[:access_token] || (redirect "/auth_needed")
-  end
-  
   get "/oauth_callback" do
     authorizer = create_authorizer(:request_token => session[:request_token])
     session[:access_token] = access_token = authorizer.access_token(
@@ -210,17 +179,17 @@ class Sharebro < Sinatra::Application
     session.delete(:request_token)
     redirect "/googled"
   end
+
+
+  ## raw API call UI (sandboxy)
   
   def fetch_json api_path
     GoogleApi.new(access_token).fetch_json(api_path)
   end
 
-  def plain_json api_path
-    PlainPage.new(data: fetch_json(api_path)).to_html
-  end
-  
   get "/raw" do
-    plain_json params[:api_path]
+    path = params[:api_path]
+    PlainPage.new(path: path, data: fetch_json(path)).to_html    
   end
   
 end

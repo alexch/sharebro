@@ -13,8 +13,12 @@ class GoogleApi
     JSON.parse(response.body)
   end
   
-  def info
-    fetch_json "/reader/api/0/user-info?output=json"
+  def user_id
+    user_id ||= user_info["userId"]
+  end
+  
+  def user_info
+    user_info ||= fetch_json "/reader/api/0/user-info?output=json"
   end
   
   def friends
