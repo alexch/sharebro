@@ -94,9 +94,6 @@ class Sharebro < Sinatra::Application
   before do
     d { session.class }
     d { session.to_hash }
-    
-    
-    
   end
 
   get '/favicon.ico' do
@@ -109,6 +106,7 @@ class Sharebro < Sinatra::Application
   end
   
   get "/" do
+    puts "=== hi!"
     app_page(Landing).to_html
   end
 
@@ -193,14 +191,13 @@ class Sharebro < Sinatra::Application
       oauth_token: params[:oauth_token],
     )
     session.delete(:request_token)
-    redirect "/googled"
+    redirect "/sharebros"
   end
   
   get "/unauth" do
     session.delete(:access_token)
     redirect "/"
   end
-
 
   ## raw API call UI (sandboxy)
   

@@ -9,6 +9,18 @@ class Landing < Widget
   
   def content
     
+    # todo: unless already saved
+    section "Save Your Sharebros" do
+      b "New:"
+      text " Google wants to kidnap your Reader friends! Sign in with OAuth and allow us to grab your friends lists and save them..."
+      b ("before it's too late!")
+      p do
+        item name: "Fetch Your Sharebros", comment: "requires OAuth authentication, which grants this site temporary access to fetch data from your Google Reader account",
+        url: "/auth"
+      end
+    end
+      
+    
     section "What just happened to Google Reader?" do
       
       text "Google ", a("removed a lot of features", href: "/features"), " from Google Reader, gutting thousands of vibrant online communities in an attempt to move their members to Google Plus."
