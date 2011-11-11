@@ -136,7 +136,6 @@ http://codeclimber.googlecode.com/svn-history/r101/GoogleReaderConnector/trunk/R
 	Get Friend List
 	http://www.google.com/reader/api/0/friend/list?output=json
 
-
 	Get Recommended feeds:
 	http://www.google.com/reader/api/0/recommendation/list?n=6
 

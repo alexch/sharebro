@@ -5,7 +5,7 @@ class Bro < Widget
   def initialize options
     super options
     
-    d { @hash }
+    # d { @hash }
     
     @hash.each do |k, value|
       var_name = k.snake_case.to_sym
@@ -20,6 +20,8 @@ class Bro < Widget
   .bro {
     border: 2px solid #e2e2f6;
     margin: 1em 0;  
+    background-color: white;
+    padding: 2px;
   }
   .bro table {
     text-align: left;
@@ -33,18 +35,27 @@ class Bro < Widget
     text-align: center;
     vertical-align: top;
   }
-
-
-  .bro table {
-    padding: .25em;
+  .bro table.feeds th {
+    text-align: right;
+    vertical-align: middle;
   }
-  .bro td {
-    margin-left: .5em;
+
+  .bro table.feeds {
+    border-spacing: 10px;
   }
+
   .bro img {
     float: left;
     margin: 2px;
   }
+  
+  .bro table.feeds a {
+    border: 1px solid blue;
+    margin: 4px;
+    padding: 3px;
+    white-space:nowrap;
+  }
+
   CSS
   
   
@@ -68,13 +79,12 @@ class Bro < Widget
     "http://lipsumarium.com/greader/feed?_USER_ID=#{@user_id}"
   end
   
+  def in_reader(feed_url)
+    "http://www.google.com/reader/view/feed/#{CGI.escape feed_url}"
+  end
+
   def feeds
-    table {
-      tr.titles {
-        th "feed"
-        th "direct"
-        th "view in Reader"
-      }
+    table.feeds {
 
       if @user_id
         tr {
@@ -83,32 +93,32 @@ class Bro < Widget
             a "atom", :href => shared_items_atom_url
           }
           td {
-            a "in Reader", :href => shared_items_in_reader
+            a "open in Reader", :href => shared_items_in_reader
           }
         }
       end
 
       tr {
-        td {          
-          a "G+ posts", :href => "https://plus.google.com/#{@profile_id}/posts"
+        th {          
+          a "#{@given_name}'s G+ posts", :href => "https://plus.google.com/#{@profile_id}/posts"
         }
         td {
           a "RSS", :href => plusr_feed
         }
         td {
-          a "in Reader", :href => "http://www.google.com/reader/view/feed/#{CGI.escape plusr_feed}"
+          a "open in Reader", :href => in_reader(plusr_feed)
         }
       }
 
       if @user_id
         tr {
-          td "lipsumarium"
+          th "lipsumarium"
           
           td {
             a "RSS", :href => lipsum
           }
           td {
-            a "view in Reader", :href=> "http://www.google.com/reader/view/feed/#{CGI.escape lipsum}"
+            a "open in Reader", :href=> in_reader(lipsum)
           }
         }        
       end
@@ -121,7 +131,13 @@ class Bro < Widget
         img src: "http://s2.googleusercontent.com/#{@photo_url}"
       end
 
-      h3 @display_name || "Anonymous"
+      h3 {
+        if @profile_id
+          a @display_name, :href => "https://plus.google.com/#{@profile_id}/about"
+        else
+          text @display_name || "Anonymous"
+        end
+      }
 
       table {
         if @location
@@ -136,12 +152,35 @@ class Bro < Widget
             td @occupation
           }
         end
-        if @profile_id
-          tr {
-            th "profiles"
-            td { a "plus.google.com/about", :href => "https://plus.google.com/#{@profile_id}/about" }
+        tr {
+          th "type"
+          td {
+            text [
+              ("you" if me?),
+              ("follower" if follower?), 
+              ("following" if following?),
+              ("hidden" if hidden?),
+              ("blocked" if blocked?),
+              ].compact.join(", ")
+
+            # # from https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M            
+            # types = [
+            #   "follower", # (0), // this person is following the user
+            #   "following", # (1), // the user is following this person
+            #   "n/a",
+            #   "contact", # (3), // this person is in the user's contacts list
+            #   "pending_following", # (4), // the user is attempting to follow this person
+            #   "pending_follower", # (5), // this person is attempting to follow this user
+            #   "allowed_following", # (6), // the user is allowed to follow this person
+            #   "allowed_commenting", # (7); // the user is allowed to comment on this person's shared items              
+            # ]
+            # t = @types.map do |type_num|
+            #   types[type_num]
+            # end.join(", ")
+            # text t
           }
-        end
+        }
+        
       
         tr {
           th "feeds"
@@ -153,4 +192,48 @@ class Bro < Widget
       div.clear
     end
   end
+  
+  # this person is following the user
+  def follower?
+    @types.include? 0
+  end
+  
+  # the user is following this person
+  def following?
+    @types.include? 1
+  end
+  
+  def flag? num
+    @flags & (1<<num) != 0
+  end
+  
+  def me?
+    flag? 0
+  end
+  
+  def hidden?
+    flag? 1
+  end
+  
+  def blocked?
+    flag? 4
+  end
+    
+  # from https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M            
+  #     
+  #   IS_ME(0), // represents the current user
+  # IS_HIDDEN(1), // current user has hidden this person from the list of
+  # people with shared items that show up
+  # IS_NEW(2), // this person is a recent addition to the user's list of
+  # people that they follow
+  # USES_READER(3), // this person uses reader
+  # IS_BLOCKED(4), // the user has blocked this person
+  # HAS_PROFILE(5), // this person has created a Google Profile
+  # IS_IGNORED(6), // this person has requested to follow the user, but
+  # the use has ignored the request
+  # IS_NEW_FOLLOWER(7), // this person has just begun to follow the user
+  # IS_ANONYMOUS(8), // this person doesn't have a display name set
+  # HAS_SHARED_ITEMS(9); // this person has shared items in reader
+	
+  
 end

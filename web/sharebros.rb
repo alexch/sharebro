@@ -19,22 +19,38 @@ class Sharebros < Widget
   end
 
   def content
-    h2 "you"
 
-    widget User, :user_info => user_info
-
-
-    h2 "your friends"
+    h2 "your sharebros"
     
-    p "This list mixes together all your friends, followers and followed, for the time being."
+    p "Coming soon: a 'bundle' or OPML export so you can continue to follow your friends from inside Reader."
     
-    p "The plan is to show two lists, and to provide a 'bundle' or OPML export so you can continue to follow your friends."
-    
-    friends["friends"].each do |hash|
-      widget Bro.new(:hash => hash)
+    bros = friends["friends"].map do |data|
+       Bro.new(:hash => data)
     end
-        
-    hr
+
+    you = bros.detect{|bro| bro.me?}
+    section "You" do
+      widget you
+    end
+    
+    bros.delete(you)
+    
+    following = bros.select{|bro| bro.following?}
+
+    section "People You Follow" do
+      following.each{|bro| widget bro}
+    end
+    
+    followers = bros.select{|bro| bro.follower? and !bro.following?}
+    section "People Who Follow You (But You Don't Follow Them Back)" do
+      followers.each{|bro| widget bro}
+    end
+
+    others = bros - [you] - following - followers
+    section "Others" do
+      others.each{|bro| widget bro}
+    end 
+    
     
     item name: "raw data", :url => "/googled"
   end
