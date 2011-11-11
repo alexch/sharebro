@@ -106,7 +106,6 @@ class Sharebro < Sinatra::Application
   end
   
   get "/" do
-    puts "=== hi!"
     app_page(Landing).to_html
   end
 
@@ -134,8 +133,7 @@ class Sharebro < Sinatra::Application
     session[:access_token] || (redirect "/auth_needed")
   end
   
-  def login_status
-    
+  def login_status    
     if session[:access_token]
       LoginStatus::Authenticated.new(google_data: google_data)
     else
@@ -160,17 +158,29 @@ class Sharebro < Sinatra::Application
     Authorizer.new({:callback_url => "http://#{app_host}/oauth_callback"} << options )
   end
 
+  # todo: proper widget page
   get "/auth_needed" do
     <<-HTML
     <html><body>
       
-    h1 "authorization"
+      <h1><a href="/">sharebro.org</a> - authorization needed</h1>
+      
+      <div style="border: 3px solid green; padding: 2em; max-width: 30em; margin: auto;">
       
     The action you just attempted requires authorization from google. 
-    <p>
-    <a href="/auth">Click here</a> to start the OAuth Tango.
+
+    <p style='font-size: 18pt; background: #f0fff0; text-align: center;'>
+    <a href="/auth"><b>Click here</b> to start the OAuth Tango.</a>
     </p>
-    Click "Grant Access" if you please. We won't save your credentials, but we will fetch your user info and friends list so we can revive your sharebros.
+    
+    <p>
+You will need to sign in to your Google account and then click "Grant Access". This allows us to fetch your user info and friends list so we can revive your sharebros. It does not give us access to any other Google info like your password or Gmail account.
+    </p>
+    
+    <p>
+    You can revoke access at any time at Google's site (under 'My Account') but we will preserve your data so you can use it later.
+    
+    </div>
     </body></html>
     HTML
   end
@@ -178,7 +188,6 @@ class Sharebro < Sinatra::Application
   get "/auth" do
     session.delete(:request_token)
     authorizer = create_authorizer 
-    d { authorizer.request_token }
     session[:request_token] = authorizer.request_token #.token
     puts "redirecting to #{authorizer.authorize_url}"
     redirect authorizer.authorize_url

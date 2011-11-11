@@ -10,16 +10,15 @@ class Landing < Widget
   def content
     
     # todo: unless already saved
-    section "Save Your Sharebros" do
+    section "Save Your Sharebros", :class => "urgent" do
       b "New:"
       text " Google wants to kidnap your Reader friends! Sign in with OAuth and allow us to grab your friends lists and save them..."
       b ("before it's too late!")
       p do
         item name: "Fetch Your Sharebros", comment: "requires OAuth authentication, which grants this site temporary access to fetch data from your Google Reader account",
-        url: "/auth"
+        url: "/sharebros"
       end
     end
-      
     
     section "What just happened to Google Reader?" do
       

@@ -5,9 +5,10 @@ module Sections
     s.downcase.gsub(/[^a-z0-9]/, '_')
   end
   
-  def section name
+  def section name, options = {}
     anchor name
-    div.section do
+    css_class = ["section", options[:class]].compact
+    div(:class => css_class) do
       h2 name
       ul do
         yield

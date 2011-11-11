@@ -110,12 +110,20 @@ div.section {
   background-color: #F1F3F5;
 }
 
+div.section.urgent h2 {
+  color: red;
+}
+div.section.urgent {
+  background-color: #F5e9F5;  
+}
+
 div.feature {
   background-color: #F5F3F5;  
 }
 div.feature h2 {
   color: blue;
 }
+
 
 /* (should go in Sections but I don't think externals work from Modules yet) */
 

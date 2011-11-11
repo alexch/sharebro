@@ -2,6 +2,7 @@ require 'oauth'
 require 'yaml'
 fhere = File.expand_path File.dirname(__FILE__)
 
+# Wrapper around oauth gem
 class Authorizer
   
   attr_reader :here, :config
