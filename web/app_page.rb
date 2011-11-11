@@ -25,7 +25,7 @@ h1,h2,h3 {
 a, a:visited {
   text-decoration: none;
 }
-  a {
+a {
   color: #0100B6;
 }
 a:visited {
@@ -43,6 +43,10 @@ pre {
   overflow-x: auto;
   background-color: #f5f5f5;
   max-height: 30em;
+}
+
+.clear {
+  clear: both;
 }
 
 .top { 

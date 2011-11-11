@@ -73,7 +73,7 @@ class LoveSeat
 
   # todo: omg test
   def self.get key, options = {}
-    d(key) { options }
+    # d(key) { options }
     design = options[:design]
     view = options[:view] || "all"
     

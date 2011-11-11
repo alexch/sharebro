@@ -67,5 +67,10 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * iconistan: +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
   http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
 
+# TODO (promo)
+
+* add to Chrome Store
+
+
 
 

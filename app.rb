@@ -112,7 +112,6 @@ class Sharebro < Sinatra::Application
   ## auth needed from here on
   
   get '/sharebros' do
-    google_data = GoogleData.new(google_api)
     app_page(Sharebros.new(:google_data => google_data)).to_html
   end
   
