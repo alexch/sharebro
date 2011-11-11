@@ -14,11 +14,11 @@ class GoogleApi
   end
   
   def user_id
-    user_id ||= user_info["userId"]
+    user_info["userId"]
   end
   
   def user_info
-    user_info ||= fetch_json "/reader/api/0/user-info?output=json"
+    @user_info ||= fetch_json "/reader/api/0/user-info?output=json"
   end
   
   def friends

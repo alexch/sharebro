@@ -87,6 +87,7 @@ class Sharebro < Sinatra::Application
   before do
     d { session.class }
     d { session.to_hash }
+    d { @google_data }
   end
 
   get '/favicon.ico' do
@@ -138,8 +139,7 @@ class Sharebro < Sinatra::Application
   end
 
   def google_data
-    google_data = GoogleData.new(google_api)
-    google_data.fetch  # todo: move this to /auth or something since it primes the pump
+    @google_data ||= GoogleData.new(google_api)
   end
 
   get "/googled" do

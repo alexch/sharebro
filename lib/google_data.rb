@@ -36,68 +36,52 @@ class GoogleData < LoveSeat
     ]
   end
   
-  attr_reader :google_api, :user_id
+  attr_reader :google_api, :user_id, :user_info, :friends
   
   def initialize(google_api, user_id = nil)
     GoogleData.db.create!
     # GoogleData.clear  ## DANGER - wipes all data -- only use in production
+
     # Does the db exist?
     response = GoogleData.db.info
-    d { response }
-    GoogleData.init
+    d("GoogleData db info") { response }
+    GoogleData.init  # why?
 
     @google_api = google_api
     @user_id = user_id || google_api.user_id
+
+    grab_user_info
+    grab_friends  
   end
   
-  def fetch
-    # fetch the google user info
-    # this counts as login
-    user_info = google_api.user_info
-  
-    # is the user already in the db?
-    doc = GoogleData.get(user_info['userId'], design: "user_info", view: "by_user_id", housekeeping: true)
+  # "grab" means try to get it from the db first, otherwise fetch from google API and save it
+  def grab_user_info
+    doc = GoogleData.get(@user_id, design: "user_info", view: "by_user_id", housekeeping: true)
     if doc.nil?
-      puts "adding #{user_info}"
+      puts "fetching user_info for #{@user_id} from google"
+      user_info = google_api.user_info
+      puts "adding user info to db #{user_info}"
       doc = user_info << {"type_" => "userInfo"}
       resp = GoogleData.put(doc)
     else
       puts "found #{doc}"
     end
-    user_info = doc
+    @user_info = doc
+  end
 
-    # grab the friends lists too
-    doc = GoogleData.get(user_info['userId'], design: "friends", view: "by_user_id")
+  # "grab" means try to get it from the db first, otherwise fetch from google API and save it
+  def grab_friends
+    doc = GoogleData.get(@user_id, design: "friends", view: "by_user_id", housekeeping:true)
     if doc.nil?
-      puts "fetching friends for #{user_info}"
+      puts "fetching friends for #{@user_id}"
       friends = google_api.friends      
       doc = friends << {"type_" => "friends", "userId" => user_info['userId']}
+      
+      puts "saving friends in db"
       resp = GoogleData.put(doc)
       d{ resp }
     end
-    friends = doc
-    
-    self
-  end
-  
-  def user_info
-    @user_info ||= fetch_user_info
-  end
-
-  def friends
-    @friends ||= fetch_friends
-  end
-  
-  def fetch_user_info
-    puts "fetching user_info from db"
-    @user_info = GoogleData.get(user_id, design: "user_info", view: "by_user_id", housekeeping: true)
-    
-    d { @user_info }
-    @user_info
-  end
-
-  def fetch_friends
-    @friends = GoogleData.get(user_id.to_s, design: "friends", view: "by_user_id", housekeeping: true)
+    @friends = doc
   end
 
 end
