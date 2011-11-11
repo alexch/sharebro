@@ -16,6 +16,7 @@ class Bro < Widget
     @profile_id = @profile_ids.first if @profile_ids
   end
 
+  # http://www.quirksmode.org/css/tables.html
   external :style, <<-CSS
   .bro {
     border: 2px solid #e2e2f6;
