@@ -5,7 +5,7 @@ class Bro < Widget
   def initialize options
     super options
     
-    # d { hash }
+    d { @hash }
     
     @hash.each do |k, value|
       var_name = k.snake_case.to_sym
@@ -25,10 +25,16 @@ class Bro < Widget
     text-align: left;
     margin: 2px;
   }
-  .bro table th {
+  .bro table tr th {
     text-align: right;
     vertical-align: top;
   }
+  .bro table tr.titles th {
+    text-align: center;
+    vertical-align: top;
+  }
+
+
   .bro table {
     padding: .25em;
   }
@@ -40,7 +46,75 @@ class Bro < Widget
     margin: 2px;
   }
   CSS
+  
+  
+  def shared_items_page_url
+    "http://www.google.com/reader/shared/#{@public_user_name || @user_id}"
+  end
+  
+  def shared_items_atom_url
+    "http://www.google.com/reader/public/atom/user%2F#{@user_id}%2Fstate%2Fcom.google%2Fbroadcast"
+  end
+  
+  def shared_items_in_reader
+    "http://www.google.com/reader/view/#stream/user%2F#{@user_id}%2Fstate%2Fcom.google%2Fbroadcast"
+  end
+  
+  def plusr_feed 
+    "http://plu.sr/feed.php?plusr=#{@profile_id}"
+  end
+  
+  def lipsum
+    "http://lipsumarium.com/greader/feed?_USER_ID=#{@user_id}"
+  end
+  
+  def feeds
+    table {
+      tr.titles {
+        th "feed"
+        th "direct"
+        th "view in Reader"
+      }
 
+      if @user_id
+        tr {
+          th { a "#{@given_name}'s Shared Items", :href => shared_items_page_url }
+          td { 
+            a "atom", :href => shared_items_atom_url
+          }
+          td {
+            a "in Reader", :href => shared_items_in_reader
+          }
+        }
+      end
+
+      tr {
+        td {          
+          a "G+ posts", :href => "https://plus.google.com/#{@profile_id}/posts"
+        }
+        td {
+          a "RSS", :href => plusr_feed
+        }
+        td {
+          a "in Reader", :href => "http://www.google.com/reader/view/feed/#{CGI.escape plusr_feed}"
+        }
+      }
+
+      if @user_id
+        tr {
+          td "lipsumarium"
+          
+          td {
+            a "RSS", :href => lipsum
+          }
+          td {
+            a "view in Reader", :href=> "http://www.google.com/reader/view/feed/#{CGI.escape lipsum}"
+          }
+        }        
+      end
+    }
+  end
+  
   def content
     div.bro do
       if @photo_url
@@ -56,45 +130,25 @@ class Bro < Widget
             td @location
           }
         end
-        if @user_id
+        if @occupation
           tr {
-            th "reader shared items"
-            td { 
-              a "shared items feed", :href => "http://www.google.com/reader/shared/#{@public_user_name || @user_id}"
-              text nbsp
-              a "[in Reader]", 
-                :href => "http://www.google.com/reader/view/#stream/user%2F#{@user_id}%2Fstate%2Fcom.google%2Fbroadcast"
-              br
-              a "atom feed", :href => "http://www.google.com/reader/public/atom/user%2F#{@user_id}%2Fstate%2Fcom.google%2Fbroadcast"
-            }
+            th "occupation"
+            td @occupation
           }
         end
         if @profile_id
           tr {
-            th "google plus"
-            td {
-              a "posts", :href => "https://plus.google.com/#{@profile_id}/posts"
-              br
-              a "about", :href => "https://plus.google.com/#{@profile_id}/about"
-              br
-              plusr_feed = "http://plu.sr/feed.php?plusr=#{@profile_id}"
-              a "RSS feed (via plu.sr)", :href => plusr_feed
-              text nbsp
-              a "[in reader]", :href => "http://www.google.com/reader/view/feed/#{CGI.escape plusr_feed}"
-            }
+            th "profiles"
+            td { a "plus.google.com/about", :href => "https://plus.google.com/#{@profile_id}/about" }
           }
         end
-        if @user_id
-          tr {
-            th "lipsumarium"
-            td {
-              lipsum = "http://lipsumarium.com/greader/feed?_USER_ID=#{@user_id}"
-              a "feed", :href => lipsum
-              text nbsp
-              a "[in reader]", :href=> "http://www.google.com/reader/view/feed/#{CGI.escape lipsum}"
-            }
+      
+        tr {
+          th "feeds"
+          td {
+            feeds
           }
-        end              
+        }
       }
       div.clear
     end
