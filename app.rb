@@ -17,14 +17,6 @@ end
 
 require 'ap'
 
-# begin
-#   require 'rdiscount'
-# rescue LoadError
-#   require 'bluecloth'
-#   Object.send(:remove_const,:Markdown)
-#   Markdown = BlueCloth
-# end
-
 here = File.expand_path File.dirname(__FILE__)
 
 %w{lib web}.each do |dir|
@@ -36,7 +28,8 @@ here = File.expand_path File.dirname(__FILE__)
   # require all files
   # alphabetize to correct for inconsistent filesystem load order
   # to be safe, all files should 'require' all their dependencies, which will 
-  # assure loading in correct (not alphabetical) order
+  # assure loading in correct (not alphabetical) order, but autoloading is 
+  # mighty convenient
   Dir.glob("#{dir}/*.rb").sort.each do |f|
     feature = f.gsub(/^#{dir}\//, '').gsub(/\.rb$/, '')
     puts "requiring #{feature}"
@@ -106,7 +99,7 @@ class Sharebro < Sinatra::Application
   end
   
   get "/" do
-    app_page(Landing).to_html
+    app_page(Home).to_html
   end
 
   # build plain-widget pages

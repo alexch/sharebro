@@ -103,8 +103,12 @@ class Links < Widget
         comment: "pinboard could be a great backend for shared item feeds"
         item url: "http://reblog.org/", name: "reBlog", quote: "A reBlog facilitates the process of filtering and republishing relevant content from many RSS feeds. reBloggers subscribe to their favorite feeds, preview the content, and select their favorite posts. These posts are automatically published through their favorite blogging software."
       item name: "ridllr", url: "http://www.ridllr.com", comment: "creates a \"public tag\" and uses google signin to restore some 'people you follow' tech"
-        
+      item url: "https://chrome.google.com/webstore/detail/gmgmcmhmodidojodfoekpbjnejlhcbpb?mid=52754",
+       name: "Reader Sharer",
+       comment: "a Chrome extension that uses the old Google system for sharing. Sadly, it will soon break."
     end
+      
+      
     
     section "Googlers and ex-Googlers Comment" do
       

@@ -3,7 +3,7 @@ require "app_page"
 require "sections"
 
 
-class Landing < Widget
+class Home < Widget
   
   include Sections
   

@@ -64,5 +64,8 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * see Road Map page
 * shared comments
   * see http://www.salmon-protocol.org/
+* iconistan: +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
+  http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
+
 
 
