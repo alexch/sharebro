@@ -249,6 +249,19 @@ class Links < Widget
         item author: "Chris Wetherell", 
           url: "https://plus.google.com/u/0/101851274707291135260/posts/FipoiXvRaa3",
           name: "There's been some interesting critical discussions of some design and product changes within Google Reader recently..."
+          
+        item  name: "How to Bring Back Google Reader's Original Sharing Feature"
+          url: "http://www.readwriteweb.com/archives/how_to_bring_back_google_readers_sharing_feature.php"
+          comment: "a love letter to sharebro Emmanuel!"
+
+        item name: "Weekly Wrap-up: Google Reader Has No Alternatives and More"
+          url: "http://www.readwriteweb.com/archives/weekly_wrap-up_google_reader_has_no_alternatives_a.php"
+
+        item name: "Tristan's comment describing how Reader's new UI fails as a UI"
+          url: "http://rww.readwriteweb.netdna-cdn.com/archives/google_reader_gets_the_google_plus_treatment.php#comment-352458863"
+
+        
+          
     end
     
 
