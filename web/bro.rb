@@ -1,6 +1,12 @@
 require 'cgi'
 
 class Bro < Widget
+  def self.from_friends friends
+    friends["friends"].map do |data|
+       Bro.new(:hash => data)
+    end
+  end  
+  
   needs :hash
   def initialize options
     super options
@@ -155,30 +161,8 @@ class Bro < Widget
         end
         tr {
           th "type"
-          td {
-            text [
-              ("you" if me?),
-              ("follower" if follower?), 
-              ("following" if following?),
-              ("hidden" if hidden?),
-              ("blocked" if blocked?),
-              ].compact.join(", ")
-
-            # # from https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M            
-            # types = [
-            #   "follower", # (0), // this person is following the user
-            #   "following", # (1), // the user is following this person
-            #   "n/a",
-            #   "contact", # (3), // this person is in the user's contacts list
-            #   "pending_following", # (4), // the user is attempting to follow this person
-            #   "pending_follower", # (5), // this person is attempting to follow this user
-            #   "allowed_following", # (6), // the user is allowed to follow this person
-            #   "allowed_commenting", # (7); // the user is allowed to comment on this person's shared items              
-            # ]
-            # t = @types.map do |type_num|
-            #   types[type_num]
-            # end.join(", ")
-            # text t
+          td {            
+            text type_string
           }
         }
         
@@ -193,19 +177,53 @@ class Bro < Widget
       div.clear
     end
   end
+
+
+  def type_string
+     [
+    ("you" if me?),
+    ("follower" if follower?), 
+    ("following" if following?),
+    ("hidden" if hidden?),
+    ("blocked" if blocked?),
+    ].compact.join(", ")
+  end
+
+  # # from https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M            
+  # types = [
+  #   "follower", # (0), // this person is following the user
+  #   "following", # (1), // the user is following this person
+  #   "n/a",
+  #   "contact", # (3), // this person is in the user's contacts list
+  #   "pending_following", # (4), // the user is attempting to follow this person
+  #   "pending_follower", # (5), // this person is attempting to follow this user
+  #   "allowed_following", # (6), // the user is allowed to follow this person
+  #   "allowed_commenting", # (7); // the user is allowed to comment on this person's shared items              
+  # ]
+  # t = @types.map do |type_num|
+  #   types[type_num]
+  # end.join(", ")
+  # text t
+
+
+  def type? num
+   @types and 
+     @types.include? 0
+  end
   
   # this person is following the user
   def follower?
-    @types and @types.include? 0
+    type? 0
   end
   
   # the user is following this person
   def following?
-    @types and @types.include? 1
+    type? 1
   end
   
   def flag? num
-    @flags and @flags & (1<<num) != 0
+    @flags and 
+      @flags & (1<<num) != 0
   end
   
   def me?

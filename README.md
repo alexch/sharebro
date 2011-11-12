@@ -70,6 +70,10 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 # TODO (promo)
 
 * add to Chrome Store
+* reach out to RSS Reader devs
+  * feedly - https://plus.google.com/115552999294763744109
+  * Reeder - Silvio
+  * NewsBlur
 
 
 

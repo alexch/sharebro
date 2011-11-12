@@ -7,5 +7,4 @@ describe Authorizer do
   
   it "obtains a request token from oauth"
   
-  it "ob"
 end

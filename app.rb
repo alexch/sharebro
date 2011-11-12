@@ -1,10 +1,9 @@
 puts RUBY_VERSION
 puts ENV['RACK']
+
+here = File.expand_path File.dirname(__FILE__)
+require "#{here}/init"
 require 'sinatra'
-require 'digest/md5'
-require 'json'
-require 'erector'
-Widget = Erector::Widget
 
 if ENV['RACK_ENV'] == 'development'
   require 'wrong'
@@ -15,12 +14,8 @@ else
   end
 end
 
-require 'ap'
-
-here = File.expand_path File.dirname(__FILE__)
-
+# move to init.rb? or leave tests pristine?
 %w{lib web}.each do |dir|
-
   # add directory to load path
   path = File.expand_path "#{here}/#{dir}"
   $:<<path

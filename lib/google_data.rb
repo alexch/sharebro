@@ -40,7 +40,7 @@ class GoogleData < LoveSeat
   
   def initialize(google_api, user_id = nil)
     GoogleData.db.create!
-    # GoogleData.clear  ## DANGER - wipes all data -- only use in production
+    # GoogleData.clear  ## DANGER - wipes all data -- only use in development
 
     # Does the db exist?
     response = GoogleData.db.info

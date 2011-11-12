@@ -24,9 +24,7 @@ class Sharebros < Widget
     
     p "Coming soon: a 'bundle' or OPML export so you can continue to follow your friends from inside Reader."
     
-    bros = friends["friends"].map do |data|
-       Bro.new(:hash => data)
-    end
+    bros = Bro.from_friends(friends)
 
     you = bros.detect{|bro| bro.me?}
     section "You" do
