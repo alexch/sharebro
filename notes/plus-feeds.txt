@@ -1,0 +1,35 @@
+"Google Plus RSS Feeds"
+http://www.ghacks.net/2011/07/13/google-plus-rss-feeds/
+
+
+"Google Plus Feed"
+http://plusfeed.appspot.com/
+comment: "shut down due to hosting costs"
+
+http://www.ghacks.net/2011/09/02/use-dapper-to-create-rss-feeds-from-any-page-including-google-plus-posts/
+
+
+Andy De Ruyter - plu.sr author
+https://plus.google.com/103855919375511821531/about
+
+Yes, I own plu.sr but because of a tight schedule at work and private, the site is what it is now. Still haven't been able to play with the G+ API. 
+I used the following for the RSS:
+
+https://github.com/FabianBeiner/GooglePlus-Scraper
+
+But be careful with the code. Because of the popularity, plu.sr generates +1GB of traffic per day. There's some caching that needs to be done.
+
+
+
+
+<h2>Related Articles:</h2><a
+href='http://www.ghacks.net/2011/09/02/use-dapper-to-create-rss-feeds-from-any-page-including-google-plus-posts/' rel='bookmark' title='Use Dapper To Create RSS Feeds From Any Page, Including Google Plus Posts'>Use Dapper To Create RSS Feeds From Any Page, Including Google Plus Posts</a><br
+/> <a
+href='http://www.ghacks.net/2010/11/19/gtweet-read-twitter-rss-feeds-in-google-reader/' rel='bookmark' title='GTweet, Read Twitter RSS Feeds In Google Reader'>GTweet, Read Twitter RSS Feeds In Google Reader</a><br
+/> <a
+href='http://www.ghacks.net/2010/11/18/convert-partial-rss-feeds-into-full-text-feeds/' rel='bookmark' title='Convert Partial RSS Feeds Into Full-Text Feeds'>Convert Partial RSS Feeds Into Full-Text Feeds</a><br
+/> <a
+href='http://www.ghacks.net/2008/10/26/publish-rss-news-feeds-on-twitter/' rel='bookmark' title='Publish RSS News Feeds On Twitter'>Publish RSS News Feeds On Twitter</a><br
+/> <a
+href='http://www.ghacks.net/2008/06/14/create-pdf-documents-from-rss-feeds/' rel='bookmark' title='Create PDF Documents from RSS Feeds'>Create PDF Documents from RSS Feeds</a><br
+

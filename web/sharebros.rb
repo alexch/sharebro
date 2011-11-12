@@ -49,6 +49,10 @@ class Sharebros < Widget
       others.each{|bro| widget bro}
     end 
     
+    p {
+      text "note: G+ Post feeds provided by"
+      url "http://plu.sr"
+    }
     
     item name: "raw data", :url => "/googled"
   end

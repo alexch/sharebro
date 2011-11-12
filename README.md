@@ -38,9 +38,11 @@ Put them in a file in the root level called `oauth.yaml` that looks like this:
 
 ## Run the tests
 
-Um, we don't really have any yet. Sorry.
+Um, we don't really have any good ones yet. Sorry.
 
-    rake
+    rake spec
+
+(In good Ruby style, plain `rake` also runs the tests.)
 
 ## Launch the app!
 
@@ -67,6 +69,13 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   * see http://www.salmon-protocol.org/
 * iconistan: +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
   http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
+
+* riddlr-esque features:
+  * create a 'shared' public tag
+  * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
+  * add various blogs to 'shared' tag and see if they show up in folder
+  * "Send To Sharebro"
+
 
 # TODO (promo)
 
