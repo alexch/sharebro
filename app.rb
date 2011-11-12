@@ -51,6 +51,8 @@ class Sharebro < Sinatra::Application
     end
   end
   
+  enable :show_exceptions  # until we get a better exception reporting mechanism
+  
   enable :sessions
     # http://stackoverflow.com/questions/6115136/in-a-sinatra-app-on-heroku-session-is-not-shared-across-dynos
   set :session_secret, ENV['SESSION_SECRET'] || 'tetrafluoride'
@@ -62,7 +64,6 @@ class Sharebro < Sinatra::Application
   #                            :expire_after => 2592000,
   #                            :secret => 'tetrafluoride'
 
-  
   def initialize
     super
     @here = File.expand_path(File.dirname(__FILE__))
