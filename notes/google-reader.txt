@@ -499,7 +499,7 @@ http://activitystrea.ms/
 
 ---
 
-11/11
+More Links: 11/11
 
 "How to Bring Back Google Reader's Original Sharing Feature"
 http://www.readwriteweb.com/archives/how_to_bring_back_google_readers_sharing_feature.php
@@ -510,5 +510,3 @@ http://www.readwriteweb.com/archives/weekly_wrap-up_google_reader_has_no_alterna
 
 Tristan's description of how Reader's new UI fails as a UI
 http://rww.readwriteweb.netdna-cdn.com/archives/google_reader_gets_the_google_plus_treatment.php#comment-352458863
-
-

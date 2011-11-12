@@ -16,10 +16,6 @@ end
 
 # move to init.rb? or leave tests pristine?
 %w{lib web}.each do |dir|
-  # add directory to load path
-  path = File.expand_path "#{here}/#{dir}"
-  $:<<path
-
   # require all files
   # alphabetize to correct for inconsistent filesystem load order
   # to be safe, all files should 'require' all their dependencies, which will 

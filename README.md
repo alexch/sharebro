@@ -55,6 +55,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * tagline
 * logo
 * better site design
+* make "links" an RSS feed
 
 # TODO (app):
 
@@ -74,6 +75,11 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   * feedly - https://plus.google.com/115552999294763744109
   * Reeder - Silvio
   * NewsBlur
+  * HiveMined
+* promote & use @sharebro twitter account
+* make friend with reporters
+  * http://www.readwriteweb.com/archives/author/john-paul-titlow.php
+  * Sarah Perez at TechCrunch
 
 
 
