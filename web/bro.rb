@@ -196,16 +196,16 @@ class Bro < Widget
   
   # this person is following the user
   def follower?
-    @types.include? 0
+    @types and @types.include? 0
   end
   
   # the user is following this person
   def following?
-    @types.include? 1
+    @types and @types.include? 1
   end
   
   def flag? num
-    @flags & (1<<num) != 0
+    @flags and @flags & (1<<num) != 0
   end
   
   def me?
