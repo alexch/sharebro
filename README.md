@@ -71,7 +71,6 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
 
 * riddlr-esque features:
-  * create a 'shared' public tag
   * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
   * add various blogs to 'shared' tag and see if they show up in folder
   * "Send To Sharebro"
@@ -80,6 +79,9 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 # TODO (promo)
 
 * add to Chrome Store
+* write a Safari Extension
+  * http://developer.apple.com/programs/safari/
+  * http://developer.apple.com/membercenter/index.action
 * reach out to RSS Reader devs
   * feedly - https://plus.google.com/115552999294763744109
   * Reeder - Silvio

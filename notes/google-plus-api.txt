@@ -1,0 +1,7 @@
+https://developers.google.com/+/api/
+
+https://developers.google.com/+/api/latest/activities
+
+
+http://code.google.com/p/google-api-ruby-client/
+http://code.google.com/p/google-plus-ruby-starter/

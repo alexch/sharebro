@@ -71,14 +71,5 @@ class Googled < Widget
         url: raw_url("/reader/api/0/preference/stream/list")
         
     end
-    
-    def ck
-      Time.now.to_i
-    end
-    
-    
-    section "feeds" do
-      pre JSON.pretty_generate @google_data.feeds_from_unread
-    end
   end
 end

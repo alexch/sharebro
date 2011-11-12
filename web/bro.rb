@@ -186,13 +186,18 @@ class Bro < Widget
 
 
   def type_string
-     [
+    a = [
     ("you" if me?),
     ("follower" if follower?), 
     ("following" if following?),
     ("hidden" if hidden?),
     ("blocked" if blocked?),
-    ].compact.join(", ")
+    ("contact" if type?(3)),            # this person is in the user's contacts list
+    ("pending_following" if type?(4)),  # the user is attempting to follow this person
+    ("pending_follower" if type?(5)),  # this person is attempting to follow this user
+    ]
+    
+    a.compact.join(", ")
   end
 
   # # from https://groups.google.com/forum/#!topic/fougrapi/ukPcqr6Ja9M            
@@ -214,7 +219,7 @@ class Bro < Widget
 
   def type? num
    @types and 
-     @types.include? 0
+     (@types.include? num)
   end
   
   # this person is following the user
@@ -228,8 +233,8 @@ class Bro < Widget
   end
   
   def flag? num
-    @flags and 
-      @flags & (1<<num) != 0
+    @flags and
+      (@flags & (1<<num) != 0)
   end
   
   def me?
