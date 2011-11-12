@@ -1,0 +1,514 @@
+http://alexch.tumblr.com/post/11868074433/why-i-love-and-how-i-use-google-reader
+
+https://groups.google.com/group/google-reader-diaspora
+
+Join the Diaspora at https://groups.google.com/group/google-reader-diaspora and help us figure out how to fix Reader, or where to go if we can't.
+
+my "Look here" post: https://plus.google.com/u/0/107397735779828096052/posts/DZUMNJt8Zmk
+my t-shirt: http://www.zazzle.com/1000_tshirt-235231254407577185
+
+join the sad sharebro diaspora at https://groups.google.com/group/google-reader-diaspora, sign the (now pointless) petition at http://bit.ly/GoogleReaderPetition, and check my progress reviving Share in Reader at http://github.com/alexch/sharebro
+
+@val_forrestal @MLx join the sad sharebro diaspora at https://groups.google.com/group/google-reader-diaspora @GoogleReader + sign the petition at http://bit.ly/GoogleReaderPetition
+
+@val_forrestal @MLx join the sad @GoogleReader diaspora at https://groups.google.com/group/google-reader-diaspora  + sign @brettkeller's http://bit.ly/GoogleReaderPetition
+
+
+Petition:
+http://bit.ly/GoogleReaderPetition
+https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dE16SFVla3JFZ1lwTkxGRWN2SkZtb2c6MA#gid=0
+
+Links:
+
+http://googlereader.blogspot.com/2011/10/upcoming-changes-to-reader-new-look-new.html
+
+http://www.forbes.com/sites/erikkain/2011/10/21/the-unsocial-network-why-google-is-wrong-to-kill-off-google-reader/
+
+http://www.forbes.com/sites/erikkain/2011/10/20/big-changes-coming-to-google-reader/
+
+http://techcrunch.com/2011/10/20/google-reader-getting-overhauled-removing-your-friends
+
+http://theincidentaleconomist.com/wordpress/our-beloved-google-reader-is-changing/
+
+http://notes.kateva.org/2011/10/google-reader-this-is-going-to-hurt.html
+
+http://www.google.com/support/forum/p/reader/thread?tid=3ae360cc3912946f
+(my comments are around http://www.google.com/support/forum/p/reader/thread?tid=3ae360cc3912946f&hl=en&start=80 )
+
+http://googlereaderlexicon.wikispaces.com/
+
+
+http://www.google.com/support/forum/p/reader/thread?tid=08e63a1af9829a1c&hl=en&fid=08e63a1af9829a1c0004afe7a8378fc2 "Why is Reader being castrated?" (my preferred term is "neutered")
+
+Alan Green: https://plus.google.com/113760695441101959932/posts
+https://plus.google.com/113760695441101959932/posts/Yxj9MquTddH
+
+http://www.extremetech.com/computing/101011-6-google-reader-replacements
+
+--- 
+10/25
+
+"Why Google Matters To Us Iranians": http://www.amirhm.com/2011/10/why-google-reader-gooder-matters-for-us.html
+
+Protest in Washington DC this Wed at the Google HQ to save Google Reader:
+https://www.facebook.com/event.php?eid=236228939769149
+
+Metafilter is on the scene:
+http://www.metafilter.com/108709/Dont-change-my-Google-Reader-backlash
+
+and Francis Cleary breaks it all down:
+https://plus.google.com/u/0/110805491250386698039/posts/UkTTmfKBuGC
+
+RWW: "World's Youngest Leading Social Network Eats World's Last Major RSS Reader: Google Reader Gets Plussed"
+http://www.readwriteweb.com/archives/worlds_youngest_leading_social_network_eats_worlds.php
+
+Not much in this one but I love the title: "For me, this is the destruction of the only online space I truly give a shit about":
+http://robertodealmeida.wordpress.com/2011/10/25/for-me-this-is-the-destruction-of-the-only-online-space-i-truly-give-a-shit-about/
+
+a somewhat technical perspective about the impact on the RSS reader ecosystem:
+http://inessential.com/2011/10/24/google_reader_and_mac_ios_rss_readers_th
+
+and here's an RSS app developer making a pragmatic, but sad decision:
+http://nick.typepad.com/blog/2011/10/what-the-upcoming-google-reader-changes-mean-for-feeddemon.html
+"Google will continue to support those features in its API even after they disappear from Reader's UI. But at some point (I don't know when yet) they will cease to function, and you'll be unable to share articles in FeedDemon or follow the shared articles of other users. Before that happens, I'll release a new version of FeedDemon that removes those features."
+
+and don't forget to sign the petition by @brettkeller (now >4000 signers):
+http://bit.ly/GoogleReaderPetition
+
+---
+
+more 10/25
+
+http://www.forbes.com/sites/erikkain/2011/10/23/dont-be-evil-a-better-way-to-integrate-google-reader-and-google-plus/
+
+http://www.didyoulearnanything.net/2011/10/23/save-google-reader/
+
+Google is maiming the world’s only respectable social network, Reader (1,000+)
+http://journaloftheory.com/2011/10/23/theory-google-is-maiming-the-world%E2%80%99s-only-respectable-social-network-reader-1000/
+
+Money quote: "It turns out Google wasn't so bad at social networks, after all."
+from "World Is Surprisingly Angry About the End of Google Reader" (The Atlantic)
+http://www.theatlanticwire.com/technology/2011/10/world-surprisingly-angry-about-end-google-reader/44109/
+http://www.washingtoncitypaper.com/blogs/citydesk/2011/10/25/google-reader-is-dying-will-you-cope-by-protesting-perhaps/
+http://www.theawl.com/2011/10/the-silent-majority-stirs
+
+---
+
+http://purityanddanger.blogspot.com/2010/10/google-reader.html
+http://blog.bl00cyb.org/2011/10/farewell-dear-reader/
+http://journaloftheory.com/2011/10/23/theory-google-is-maiming-the-world%E2%80%99s-only-respectable-social-network-reader-1000/
+
+---
+
+http://delicious.com/stacks/view/BWqWCi
+
+
+--- 
+10/27
+
+This isn't really a howto so much as a description of why a move from Reader to G+ will be irritating and frustrating:
+http://www.theatlanticwire.com/technology/2011/10/how-survive-switch-google-reader-google/44069/
+
+Another reporter asks "Was Google Reader Already a Great Google Social Network?", with news analysis as well as bullet list of "The Advantages of Google Reader as a Social Network"
+http://www.businessinsider.com/was-google-reader-already-a-great-google-social-network-2011-10
+
+Top Ten Blogger Andrew Sullivan chimes in:
+http://andrewsullivan.thedailybeast.com/2011/10/google-is-being-evil.html
+http://andrewsullivan.thedailybeast.com/2011/10/dont-be-evil-google-ctd.html
+
+Here's a Delicious stack with some links we've already seen here:
+http://delicious.com/stacks/view/BWqWCi
+
+Jon Bois is sad:
+http://www.jonbois.com/2011/10/google-reader.html
+
+Brett's petition hits 8000:
+http://twitter.com/brettkeller/status/129616335553568768
+
+---
+
+http://waxy.org/2011/10/google_kills_its_other_plus/
+
+
+http://www.readwriteweb.com/archives/google_plus_traffic_drops_1269_gains_erased.php
+http://www.readwriteweb.com/archives/how_to_start_with_google_plus.php
+
+---
+
+Shareaholic: a "share this on X" (on steroids) browser plugin for the 6 major browsers
+http://www.shareaholic.com/
+
+RSS Share: a Chrome extension that implements pretty much the G+/Reader integration we actually wanted:
+https://chrome.google.com/webstore/detail/cngpndgifehgejmkemnmmiknpafnhpec
+  "RSS Share for Google Plus™ and Google Reader™ is an extension that does two things:
+  * Adds a Google Reader section to the Google Plus homepage
+  * Adds a "Share on Google+" button on Google Reader
+  This way, whether you mainly use Google Reader or Google Plus you can keep up with current events and webpages and instantly share them if you feel like it."
+
+
+---
+
+One-click OPML export: (an XML list of all your subscribed feeds)
+http://www.dataliberation.org/google/reader
+
+Reverse Engineering Reader
+
+I'm poking around and reverse engineering the Reader system, mostly just to understand how to fix it when their data export solution inevitably doesn't work right. But also I've got a half-baked idea to write a Sharebro Reader on my own. Or maybe a Chrome Extension that adds a Share button etc. back in to the new lobotomized FrankenReader, maybe using Disqus or Facebook for comments.
+
+Google currently provides a way to pull someone's shared items as a JSON or Atom feed. For instance, here's mine:
+
+http://www.google.com/reader/public/javascript/user/15504357426492542506/state/com.google/broadcast
+http://www.google.com/reader/public/atom/user/15504357426492542506/state/com.google/broadcast
+
+(I can't find or figure out the *RSS* url but there must be one, right?)
+
+It seems to only go back a few days, sadly.
+
+How to find someone's google id and feed url? For me, it (and the above atom link) is inside http://www.google.com/reader/shared/alexch -- view source and look for
+
+    <link rel="alternate" type="application/atom+xml" href="http://www.google.com/reader/public/atom/user%2F15504357426492542506%2Fstate%2Fcom.google%2Fbroadcast" title="Alex Chaffee&#39;s shared items" id="auto-discovery">
+
+So http://google.com/profiles/alexch now redirects to my Plus Posts page -- which, btw, WTF?!?! -- where I have a *totally different* user id in the excruciating url https://plus.google.com/u/0/107397735779828096052/posts. How to find the link between the two ids?
+
+The atom feed code is interesting. My Note comes through as a tag in the "gr" namespace:
+
+    <gr:annotation>
+    <content type="html">
+    So writing code on an iOS device doesn't violate Apple's TOS?
+    </content>
+    <author gr:user-id="15504357426492542506" gr:profile-id="107397735779828096052">
+    <name>Alex Chaffee</name>
+    </author>
+    </gr:annotation>
+
+in the "author" tag are two ids -- one is my "user id" and one is my "profile id" -- and it looks like "user id" is the one I found before and "profile id" is the same as my plus id (the one in the long annoying G+ url).
+
+Notably, my Notes are in the feed, but others' Comments are nowhere to be found. There's a "comments":[] entry in the JSON but it's always empty.
+
+I found some more links describing the *still undocumented and unofficial* Reader API. I'll check through those later on. It looks like comments are accessible.
+
+    http://code.google.com/p/google-reader-api/
+    http://blog.martindoms.com/2009/08/15/using-the-google-reader-api-part-1/
+    http://blog.martindoms.com/2009/10/16/using-the-google-reader-api-part-2/
+    http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/
+    http://www.niallkennedy.com/blog/2005/12/google-reader-api.html
+    http://mindsharestrategy.com/2010/google-reader-api-a-brief-tutorial/
+    http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+
+Enough digging for now. I will post this to the Diaspora in case I get hit by a bus later today.
+
+
+---
+
+
+Sign the petition at http://bit.ly/GoogleReaderPetition , join the diaspora at https://groups.google.com/group/google-reader-diaspora , and read my thoughts at http://alexch.tumblr.com/post/11868074433/why-i-love-and-how-i-use-google-reader . 
+
+Shorter me: "We'll be retiring some social features from GMail since they duplicate Google Plus functionality. But don't worry, you'll still be able to to reply and forward by using Send To and Circles!"
+
+---
+
+
+My thoughts (which I reserve the right to update at will):
+
+Without "Comment View" Google Reader is just an ugly way to read blogs. I want to read *articles* not entire blog feeds. Which articles? Those selected for me by my friends. Which friends? Those I discovered through their Reader comments.
+
+Here's how we use Reader: mostly we open Comment View and read only the articles Noted or Commented by our friends. Then we read our own feeds of blogs, and if we find something we like, we share it. We share it because *we want to know what our friends think* about it. In fact those comments are usually the most important thing, so we open Comment View *the next time we use Reader*.
+
+All that is going bye-bye. Or unless I see a mockup or preview or usability flowchart to the contrary, I must assume so.
+
+Reader is my second inbox. GMail is my first. All the rest (Twitter, Facebook, Plus) are mere streams; raging torrents into which I occasionally dip a toe.
+
+When I post something on my Tumblr blog -- usually a quote or a short comment -- I'm pretty sure nobody will see it. When I then *share* that post on Reader, I'm doing so because I *know* a few dozen of my actual friends *will actually read it*, because it's important to me and I've chosen to *Share* it, not just post it.
+
+The genesis of Plus was an attempt to clone Facebook mixed with an overreaction to the privacy sh-tstorm of Buzz, which in turn was an attempt to clone Twitter. They have no idea how people use Reader -- it's a curated feed *producer* and *aggregator* and reader, with built in comment threads and friend discovery -- so I expect they have no idea how to migrate features to a totally different product with different goals and users. 
+
+Does Plus emit RSS per user? Does it emit an aggregate RSS feed of a given circle? 
+
+What about my "Awesome" list, containing the blogs *and friends' feeds* I know I must read, as opposed to the hundreds of others I subscribe to for when I have time?
+
+What about Shift-S to share? If I have to click on "Send To", then wait for a menu, then scan it for a "Plus" icon, then click that, then whoops, now I have to select some circles... well, then I probably just won't.
+
+Plus, G+ Circles are pointing in the wrong direction for a social feed mediator. I publish to *topics*, not to *people*. Who has time to curate a list of lists of hundreds of subscribers? And why not let them decide? That's one reason why Twitter's Follow model works -- you have a public face, whom anyone can subscribe to, and optionally a private face, where you have to approve.
+
+I would also add that Reader has at least partially solved the Annotation Problem that has bedeviled the Web since at least 1996. Many startups have been sacrificed upon that altar.
+
+
+
+---
+
+
+Now it looks like Google Plus was/is already integrated with Google Reader. Clicking on "View this shared item in Google Buzz" goes to a posts page in Plus with comments that sync back and forth between Plus and Reader. Which is exactly what we've been asking for viz. Reader/Plus integration. 
+
+So they did what we wanted, then they buried it in a Buzz menu and didn't tell us, and now they're removing it from Reader altogether? Maddening!
+
+https://plus.google.com/107397735779828096052/posts/5M2xjLwo5qp
+
+https://plus.google.com/118094058046611495264/posts/LaACRXgombe
+
+
+---
+
+
+(1000+)
+https://plus.google.com/114228948437847649793/posts
+http://friendfeed.com/bdarnell/cca1c9b8/i-am-1000-occupygooglereader
+http://techcrunch.com/2009/07/28/steal-ben-darnell-leaves-google-reader-team-joins-friendfeed/
+https://plus.google.com/101851274707291135260/posts/V5BFJwzVvDJ
+https://plus.google.com/117599103108596130864/posts/aZ9sVoKTDuB
+http://blog.persistent.info/2011/10/google-reader-social-retrospective.html
+
+http://alexch.tumblr.com/post/12172570938/i-made-a-1000-shirt-zazzle-forces-me-to-take#disqus_thread
+
+---
+
+http://www.google.com/support/reader/bin/answer.py?hl=en&answer=69977
+
+http://www.ridllr.com/
+http://blog.ridllr.com/
+http://www.ridllr.com/implementation_details
+
+---
+
+
+I made a (1000+) shirt at  http://www.zazzle.com/1000_tshirt-235231254407577185 . Zazzle forces me to take at least 10% royalty; I will collect it and we can all decide what to do with it later, like fund a replacement app or have a real life Reader Party or something.
+
+http://www.zazzle.com/1000_tshirt-235231254407577185
+http://www.zazzle.com/pub/done?pd=235231254407577185&gl=Sharebro
+
+official "Sharing to Google+" help page:
+http://www.google.com/support/reader/bin/answer.py?hl=en&answer=83000
+Google Reader Notifier extension (1000+)
+https://chrome.google.com/webstore/detail/apflmjolhbonpkbkooiamcnenbmbjcbf
+
+
+---
+
+track these posts:
+https://plus.google.com/u/0/109372531542734504522/posts/fHsSwwY4HUK
+https://plus.google.com/u/0/110805491250386698039/posts/LYgbVyDYPY8
+https://plus.google.com/u/0/106783479174075930723/posts/hvAMgzHXRgx
+https://plus.google.com/u/0/111567061469336027617/posts/3zMUqT45mFU
+https://plus.google.com/u/0/109372531542734504522/posts/GkC7V21eAvT
+http://www.forbes.com/sites/erikkain/2011/10/26/farewell-google-reader-well-miss-you/
+ridllr
+
+
+---
+
+http://www.google.com/support/chrome/bin/static.py?page=guide.cs&amp;guide=27542&amp;topic=27546&amp;answer=173362
+
+
+http://knittinglizzie.tumblr.com/post/11743333626/occupygooglereader-wearethe99percent-99percent
+https://plus.google.com/101851274707291135260/posts
+https://plus.google.com/101274756338042764331/posts
+
+
+http://www.theatlanticwire.com/technology/2011/11/google-finally-responds-reader-outrage/44395/
+http://brianshih.com/78073742 by ex-Googler ex-Reader Product Manager
+http://fury.com/2011/10/changing-google-reader-for-the-better/ echoing my https://plus.google.com/u/0/107397735779828096052/posts/DZUMNJt8Zmk (not that it's not an obvious to anyone with a technical mind and without an agenda to forcibly relocate people into Plus)
+https://twitter.com/#!/pinboard/status/131139094943236097
+
+---
+
+"Google Finally Responds to the Reader Outrage"
+http://www.theatlanticwire.com/technology/2011/11/google-finally-responds-reader-outrage/44395/
+
+"The World Is Even Angrier Than Before About the New Google Reader"
+http://www.theatlanticwire.com/technology/2011/11/world-even-angrier-about-new-google-reader/44466/
+
+"Ex-Google Reader Product Manager Posts Scathing Review Of Reader Redesign"
+http://techcrunch.com/2011/11/02/ex-google-reader-product-manager-posts-scathing-review-of-reader-redesign/
+
+"New Google Reader Rectifier" https://chrome.google.com/webstore/detail/makmndpcndgheboeifhhgehleeabhoab  
+ -- fixes some whitespace and layout issues, sharing still gone
+
+http://googlesystem.blogspot.com/2011/11/better-way-to-share-posts-in-google.html
+"One of Brian's complaints is that it's a lot more difficult to share a post in the new interface. Instead of clicking "Share" or using a keyboard shortcut, you now have to click "+1", then click "Share on Google+", select your audience and then click the "Share" button. There's also a privacy downside: +1's are public, even if you only want to share a post with one or two people. Fortunately, there's a way to share a post without first clicking +1, but it's not obvious. Just use the "share" box from Google's navigation bar."
+
+Ben Darnell https://plus.google.com/u/0/114228948437847649793/posts -- "I built Google Reader's unread count feature. I am the (1000+) #OccupyGoogleReader"
+
+http://siliconfilter.com/dont-like-the-new-google-reader-here-are-three-alternatives/ : "Today, Google launched the largest update to Google Reader in a long time. While it brings some new features (especially integration with Google+), it also does away with a number of useful tools that many users came to rely on in the past. Reader’s social features, for example, are now almost completely gone. You also can’t bundle a set of feeds and share them with friends anymore, just like you can’t share comments about stories with your friends in Google Reader." -- not clear if any of those three alternatives contain those features
+
+"Google Reader Plus Theme fixed" with a userstyles.org plugin http://userstyles.org/styles/55568/google-reader-plus-theme-fixed -- i think he "fixed" it a bit too much but it's a start
+https://www.facebook.com/photo.php?fbid=10150873265615018&set=o.236228939769149&type=1&theater -- a long-winded but eloquent "I am the 1000+" protest sign
+https://plus.google.com/u/0/101274756338042764331/posts/4DkrPNF6VW8 -- Laurence Gonsalves' comment on the above photo
+
+http://fury.com/2011/10/changing-google-reader-for-the-better/ echoing my https://plus.google.com/u/0/107397735779828096052/posts/DZUMNJt8Zmk (not that that solution's not an obvious to anyone with a technical mind and without an agenda to forcibly relocate people into Plus)
+
+
+"New feed readers need to be extendable, and an API is a must. Curation tools are missing. I want to have my discovery chain encoded and transmitted every time I share something. I want to know if I am making an impact. A new feed reader with these features could be almost like a gamification of feed reading. I don’t share because I know people are reading what I say, it just makes it more fun. If such a tool existed, I am sure it would have a huge uptake with RSS addicts, which could have a large network effect, because the people who consume RSS are also the people most likely to transmit cool, new things."  - 
+
+
+---
+
+
+http://fury.com/2011/11/my-offer-to-google-reader/
+"As the former lead designer for Google Reader, I offer my services to Google, rejoining for a three month contract in order to restore and enhance the utility of Google Reader, while keeping it in line with Google’s new visual standards requirements. I will put my current projects on hold to ensure that Google Reader keeps its place as the premier news reader, and raises the bar of what a social newsreader can be."
+
+---
+
+Some Facebook groups have popped up:
+
+"Boycott Google+ for abducting Google Reader"
+https://www.facebook.com/groups/300995836594988/
+
+"Give us back our procrastination tool: we need Google Reader as it was!"
+https://www.facebook.com/groups/300995836594988/
+
+"We Hate Google-Reader Redesign"
+https://www.facebook.com/pages/We-Hate-Google-Reader-Redesign/313525241998240
+
+---
+
+"As the former lead designer for Google Reader, I offer my services to Google, rejoining for a three month contract in order to restore and enhance the utility of Google Reader, while keeping it in line with Google’s new visual standards requirements. I will put my current projects on hold to ensure that Google Reader keeps its place as the premier news reader, and raises the bar of what a social newsreader can be."
+http://fury.com/2011/11/my-offer-to-google-reader/
+-- a noble offer, but almost certainly futile
+
+---
+
+This userscript mirrors my http://sharebro.org mission:
+http://userscripts.org/scripts/show/117058
+"Google Reader Share" userscript
+"Brings back the Share button and Friends to Google Reader"
+"The only difference between this plugin and Google's original share feature is that your public feed is now hosted on lipsumarium.com, rather than google.com"
+"How does this work?" http://userscripts.org/topics/92423
+
+
+
+---
+
+http://www.google.com/reader/shared/vijayp
+
+Problems with ridllr:
+
+  * (title unknown) in sidebar
+  * via "Shared Items" via Leah
+  * clicking that gives "SharedLeah0Items" via %2 » You don't have permission to view this feed.
+  * but clicking *that* gives http://www.google.com/reader/shared/user/10240966591757641556/label/Shared%20Items
+  * still no comments
+  * still no "Share" button
+  
+I'd like to write a JS thingy (Chrome Extension and/or Bookmarklet) that fixes some of these issues. I'd love to collaborate with you on it if I can.
+  
+---
+
+"A Former Google Designer Offers to Clean Up Their Reader Mess"
+http://www.theatlanticwire.com/technology/2011/11/former-google-designer-will-clean-readers-mess-fee/44493/
+
+"Mein Führer... There are no more shared items."
+http://youtu.be/HpsfDEQkTf4
+
+Jason Hsu  -  What really baffles me is how many users still think the New Design is okay after pointing out all the serious usability problems. Normally as an engineer I wouldn't be arsed to make a visual aid in support of an argument, but I just had to for the atrocities committed upon Reader:
+"Fixing" What Ain't Broke" (Google New Design = GND = electrical ground = "at zero potential")
+https://plus.google.com/u/0/112363215496879145560/posts/5G1T9QvYKvv
+
+---
+
+ probly dups:
+ http://www.theatlanticwire.com/technology/2011/11/google-finally-responds-reader-outrage/44395/
+ http://brianshih.com/78073742 by ex-Googler ex-Reader Product Manager (spoiler alert: he hates the new design)
+ http://fury.com/2011/10/changing-google-reader-for-the-better/ echoing my https://plus.google.com/u/0/107397735779828096052/posts/DZUMNJt8Zmk (not that that solution's not an obvious to anyone with a technical mind and without an agenda to forcibly relocate people into Plus)
+
+ https://twitter.com/#!/pinboard/status/131139094943236097
+ https://plus.google.com/u/0/107397735779828096052/posts/DZUMNJt8Zmk
+ http://fury.com/2011/10/changing-google-reader-for-the-better/ echoing my https://plus.google.com/u/0/107397735779828096052/posts/DZUMNJt8Zmk (not that that solution's not an obvious to anyone with a technical mind and without an agenda to forcibly relocate people into Plus)
+
+---
+
+Leslie Michael Orchard: 11/1/11 - http://decafbad.com/blog/2011/11/01/readerpocalypse
+-- echoes my point that circles point the wrong way, plus a good list of alternative RSS Reading and Sharing solutions, and points out that "the changes seem to have removed most of the value from the service for me, so I'm moving on as I was invited to do" and use services like pinboard more, instead of plus
+http://www.google.com/reader/shared/l.m.orchard
+
+Louis Gray: How To Make the New Google Reader Social With Google+
+https://plus.google.com/100535338638690515335/posts/95ZsWiCG3xS
+
+John Montgomery: "not being able to share and read shares in a unified manner is a deal breaker. I shared 6-8 items a day and read 20-30 from my friends. Those shares? Gold. Every single one of them. Now it's all gone. These changes destroy the only part of the internet I gave a damn about." -- comment on https://plus.google.com/100535338638690515335/posts/95ZsWiCG3xS
+
+"Dreams, discernment, and Google Reader" http://massless.org/?p=174
+
+"We are witnessing the end of an era of open Internet. Soon we will all be enclosed in circles." http://abarrigadeumarquitecto.blogspot.com/2011/11/google-its-like-circle.html [in portugeuese]
+
+
+"How Google Reader's Overhaul Betrayed and Irked Its Most Passionate Users" (RWW) http://www.readwriteweb.com/archives/how_google_readers_overhaul_betrayed_and_irked_its.php
+
+
+---
+
+http://www.vijayp.ca/
+
+http://userscripts.org/scripts/show/117058
+"Google Reader Share" userscript
+Brings back the Share button and Friends to Google Reader
+"The only difference between this plugin and Google's original share feature is that your public feed is now hosted on lipsumarium.com, rather than google.com"
+"How does this work?" http://userscripts.org/topics/92423
+
+---
+
+
+"Google Doesn't Seem to Want to Fix Reader"
+http://www.theatlantic.com/technology/archive/2011/11/google-doesnt-want-to-fix-reader/247858/
+pointing out that the new Gmail UI has a feedback button, but the new Reader UI doesn't -- probably just an oversight, really
+
+
+"Google Reader Backlash: A Fuss Over Nothing?"
+http://www.theatlantic.com/technology/archive/2011/11/google-reader-backlash-a-fuss-over-nothing/247707/
+-- the leading question title is answered in the negative -- it actually goes into great depth about how Google gutted the Sharebro features and community with no viable replacement
+
+
+"Unoccupy Google Reader" by Jack Shafer
+http://blogs.reuters.com/jackshafer/2011/11/03/unoccupy-google-reader/
+"Adding extravagant white space to Google Reader is like adding white space to the phone book."
+
+"Why Curated Content Matters: A Lament for Reader Share"
+http://www.geekmom.com/2011/11/why-curated-content-matters-a-lament-for-reader-share/
+(syndicated at Wired http://www.wired.com/geekdad/2011/11/why-curated-content-matters-a-lament-for-reader-share/ )
+"If you used Reader Share, you’re probably in mourning today. No longer can you click the share button at the bottom of a post in your Reader, sending it to a sidebar widget on your blog and popping it into the “people you follow” section of your friends on Reader. No longer can you count on that easy click in Reader to show you the links shared by the people you follow — those trusted curators of content whose taste and judgment you rely on."
+
+Felicia Day on RSS vs. Streams (10/26/11)
+https://plus.google.com/u/0/110286587261352351537/posts/DsSLwxjojmj
+"social media outlets [like Twitter and Facebook] are INFO COLANDERS! 5% of your followers will see anything you post, and that's probably only within 20 minutes of posting"
+
+
+"3 Google Reader Changes Need Repair Now"
+http://www.informationweek.com/news/internet/google/231902111
+
+"Google+ is not a social network, but it’s not a graveyard, either"
+http://venturebeat.com/2011/11/03/google-plus-is-not-a-social-network/
+
+Alternative RSS readers:
+http://www.aaabit.com/news/
+https://www.linux.com/learn/tutorials/322446-weekend-project-replacing-google-reader-with-tiny-tiny-rss
+
+https://plus.google.com/116880405123751600396/posts/gmC2bhQQDif
+Chris Connelly  -  Oct 31, 2011 (edited)  -  Public
+Google+ tip for Google Reader users.
+
+On Google Reader, you can use the Share box in the upper right corner of the screen to share content, in addition to the +1 button in the bottom left of the Reader entry. This allows you to share without having to +1 something, and also preloads a snippet of the article you're looking at.
+
+>>> invite l.m.orchard@pobox.com to sharebro (author of http://decafbad.com/blog/2011/11/01/readerpocalypse)
+
+"With google reader changing is there a competitor looming?"
+http://alexkessinger.net/2011/10/20/google-reader-changing-competitor-looming/
+
+<source> element in RSS 2.0
+http://cyber.law.harvard.edu/rss/rss.html#ltsourcegtSubelementOfLtitemgt
+
+
+JSON activity streams
+http://activitystrea.ms/
+
+---
+
+11/11
+
+"How to Bring Back Google Reader's Original Sharing Feature"
+http://www.readwriteweb.com/archives/how_to_bring_back_google_readers_sharing_feature.php
+with a shoutout to sharebro Emmanuel!
+
+"Weekly Wrap-up: Google Reader Has No Alternatives and More"
+http://www.readwriteweb.com/archives/weekly_wrap-up_google_reader_has_no_alternatives_a.php
+
+Tristan's description of how Reader's new UI fails as a UI
+http://rww.readwriteweb.netdna-cdn.com/archives/google_reader_gets_the_google_plus_treatment.php#comment-352458863
+
+

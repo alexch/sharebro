@@ -1,0 +1,14 @@
+
+stats email -> item count
+
+select email,(
+select count(*) from greader_items where user_id=u.uid
+) as item_count from greader_users u order by item_count desc
+
+
+
+
+
+
+
+
