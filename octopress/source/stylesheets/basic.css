@@ -1,0 +1,11 @@
+div.box {
+    border: 1px solid black;
+    padding: 1em;
+    margin: 1em .5em;
+}
+ul {
+    list-style-position: inside;
+}
+ul li {
+    padding-left:1em;
+}

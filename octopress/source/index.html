@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<div class="blog-index">
+    <article>
+        <h1>Welcome to the sharebro movement</h1>
+        <p>This site is <a href="http://alexchaffee.com">my</a> hub for efforts to either fix Google Reader, or figure out where to go if that proves impossible.</p>
+        <p>Since Francis is already working on <a href="http://hivemined.org">Hive Mined</a> as a full Reader replacement I figure I should put my efforts towards enhancing the real Reader, kind of like Vijay is doing with <a href="http://ridllr.com">ridllr</a>.</p>
+        <h2>What you should do</h2>
+        <ul>
+            <li>Join the <a href="https://groups.google.com/group/google-reader-diaspora">Diaspora Google Group</a> and help us figure out how to fix Reader, or where to go if we can't</li>
+            <li>Join the <a href="https://groups.google.com/group/sharebro">Sharebro Google Group</a> if you want to collaborate on solutions as a coder or tester</li>
+            <li>Follow me <a href="http://alexchaffee.com">(Alex Chaffee)</a> on <a href="https://plus.google.com/107397735779828096052/posts">Plus</a> and <a href="http://twitter.com/alexch">Twitter</a> and I'll keep you posted</li>
+            <li>Read the <a href="/features">Missing Features</a> list and see if we missed any (I'm sure we did but I have to go have breakfast now)</li>
+        </ul>
+        <h2>This Site</h2>
+        <ul>
+            <li><a href="/links.html">Links</a> -- <span class="comment">a collection of dozens of articles and eulogies</span></li>
+            <li><a href="/features.html">Missing Features</a> -- <span class="comment">a catalog of what features were removed from Reader, and how we (and others) are trying to bring them back</span></li>
+            <li><a href="/roadmap.html">Road Map</a> -- <span class="comment">a guide for developers and testers who want to contribute to this site and the tools we're building</span></li>
+        </ul>
+        <p>P.S. Yes, "sharebro" is <a href="http://www.quora.com/Brogramming/Is-the-notion-of-brogramming-exclusionary-and-harmful-towards-women-in-computer-science">arguably sexist</a>. I also own <code>onefeed.org</code> but "sharebro" is an <a href="http://www.urbandictionary.com/define.php?term=sharebro">organic term</a> that men <i>and women</i> use to describe themselves and their community, so let's run with it for a while. And brotherhood is a positive thing, right? And if I end up making an app or widget, we could name <b>it</b> Sharebro, as in a helpful little buddy, thereby maybe dodging the "don't call me bro, bro" issue.</p>
+    </article>
+  {% assign index = true %}
+  {% for post in paginator.posts %}
+  {% assign content = post.content %}
+    <article>
+      {% include article.html %}
+    </article>
+  {% endfor %}
+  <div class="pagination">
+    {% if paginator.next_page %}
+      <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
+    {% endif %}
+    <a href="/blog/archives">Blog Archives</a>
+    {% if paginator.previous_page %}
+    <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
+    {% endif %}
+  </div>
+</div>
+<aside class="sidebar">
+  {% if site.blog_index_asides.size %}
+    {% include_array blog_index_asides %}
+  {% else %}
+    {% include_array default_asides %}
+  {% endif %}
+</aside>
