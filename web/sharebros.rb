@@ -13,6 +13,10 @@ class Sharebros < Widget
   def friends
     @google_data.friends
   end
+  
+  def you
+    @google_data.you
+  end
 
   def raw_url api_path
     "/raw?api_path=#{URI.escape(api_path)}"
@@ -21,32 +25,26 @@ class Sharebros < Widget
   def content
 
     h2 "your sharebros"
-    
-    p "Coming soon: a 'bundle' or OPML export so you can continue to follow your friends from inside Reader."
-    
-    bros = Bro.from_friends(friends)
-
-    you = bros.detect{|bro| bro.me?}
+        
     section "You" do
+      form :method => :post, 
+        :action => "/subscribe_you" do
+          input :type => "submit", :value => "Subscribe"
+      end
+
       widget you
     end
     
-    bros.delete(you)
-    
-    following = bros.select{|bro| bro.following?}
-
     section "People You Follow" do
-      following.each{|bro| widget bro}
+      @google_data.following.each{|bro| widget bro}
     end
     
-    followers = bros.select{|bro| bro.follower? and !bro.following?}
     section "People Who Follow You (But You Don't Follow Them Back)" do
-      followers.each{|bro| widget bro}
+      @google_data.followers.each{|bro| widget bro}
     end
-
-    others = bros - [you] - following - followers
+    
     section "Others" do
-      others.each{|bro| widget bro}
+      @google_data.others.each{|bro| widget bro}
     end 
     
     p {

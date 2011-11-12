@@ -84,4 +84,69 @@ class GoogleData < LoveSeat
     @friends = doc
   end
 
+  
+  def bros
+    @bros ||= Bro.from_friends(friends)
+  end
+
+  def others
+    bros - [you] - following - followers
+  end
+
+  def you
+    bros.detect{|bro| bro.me?}
+  end
+
+  def following
+    (bros - [you]).select{|bro| bro.following?}
+  end
+
+  def followers
+    (bros - [you]).select{|bro| bro.follower? and !bro.following?}
+  end
+
+  def feeds_from_unread
+    h = {feeds: [], users: [], labels: []}
+    google_api.unread["unreadcounts"].each do |feed|
+      feed_id = feed["id"]
+      if feed_id =~ /^feed\/(.*)$/
+        h[:feeds] << $1
+      elsif feed_id =~ /^user/
+        %r{^user/(\d*)/([^/]*)/(.*)$}.match(feed_id) do |match_data|
+          user_id, feed_type, name = match_data[1..3]
+          # d {[user_id, feed_type, name]}
+          if feed_type == "label"
+            h[:labels] << {:user_id => user_id, :name => name}
+          else
+            h[:users] << feed_id
+          end
+        end
+      end
+    end
+    h
+  end
+  
+  def feeds_from_subscriptions
+    h = {feeds: [], users: [], labels: []}
+    google_api.subscriptions["subscriptions"].each do |feed|
+      feed_id = feed["id"]
+      if feed_id =~ /^feed\/(.*)$/
+        h[:feeds] << $1
+      elsif feed_id =~ /^user/
+        %r{^user/(\d*)/([^/]*)/(.*)$}.match(feed_id) do |match_data|
+          user_id, feed_type, name = match_data[1..3]
+          # d {[user_id, feed_type, name]}
+          if feed_type == "label"
+            h[:labels] << {:user_id => user_id, :name => name}
+          else
+            h[:users] << feed_id
+          end
+        end
+      end
+    end
+    h
+  end
+  
+  
+
 end

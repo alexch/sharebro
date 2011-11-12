@@ -47,21 +47,22 @@ class Googled < Widget
         comment: "your feed subscriptions"
 
       item name: "unread",
-        url: raw_url("/reader/api/0/unread-count"),
+        url: raw_url("/reader/api/0/unread-count?allcomments=true&client=sharebro"),
         comment: "your feed subscriptions, including unread counts for each"
+        
+      item name: "label: Shares",
+        url: raw_url("/reader/api/0/stream/contents/user/-/label/Shares"),
+        comment: "items under the 'Shared' label -- replacing 'People you follow'"
         
       hr
 
-      item name: "your shared items",
+      item name: "your shared items (old style)",
         url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/broadcast")
-        
+
       item name: "your notes",
         url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/created")
         
-      item name: "your shared items",
-        url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/broadcast")
-
-      item name: "your friends' shared items",
+      item name: "your friends' shared items ('people you follow')",
         url: raw_url("/reader/api/0/stream/contents/user/-/state/com.google/broadcast-friends")
 
       hr
@@ -69,6 +70,15 @@ class Googled < Widget
       item name: "preferences", 
         url: raw_url("/reader/api/0/preference/stream/list")
         
-      end
+    end
+    
+    def ck
+      Time.now.to_i
+    end
+    
+    
+    section "feeds" do
+      pre JSON.pretty_generate @google_data.feeds_from_unread
+    end
   end
 end

@@ -22,6 +22,8 @@ class Bro < Widget
     @profile_id = @profile_ids.first if @profile_ids
   end
 
+  attr_reader :given_name
+
   # http://www.quirksmode.org/css/tables.html
   external :style, <<-CSS
   .bro {
@@ -130,6 +132,10 @@ class Bro < Widget
         }        
       end
     }
+  end
+  
+  def full_name
+    @display_name || @given_name || "Google Id #{@user_id || "Unknown"}"
   end
   
   def content

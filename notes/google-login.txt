@@ -19,3 +19,18 @@ The OAuth 2.0 open-standard protocol allows users to authorize access to their d
 
 The hybrid protocol uses both OpenID and OAuth, to provide both authentication and authorization in a single-step process.
 http://step2.googlecode.com/svn/spec/openid_oauth_extension/latest/openid_oauth_extension.html
+
+
+
+OAuth uses three kinds of credentials: client credentials, temporary credentials, and token credentials. The original version of the specification used a different set of terms for these credentials: 
+
+consumer key and secret (client credentials), 
+
+request token and secret (temporary credentials), 
+
+and access token and secret (token credentials). 
+
+The specification still uses a parameter name ‘oauth_consumer_key‘ for backwards compatibility.
+
+In OAuth 1.0, the secret half of each set of credentials is defined as a symmetric shared secret. This means that both the client and server must have access to the same secret string. However, OAuth supports an RSA-based authentication method which uses an asymmetric client secret. The different credentials are explained in more detailed later on.
+

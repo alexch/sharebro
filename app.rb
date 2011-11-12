@@ -143,30 +143,39 @@ class Sharebro < Sinatra::Application
   end
 
   # todo: proper widget page
+  def message_page title, msg_html
+        <<-HTML
+        <html>
+        <title>sharebro.org - #{title}</title>
+        <body>
+
+          <h1><a href="/">sharebro.org</a> - #{title}</h1>
+
+          <div style="border: 3px solid green; padding: 2em; max-width: 30em; margin: auto;">
+#{msg_html}
+        </div>
+        </body></html>
+        HTML
+    end
+    
+  
   get "/auth_needed" do
-    <<-HTML
-    <html><body>
-      
-      <h1><a href="/">sharebro.org</a> - authorization needed</h1>
-      
-      <div style="border: 3px solid green; padding: 2em; max-width: 30em; margin: auto;">
-      
+    message_page "authorization needed", <<-HTML
+
     The action you just attempted requires authorization from google. 
 
     <p style='font-size: 18pt; background: #f0fff0; text-align: center;'>
     <a href="/auth"><b>Click here</b> to start the OAuth Tango.</a>
     </p>
-    
+
     <p>
 You will need to sign in to your Google account and then click "Grant Access". This allows us to fetch your user info and friends list so we can revive your sharebros. It does not give us access to any other Google info like your password or Gmail account.
     </p>
-    
+
     <p>
     You can revoke access at any time at Google's site (under 'My Account') but we will preserve your data so you can use it later.
-    
-    </div>
-    </body></html>
     HTML
+    
   end
   
   get "/auth" do
@@ -194,13 +203,36 @@ You will need to sign in to your Google account and then click "Grant Access". T
 
   ## raw API call UI (sandboxy)
   
+  def google_api
+    @google_api ||= GoogleApi.new(access_token)
+  end
+  
   def fetch_json api_path
-    GoogleApi.new(access_token).fetch_json(api_path)
+    google_api.fetch_json(api_path)
+  end
+
+  get "/sandbox" do
+    path = params[:api_path]
+    SandboxPage.new(path: path, data: fetch_json(path), login_status: login_status).to_html    
   end
 
   get "/raw" do
-    path = params[:api_path]
-    PlainPage.new(path: path, data: fetch_json(path), login_status: login_status).to_html    
+    redirect "/sandbox?api_path=#{CGI.escape params[:api_path]}"
+  end
+  
+  post "/subscribe_you" do
+    you = google_data.you
+    folder = "Shares"
+
+    feed_title = "#{you.full_name}'s Shares"
+    response = google_api.subscribe you.lipsum, feed_title, folder
+    if response != {:response => "OK"}
+      "<pre>" + JSON.pretty_generate(response) + "</pre>"
+    else
+      message_page "subscribed", <<-HTML
+      Just added the subscription <b>#{feed_title}</b> under the folder <b>#{folder}</b> to Google Reader.
+      HTML
+    end
   end
   
 end

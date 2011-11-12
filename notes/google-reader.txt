@@ -510,3 +510,11 @@ http://www.readwriteweb.com/archives/weekly_wrap-up_google_reader_has_no_alterna
 
 Tristan's description of how Reader's new UI fails as a UI
 http://rww.readwriteweb.netdna-cdn.com/archives/google_reader_gets_the_google_plus_treatment.php#comment-352458863
+
+
+---
+
+Google Reader Settings:
+http://www.google.com/reader/settings?display=edit-extras
+http://www.google.com/reader/settings?display=import
+
