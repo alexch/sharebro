@@ -83,10 +83,13 @@ class GoogleData < LoveSeat
     end
     @friends = doc
   end
-
   
   def bros
     @bros ||= Bro.from_friends(friends)
+  end
+
+  def bro(user_id)
+    bros.detect{|bro| bro.user_id == user_id }
   end
 
   def others

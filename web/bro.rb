@@ -22,7 +22,7 @@ class Bro < Widget
     @profile_id = @profile_ids.first if @profile_ids
   end
 
-  attr_reader :given_name
+  attr_reader :given_name, :user_id
 
   # http://www.quirksmode.org/css/tables.html
   external :style, <<-CSS

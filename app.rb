@@ -219,21 +219,73 @@ You will need to sign in to your Google account and then click "Grant Access". T
   get "/raw" do
     redirect "/sandbox?api_path=#{CGI.escape params[:api_path]}"
   end
-  
-  post "/subscribe_you" do
-    you = google_data.you
-    folder = "Shares"
 
-    feed_title = "#{you.full_name}'s Shares"
-    response = google_api.subscribe you.lipsum, feed_title, folder
-    if response != {:response => "OK"}
-      "<pre>" + JSON.pretty_generate(response) + "</pre>"
+  def subscribe feed_url, feed_name, folder_name = "Shares"
+    response = google_api.subscribe feed_url, feed_name, folder_name
+    if response == {:response => "OK"}
+      return feed_name
     else
-      message_page "subscribed", <<-HTML
-      Just added the subscription <b>#{feed_title}</b> under the folder <b>#{folder}</b> to Google Reader.
-      HTML
+      return response
     end
   end
   
+
+  post "/subscribe_you" do
+    you = google_data.you
+    subscribe you
+  end
+  
+  post "/subscribe" do
+    feeds = []
+    errors = []
+    user_ids = params[:user_ids].split(',')
+    user_ids.each do |user_id|
+      d("subscribing") { user_id }
+      bro = google_data.bro(user_id)
+      
+      response = subscribe bro.lipsum, "#{bro.full_name}'s Shares"
+      if response.is_a? String
+        feeds << response
+      else
+        errors << response
+      end
+
+      response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
+      if response.is_a? String
+        feeds << response
+      else
+        errors << response
+      end
+
+    end
+
+    app_page(Subscribed.new(:feeds => feeds, :errors => errors)).to_html
+  end
+  
+end
+
+class Subscribed < Widget
+  needs :feeds, :errors
+  
+  def content
+    div do
+      text "Just subscribed to these feeds under the folder ", b("Shares"), " in Google Reader:"
+      ul {
+        @feeds.each do |feed_name|
+          li feed_name
+        end
+      }
+      
+      unless @errors.empty?
+        p "Errors:"
+        ul {
+          @errors.each do |error|
+            li { code { JSON.pretty_generate(error) }}
+          end
+        }
+      end
+    end
+  end
+    
 end
 

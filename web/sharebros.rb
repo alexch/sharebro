@@ -2,6 +2,15 @@ class Sharebros < Widget
   include Sections
   needs :google_data
 
+  external :style, <<-CSS
+  div.subscribe {
+    float: right;
+    margin: .5em;
+    margin-top: -2em;  /* hack to make it appear inside header */
+    max-width: 20em;
+  }
+  CSS
+
   def user_id
     @google_data.user_id
   end
@@ -24,18 +33,30 @@ class Sharebros < Widget
 
   def content
 
-    h2 "your sharebros"
-        
     section "You" do
-      form :method => :post, 
-        :action => "/subscribe_you" do
-          input :type => "submit", :value => "Subscribe"
+      div.subscribe do
+        form :method => :post, 
+          :action => "/subscribe_you" do
+            input :type => "submit", :value => "Subscribe in Reader"
+        end
       end
-
+      
       widget you
     end
     
     section "People You Follow" do
+      div.subscribe do
+        b "Note: clicking this button will probably time out at the server. You will get some feeds in a new 'Shares' folder in Reader, though!"
+        
+        form :method => :post, 
+          :action => "/subscribe" do
+            input :type => "hidden", 
+              :name => "user_ids",
+              :value => ([you] + @google_data.following).map{|bro| bro.user_id}.join(',')
+            input :type => "submit", :value => "Subscribe in Reader"
+        end
+      end
+      div.clear
       @google_data.following.each{|bro| widget bro}
     end
     
