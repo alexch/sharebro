@@ -1,0 +1,24 @@
+#lipsFriendList{margin-left:42px;}
+
+#lipsDialogOverlay{display:none;position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;background:#000;z-index:1000;opacity:0.2;}
+
+#lipsDialogBox{display:none;position:absolute;top:50%;left:50%;width:500px;border:6px solid #C2CFF1;background:#FFF;z-index:1010;margin-left:-250px;}
+#lipsDialogBoxInner{display:none;position:relative;}
+#lipsDialogText{padding:10px 7px 2px 7px;}
+#lipsDialogButtonsWrap{padding:4px;text-align:right;}
+#lipsDialogCloseButton{position: absolute;top: 5px;right: 4px;width: 12px;height: 12px;cursor: pointer;color:#AAA;display:none;}
+#lipsDialogCloseButton:hover{color:#000;}
+#lipsDialogInputWrap{padding:10px 7px 2px 7px;display:none;}
+#lipsDialogInput{border:1px solid #858585;padding:2px 4px;width:70%;}
+#lipsDialogInput:hover{border-color:#333;}
+#lipsDialogInput .cancelBtn{display:none;}
+
+#lipsDialogInput .emptyError .emptyErrorText{display:none;}
+
+
+#lipsDialogBox.dialogTypeAlert .cancelBtn{display:none;}
+#lipsDialogBox.dialogTypeConfirm .cancelBtn{display:inline;}
+#lipsDialogBox.dialogTypePrompt #lipsDialogInputWrap{display:block;}
+
+#lips-mySharedItems .shareFeedByMail{visibility:hidden;}
+#lips-mySharedItems:hover .shareFeedByMail{visibility:visible;}

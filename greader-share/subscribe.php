@@ -3,7 +3,7 @@
 
 require_once('functions.php');
 
-$hash = md5('xxx'.$_GET['_USER_ID'].'xxx');
+$hash = md5(get_config('subscribe-salt-head').$_GET['_USER_ID'].get_config('subscribe-salt-foot'));
 
 if(!user_exists($_GET['_USER_ID'])){
 	if($_GET['hash']){
@@ -46,16 +46,16 @@ if(!user_exists($_GET['_USER_ID'])){
 		fclose($h);
 		
 		if(mail($_GET['email'],'GReader share verification email.','Now that we made sure you own this email address, gently click on the following link to activate you account: http://lipsumarium.com/greader/subscribe?_USER_ID='.$_GET['_USER_ID'].'&hash='.$hash)){
-			echo 'alert("We just sent a verification email to '.$_GET['email'].'. Please check your mailbox.");'.allJSONPReturns();
+			echo 'lipsDialog.alert("We just sent a verification email to '.$_GET['email'].'. Please check your mailbox.");'.allJSONPReturns();
 		}else{
-			echo 'alert("Problem while sending email to '.$_GET['email'].'. Please try again later.");'.allJSONPReturns();
+			echo 'lipsDialog.alert("Problem while sending email to '.$_GET['email'].'. Please try again later.");'.allJSONPReturns();
 		}
 	}
 	
 	
 	
 }else{
-	echo 'alert("User '.$_GET['_USER_ID'].' ('.$_GET['email'].') is already registered.");'.allJSONPReturns();
+	echo 'lipsDialog.alert("User '.$_GET['_USER_ID'].' ('.$_GET['email'].') is already registered.");'.allJSONPReturns();
 }
 
 
