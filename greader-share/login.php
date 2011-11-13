@@ -12,7 +12,7 @@ if($r['uid']==$_GET['_USER_ID']){
 	$_SESSION['greader_USER_ID']=$r['uid'];
 	echo 'lipsLoginCallback();'.allJSONPReturns();
 }else{
-	echo 'alert("Wrong password.");'.allJSONPReturns();
+	echo 'lipsDialog.alert("Wrong password.");'.allJSONPReturns();
 }
 
 

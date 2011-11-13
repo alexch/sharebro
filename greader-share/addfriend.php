@@ -8,12 +8,12 @@ require_once('functions.php');
 		
 		if (!validEmail( $_GET['friend_USER_EMAIL'])) {
 			//not an email
-			die('alert("'.$_GET['friend_USER_EMAIL'].' is not a valid email address.");'.allJSONPReturns());
+			die('lipsDialog.alert("'.$_GET['friend_USER_EMAIL'].' is not a valid email address.");'.allJSONPReturns());
 		}
 		
 		
 		if(trim($_GET['friend_USER_EMAIL'])==''){
-			echo 'alert("Error: friend is empty.")'.allJSONPReturns();
+			echo 'lipsDialog.alert("Error: friend is empty.")'.allJSONPReturns();
 			die();
 		}
 		$_GET['friend_USER_EMAIL'] = strtolower($_GET['friend_USER_EMAIL']);

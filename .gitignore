@@ -1,2 +1,6 @@
 oauth.yaml
 local
+.project
+.buildpath
+.settings/
+dbconnect.php

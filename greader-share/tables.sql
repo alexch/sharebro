@@ -70,6 +70,19 @@ CREATE TABLE IF NOT EXISTS `greader_users` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `greader_config`
+--
+
+CREATE TABLE IF NOT EXISTS `greader_config` (
+  `key` varchar(50) NOT NULL,
+  `value` text NOT NULL,
+  `autoload` varchar(1) NOT NULL default '0',
+  PRIMARY KEY  (`key`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la vue `greader_stats_item_count`
 --
 DROP TABLE IF EXISTS `greader_stats_item_count`;
