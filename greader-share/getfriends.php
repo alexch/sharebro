@@ -12,7 +12,7 @@ if(user_exists($_GET['_USER_ID'])){
 	}
 	
 }else{
-	echo 'alert("User has no account here");'.allJSONPReturns();
+	echo 'lipsDialog.alert("User has no account here. please login first (try to share an item)");'.allJSONPReturns();
 }
 
 

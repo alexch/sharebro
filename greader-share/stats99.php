@@ -9,17 +9,20 @@ $from = (1320292504+5*60);//+(86400);
 $to = time();
 
 $min = $_GET['m']?$_GET['m']:360;
+$high = $_GET['h']?$_GET['h']:5;
+
+
 
 if($_GET['userCount']==1){
 	echo $howMany;
 	die();
 }
 
-echo '<body bgcolor="#111"><meta http-equiv="refresh" content="30;url=http://lipsumarium.com/greader/stats99?m='.$min.'&nc='.time().'">';
+echo '<body bgcolor="#111"><meta http-equiv="refresh" content="30;url=http://lipsumarium.com/greader/stats99?m='.$min.'&h='.$high.'&nc='.time().'">';
 
 
-for($u=0;$u<100;$u++){
-	echo '<div style="position:absolute;bottom:'.($u*10).'px;height:9px;border-bottom:1px solid #444;width:100%;left:0;"></div>';
+for($u=0;$u<1000/$high;$u++){
+	echo '<div style="position:absolute;bottom:'.($u*$high).'px;height:9px;border-bottom:1px solid #444;width:100%;left:0;"></div>';
 }
 
 
@@ -32,14 +35,14 @@ for($i=$from;$i<$to;$i+=($min*60)){
 	}
 	
 	echo '
-	<div style="position:absolute;bottom:0;left:'.($ii*27).'px;width:22px;height:'.($howMany*10).'px;background:#555;color:#333;text-align:center;" title="'.date('d/m H:i',$i).'">'.$howMany.'</div>
+	<div style="position:absolute;bottom:0;left:'.($ii*27).'px;width:22px;height:'.($howMany*$high).'px;background:#555;color:#333;text-align:center;" title="'.date('d/m H:i',$i).'">'.$howMany.'</div>
 	';
 	
 	$ii++;
 }
 $howMany = (count($users));
 echo '
-	<div style="position:absolute;bottom:-2px;left:'.($ii*27).'px;width:18px;height:'.($howMany*10-4+2).'px;background:#111;color:#555;border:2px dashed #555;text-align:center;" title="Now. Next report: '.date('d/m H:i',($i)).'">'.$howMany.'</div>
+	<div style="position:absolute;bottom:-2px;left:'.($ii*27).'px;width:18px;height:'.($howMany*$high-4+2).'px;background:#111;color:#555;border:2px dashed #555;text-align:center;" title="Now. Next report: '.date('d/m H:i',($i)).'">'.$howMany.'</div>
 	';
 echo '<div style="position:absolute;top:20px;left:20px;font-size:20px;color:#AAA;font-weight:bold;"><span style="font-size:40px;">'.$howMany.'</span> confirmed users</div>';
 
