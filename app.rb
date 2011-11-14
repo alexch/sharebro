@@ -227,14 +227,14 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   post "/subscribe" do
-    
-    
-    
     feeds = []
+    succeeded = []
     errors = []
     user_ids = params[:user_ids].split(',')
+    start = Time.now
     user_ids.each do |user_id|
-      d("subscribing") { user_id }
+      break if Time.now > (start + 10)
+
       bro = google_data.bro(user_id)
       
       response = subscribe bro.lipsum, "#{bro.full_name}'s Shares"
@@ -247,13 +247,15 @@ You will need to sign in to your Google account and then click "Grant Access". T
       response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
       if response.is_a? String
         feeds << response
+        succeeded << user_id
       else
         errors << response
       end
 
     end
 
-    app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id)).to_html
+    app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id, :remaining => user_ids - succeeded)).to_html
+    
   end
   
 end
