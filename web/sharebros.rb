@@ -39,6 +39,11 @@ class Sharebros < Widget
           :action => "/subscribe_you" do
             input :type => "submit", :value => "Subscribe in Reader"
         end
+        p {
+          text "After clicking a 'Subscribe in Reader' button, you will have a "
+          b { a "Shares", :href => you.shares_in_reader }
+          text " folder in Google Reader."
+        }
       end
       
       widget you
@@ -69,7 +74,7 @@ class Sharebros < Widget
     end 
     
     p {
-      text "note: G+ Post feeds provided by"
+      text "note: G+ Post feeds provided by "
       url "http://plu.sr"
     }
     

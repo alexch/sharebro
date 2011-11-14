@@ -150,6 +150,5 @@ class GoogleData < LoveSeat
     h
   end
   
-  
 
 end

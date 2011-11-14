@@ -4,6 +4,7 @@ http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
 http://code.google.com/p/google-reader-api/
 http://code.google.com/p/google-reader-api/w/list
 http://code.google.com/p/google-reader-api/wiki/Authentication
+
 http://www.niallkennedy.com/blog/2005/12/google-reader-api.html
 http://mindsharestrategy.com/2010/google-reader-api-a-brief-tutorial/
 http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI

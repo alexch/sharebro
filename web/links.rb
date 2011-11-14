@@ -102,10 +102,31 @@ class Links < Widget
       item url: "http://pinboard.in/howto/",
         comment: "pinboard could be a great backend for shared item feeds"
         item url: "http://reblog.org/", name: "reBlog", quote: "A reBlog facilitates the process of filtering and republishing relevant content from many RSS feeds. reBloggers subscribe to their favorite feeds, preview the content, and select their favorite posts. These posts are automatically published through their favorite blogging software."
-      item name: "ridllr", url: "http://www.ridllr.com", comment: "creates a \"public tag\" and uses google signin to restore some 'people you follow' tech"
-      item url: "https://chrome.google.com/webstore/detail/gmgmcmhmodidojodfoekpbjnejlhcbpb?mid=52754",
-       name: "Reader Sharer",
-       comment: "a Chrome extension that uses the old Google system for sharing. Sadly, it will soon break."
+        item name: "ridllr", url: "http://www.ridllr.com", comment: "creates a \"public tag\" and uses google signin to restore some 'people you follow' tech"
+        
+        
+      item name: "Shareaholic",
+       comment: "a \"share this on X\" (on steroids) browser plugin for the 6 major browsers",
+       url: "http://www.shareaholic.com/tools/"
+
+      item name: "RSS Share",
+        comment: "a Chrome extension that attempts G+/Reader integration",
+        url: "https://chrome.google.com/webstore/detail/cngpndgifehgejmkemnmmiknpafnhpec",
+        quote: "RSS Share for Google Plus and Google Reader is an extension that does two things: * Adds a Google Reader section to the Google Plus homepage * Adds a \"Share on Google+\" button on Google Reader -- This way, whether you mainly use Google Reader or Google Plus you can keep up with current events and webpages and instantly share them if you feel like it."
+        
+        section "broken replacements" do
+          item url: "https://groups.google.com/forum/#!msg/fougrapi/MzljxPKXKZ0/jP0i9DqBrpkJ",
+           quote: "Basically anything to do with sharing (broadcast tag), liking or friends is going away. The API calls will still succeed even after the social features are gone from our UI, but eventually write requests will start to fail (at the same time as Google Buzz going read-only).",
+           author: "Mihai P. (Google Reader dev)"
+
+           hr
+          
+          item url: "https://chrome.google.com/webstore/detail/gmgmcmhmodidojodfoekpbjnejlhcbpb?mid=52754",
+            name: "Reader Sharer",
+            comment: "a Chrome extension that uses the old Google system for sharing. Sadly, it will soon break."
+            
+          item name: "lots of other userscripts are similarly dead men walking"
+       end
     end
       
       

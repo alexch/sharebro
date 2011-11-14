@@ -55,7 +55,7 @@ class Bro < Widget
 
   .bro img {
     float: left;
-    margin: 2px;
+    margin: 2px 8px 2px 2px;
   }
   
   .bro table.feeds a {
@@ -91,6 +91,15 @@ class Bro < Widget
   def in_reader(feed_url)
     "http://www.google.com/reader/view/feed/#{CGI.escape feed_url}"
   end
+  
+  def stream_in_reader(stream_id)
+    "http://www.google.com/reader/view/#stream/#{CGI.escape stream_id}"
+  end
+  
+  def shares_in_reader label_name = "Shares"
+    stream_in_reader "user/#{@user_id}/label/#{label_name}"
+  end
+    
 
   def feeds
     table.feeds {
@@ -144,7 +153,7 @@ class Bro < Widget
         img src: "http://s2.googleusercontent.com/#{@photo_url}"
       end
 
-      h3 {
+      h3.bro_name {
         if @profile_id
           a @display_name, :href => "https://plus.google.com/#{@profile_id}/about"
         else
@@ -152,7 +161,7 @@ class Bro < Widget
         end
       }
 
-      table {
+      table.info {
         if @location
           tr {
             th "location"

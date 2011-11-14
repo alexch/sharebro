@@ -518,3 +518,19 @@ Google Reader Settings:
 http://www.google.com/reader/settings?display=edit-extras
 http://www.google.com/reader/settings?display=import
 
+---
+
+
+Things have changed a little bit since then, write requests will most likely still work. However, there may be a period of instability for a few days after Buzz goes read-only. Sorry to be vague, but schedules/code is still up in the air. I'll give an update once I know better what will happen.
+
+Mihai
+- hide quoted text -
+
+On Sun, Nov 13, 2011 at 9:49 AM, Alex Chaffee <ale...@gmail.com> wrote:
+OK, I found this, which answers my most important question:
+
+https://groups.google.com/forum/#!msg/fougrapi/MzljxPKXKZ0/jP0i9DqBrpkJ
+
+ "Basically anything to do with sharing (broadcast tag), liking or friends is going away. The API calls will still succeed even after the social features are gone from our UI, but eventually write requests will start to fail (at the same time as Google Buzz going read-only)."
+
+

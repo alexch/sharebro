@@ -20,6 +20,9 @@ h1,h2,h3 {
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
   -webkit-margin-end: 0;
+
+  font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
 a, a:visited {

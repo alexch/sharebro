@@ -213,7 +213,8 @@ You will need to sign in to your Google account and then click "Grant Access". T
 
   get "/sandbox" do
     path = params[:api_path]
-    SandboxPage.new(path: path, data: fetch_json(path), login_status: login_status).to_html    
+    data = fetch_json(path)
+    app_page(Sandbox.new(path: path, data: data)).to_html    
   end
 
   get "/raw" do
@@ -259,33 +260,8 @@ You will need to sign in to your Google account and then click "Grant Access". T
 
     end
 
-    app_page(Subscribed.new(:feeds => feeds, :errors => errors)).to_html
+    app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id)).to_html
   end
   
-end
-
-class Subscribed < Widget
-  needs :feeds, :errors
-  
-  def content
-    div do
-      text "Just subscribed to these feeds under the folder ", b("Shares"), " in Google Reader:"
-      ul {
-        @feeds.each do |feed_name|
-          li feed_name
-        end
-      }
-      
-      unless @errors.empty?
-        p "Errors:"
-        ul {
-          @errors.each do |error|
-            li { code { JSON.pretty_generate(error) }}
-          end
-        }
-      end
-    end
-  end
-    
 end
 

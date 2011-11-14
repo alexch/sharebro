@@ -5,6 +5,8 @@ require 'json'
 require 'erector'
 Widget = Erector::Widget
 require 'ap'
+require 'peach'
+
 
 here = File.expand_path File.dirname(__FILE__)
 

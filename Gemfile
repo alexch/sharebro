@@ -8,6 +8,7 @@ gem "thin"
 gem "awesome_print"
 gem "oauth"
 gem "couchrest" # todo: write my own couch lib
+gem "peach"
 
 group :development do
   gem "rake"

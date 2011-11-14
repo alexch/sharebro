@@ -53,7 +53,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 # TODO (site):
 
-* better color
+* better colors
 * tagline
 * logo
 * better site design
@@ -61,23 +61,28 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 # TODO (app):
 
+* bug: "Subscribe" needs to be backgrounded
+* save off old shared items (broadcast state JSON)
+  * for all known users? why not?
 * shared items API
 * share bookmarklet
  * see min as a way to strip extranous content http://min.artequalswork.com/js/m.js
 * see Road Map page
 * shared comments
   * see http://www.salmon-protocol.org/
-* iconistan: +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
-  http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
 
 * riddlr-esque features:
   * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
   * add various blogs to 'shared' tag and see if they show up in folder
-  * "Send To Sharebro"
+  * "Send To Sharebro" or something
+
+* re-fetch friends list
 
 
 # TODO (promo)
 
+* iconistan: +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
+  http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
 * add to Chrome Store
 * write a Safari Extension
   * http://developer.apple.com/programs/safari/
@@ -91,7 +96,3 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * make friend with reporters
   * http://www.readwriteweb.com/archives/author/john-paul-titlow.php
   * Sarah Perez at TechCrunch
-
-
-
-
