@@ -10,7 +10,7 @@ class Ant
     doc = {
       type: 'job',
       created_at: Time.now.iso8601,
-      action: action,
+      action: action.to_s,
     }.merge(params)
     Jobs.put(doc)
   end

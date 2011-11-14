@@ -210,50 +210,14 @@ You will need to sign in to your Google account and then click "Grant Access". T
     redirect "/sandbox?api_path=#{CGI.escape params[:api_path]}"
   end
 
-  def subscribe feed_url, feed_name, folder_name = "Shares"
-    response = google_api.subscribe feed_url, feed_name, folder_name
-    if response == {:response => "OK"}
-      return feed_name
-    else
-      return response
-    end
-  end
-  
   post "/subscribe_you" do
-    you = google_data.you
-    feed_name = "#{you.full_name}'s Shares"
-    subscribe you.lipsum, feed_name
-    app_page(Subscribed.new(:feeds => [feed_name], :errors => [], :user_id => google_data.user_id)).to_html
+    redirect "/subscribe?user_ids=#{google_data.user_id}"
   end
   
   post "/subscribe" do
-    
-    
-    
-    feeds = []
-    errors = []
     user_ids = params[:user_ids].split(',')
-    user_ids.each do |user_id|
-      d("subscribing") { user_id }
-      bro = google_data.bro(user_id)
-      
-      response = subscribe bro.lipsum, "#{bro.full_name}'s Shares"
-      if response.is_a? String
-        feeds << response
-      else
-        errors << response
-      end
-
-      response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
-      if response.is_a? String
-        feeds << response
-      else
-        errors << response
-      end
-
-    end
-
-    app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id)).to_html
+    Ant.request(:object, :class => "Subscribe", :user_ids => user_ids)
+    app_page(Subscribed.new(:feeds => [feed_name], :errors => [], :user_id => google_data.user_id)).to_html
   end
   
 end

@@ -77,7 +77,9 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   * "Send To Sharebro" or something
 
 * re-fetch friends list
-
+* catch exceptions in e.g.
+	* http://www.airbrake.io/
+	* exceptional
 
 # TODO (promo)
 
