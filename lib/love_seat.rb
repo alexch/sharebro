@@ -9,9 +9,14 @@ class LoveSeat
     @server = nil
   end
 
+  # todo: move into Environment module
+  def environment
+    ENV['RACK_ENV'].to_s
+  end
+
   def self.database_name
     base_name = self.name.downcase
-    if ENV['RACK_ENV'] == "test"
+    if environment == "test"
       "#{base_name}_test"
     else
       base_name
@@ -71,6 +76,11 @@ class LoveSeat
   end
 
   # todo: omg test
+  # arguments:
+  #  key
+  #  options: 
+  #   design (required)
+  #   view (default: "all") 
   def self.get key, options = {}
     # d(key) { options }
     design = options[:design]
@@ -107,6 +117,13 @@ class LoveSeat
     db.bulk_delete()  # flush
   end
   
+  ### instances
+  
+  # todo: use more formal proxy macro
+  def db
+    self.class.db
+  end
+    
   ### pagination
   
   class Page
