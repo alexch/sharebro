@@ -28,3 +28,26 @@ desc "push git repo to heroku and github"
 task :push do
   exec "git push heroku && git push"
 end
+
+desc "run all the jobs in the Jobs store"
+task :work do
+  here = File.expand_path(File.dirname(__FILE__))
+  require "#{here}/init"
+  require_in("lib")
+  require_in("web")
+
+  while true
+    c = Ant.work
+    puts "Performed #{c} job#{'s' if c != 1}." if c > 0
+    sleep 1
+  end
+  
+end
+
+desc "test the worker queue by adding an echo job"
+task :hi do
+  here = File.expand_path(File.dirname(__FILE__))
+  require "#{here}/init"
+  require_in("lib")
+  Ant.request :echo, :text => "hi"
+end

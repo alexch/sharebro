@@ -61,7 +61,6 @@ class LoveSeat
     view["rows"].map{|row| row["value"]}
   end
 
-
   def self.reload doc
     db.get(doc["_id"])
   end
@@ -107,7 +106,6 @@ class LoveSeat
     end
     db.bulk_delete()  # flush
   end
-  
   
   ### pagination
   

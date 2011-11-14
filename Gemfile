@@ -12,9 +12,13 @@ gem "peach"
 
 group :development do
   gem "rake"
-  gem "rspec"
-  gem "wrong"
   gem "rerun"
   gem "foreman"
+  
+  # should test gems go in a different group?
+  gem "rspec"
+  gem "wrong"
+  gem "fakeweb"
+  
 end
 

@@ -14,19 +14,8 @@ else
   end
 end
 
-# move to init.rb? or leave tests pristine?
-%w{lib web}.each do |dir|
-  # require all files
-  # alphabetize to correct for inconsistent filesystem load order
-  # to be safe, all files should 'require' all their dependencies, which will 
-  # assure loading in correct (not alphabetical) order, but autoloading is 
-  # mighty convenient
-  Dir.glob("#{dir}/*.rb").sort.each do |f|
-    feature = f.gsub(/^#{dir}\//, '').gsub(/\.rb$/, '')
-    puts "requiring #{feature}"
-    require feature
-  end
-end
+require_in("lib")
+require_in("web")
 
 # monkey patch for better oauth errors
 load File.expand_path( "#{here}/monkey/consumer.rb")

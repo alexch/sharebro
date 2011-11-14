@@ -44,7 +44,7 @@ end
 
 # http://grosser.it/2009/10/15/descriptive-raise-tired-of-exception-classobject-expected/
 # descriptive raise
-# normale: raise 1 == TypeError: exception class/object expected
+# normal: raise 1 == TypeError: exception class/object expected
 # now: raise 1 == RuntimeError: 1
 class Object
   def raise_with_helpfulness(*args)
