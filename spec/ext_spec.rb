@@ -35,4 +35,15 @@ describe String do
       assert { "ABCInc".snake_case == "abc_inc"}
     end
   end
+  
+  describe 'constantize' do
+    it "works for top-level classes" do
+      assert { "String".constantize == String }
+    end
+    
+    it "works for namespaced classes" do
+      assert { "Process::Status".constantize == Process::Status }
+    end
+      
+  end
 end

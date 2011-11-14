@@ -227,6 +227,9 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   post "/subscribe" do
+    
+    
+    
     feeds = []
     errors = []
     user_ids = params[:user_ids].split(',')

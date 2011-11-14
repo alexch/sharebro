@@ -105,6 +105,34 @@ describe Ant do
         Jobs.jobs.should be_empty
       end
     end
+    
+    describe 'the "object" job' do
+      it "works" do
+      end
+      
+      before do
+        @msg = "hello"
+        Ant.request :object, :class => "Ant::Echo", :text => @msg
+        @ant = Ant.next
+        @output = capturing { @ant.perform }
+      end
+
+      it "executes the job" do
+        @output.should == "#{@now} - #{@msg}\n"
+      end
+
+      it "logs the output" do
+        logs = Logs.logs
+        logs.size.should == 1
+        logs.first['at'].should == @now.universal
+        logs.first['message'].should == @msg
+      end
+
+      it "deletes the job" do
+        Jobs.jobs.should be_empty
+      end
+      
+    end
   end
 
   it "returns free_jobs in created_at order" do

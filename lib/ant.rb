@@ -59,7 +59,12 @@ class Ant
 
       when 'fail'
         raise job['text']
-
+        
+      when 'object'
+        klass = job['class'].constantize
+        object = klass.new(job)
+        object.perform
+        
       else
         raise "unknown action #{job['action']}"  # todo: test
       end
@@ -71,6 +76,20 @@ class Ant
     Jobs.delete(job)
 
   end
+  
+  # todo: make a Job superclass
+  # todo: separate 'job' and 'params' hashes
+  class Echo
+    include Say 
+    
+    attr_reader :job
+    def initialize(job)
+      @job = job
+    end
+    
+    def perform
+      say job['text']
+    end
+  end
 
 end
-
