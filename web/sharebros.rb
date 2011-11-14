@@ -32,26 +32,19 @@ class Sharebros < Widget
   end
 
   def content
+    p {
+      text "After clicking the 'Subscribe in Reader' button below, you will have a "
+      b { a "Shares", :href => you.shares_in_reader }
+      text " folder in Google Reader."
+    }
 
     section "You" do
-      div.subscribe do
-        form :method => :post, 
-          :action => "/subscribe_you" do
-            input :type => "submit", :value => "Subscribe in Reader"
-        end
-        p {
-          text "After clicking a 'Subscribe in Reader' button, you will have a "
-          b { a "Shares", :href => you.shares_in_reader }
-          text " folder in Google Reader."
-        }
-      end
-      
       widget you
     end
     
     section "People You Follow" do
       div.subscribe do
-        b "Note: clicking this button will probably time out at the server. You will get some feeds in a new 'Shares' folder in Reader, though!"
+        b "Note: clicking this button will subscribe to as many as it can in 10 seconds, but you can keep clicking buttons on the subscribe pages to get the rest. (This workaround will be fixed soon.)"
         
         form :method => :post, 
           :action => "/subscribe" do
