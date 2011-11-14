@@ -16,7 +16,7 @@ class Nav < Widget
         comment: "not quite a manifesto, but more than a mission statement"
         item name: "Source Code", url: "http://github.com/alexch/sharebro", comment: "hosted on github"
         hr
-        item name: "Google API [technical]" ,url: "/googled", comment: "low-level Google API sandbox"
+        item name: "Google API Sandbox [technical]" ,url: "/googled", comment: "low-level Google API sandbox"
 
       end
     end

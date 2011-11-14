@@ -219,10 +219,11 @@ You will need to sign in to your Google account and then click "Grant Access". T
     end
   end
   
-
   post "/subscribe_you" do
     you = google_data.you
-    subscribe you
+    feed_name = "#{you.full_name}'s Shares"
+    subscribe you.lipsum, feed_name
+    app_page(Subscribed.new(:feeds => [feed_name], :errors => [], :user_id => google_data.user_id)).to_html
   end
   
   post "/subscribe" do

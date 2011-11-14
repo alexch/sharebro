@@ -93,6 +93,7 @@ pre {
 }
 
 .bottom {
+  clear: both;
   font-size: 10pt;
   min-height: 60px;
   text-align: center;
