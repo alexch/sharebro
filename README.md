@@ -50,6 +50,9 @@ Um, we don't really have any good ones yet. Sorry.
 
 this will fire up the server and launch <http://localhost:9292>, and use `rerun` so it'll relaunch if you change a file. Since I'm on Mac it also runs `open http://localhost:9292` but that'll fail on other systems so don't worry about it.
 
+# BUGS
+
+* reconcile google_ids and friends entries
 
 # TODO (site):
 
@@ -61,7 +64,6 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 # TODO (app):
 
-* bug: "Subscribe" needs to be backgrounded
 * save off old shared items (broadcast state JSON)
   * for all known users? why not?
 * shared items API
