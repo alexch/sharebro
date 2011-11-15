@@ -10,8 +10,8 @@ class LoveSeat
   end
 
   # todo: move into Environment module
-  def environment
-    ENV['RACK_ENV'].to_s
+  def self.environment
+    (ENV['RACK_ENV'] || "development").to_s
   end
 
   def self.database_name
