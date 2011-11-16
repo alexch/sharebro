@@ -7,8 +7,7 @@ class GoogleApi
       # DO SOMETHING SMART
       access_token = Marshal.load(Base64.decode64(access_token))
       puts "testing access token"
-      x = access_token.get "/reader/api/0/user-info"
-      d { x }
+      access_token.get "/reader/api/0/user-info"
     end
     @access_token = access_token
   end
@@ -30,13 +29,13 @@ class GoogleApi
     response = @access_token.get api_path
     
     unless response.code.to_i == 200
-      d { error(response) }
+      # d { error(response) }
       error response
     else
       JSON.parse(response.body)
     end
   rescue => e
-    d { e }
+    # d { e }
     return error(response, e)
   end
 
@@ -45,7 +44,7 @@ class GoogleApi
     api_path = "#{parts[0]}?#{get_params(api_path).join('&')}"
     response = @access_token.post api_path, post_params
     unless response.code.to_i == 200
-      d { error(response) }
+      # d { error(response) }
       error response
     else
       if response.body == "OK"
@@ -55,7 +54,7 @@ class GoogleApi
       end
     end
   rescue => e
-    d { e }
+    # d { e }
     return error(response, e)
   end
   
@@ -110,7 +109,7 @@ class GoogleApi
       return body
     end
   rescue => e
-    d { e }
+    # d { e }
     return error(response, e)    
   end
   
