@@ -12,7 +12,6 @@ class Subscribe # < Job
     @google_api ||= begin
       puts "creating google_api"
       if (access_token_data = @account["google"]["accessToken"])
-        d { access_token_data }
         GoogleApi.new(access_token_data)
       else
         # todo: get a new one
