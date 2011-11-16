@@ -1,5 +1,14 @@
 # todo: real users, thereby access to this specific user's bro list
 
+if ENV['RACK_ENV'] == 'development'
+  require 'wrong'
+  include Wrong::D
+else
+  def d msg=nil
+    puts "#{msg} #{caller.first}: #{yield.inspect}"
+  end
+end
+
 class Subscribe # < Job
   include Say 
 
@@ -36,7 +45,7 @@ class Subscribe # < Job
       d("subscribing #{user_id}") { user_id }
       bro = google_data.bro(user_id)
       # subscribe bro.lipsum, "#{bro.full_name}'s Shares"
-      response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
+      response = subscribe bro.shared_items_atom_url, "Y#{bro.given_name}'s Shared Items"
       say response
     end
   end
