@@ -37,15 +37,17 @@ class Sharebros < Widget
       b { a "Shares", :href => you.shares_in_reader }
       text " folder in Google Reader."
     }
-
+    
+    p {
+      b "'People You Follow (1000+)' returns!"
+    }
+    
     section "You" do
       widget you
     end
     
     section "People You Follow" do
       div.subscribe do
-        b "Note: clicking this button will subscribe to as many as it can in 10 seconds, but you can keep clicking buttons on the subscribe pages to get the rest. (This workaround will be fixed soon.)"
-        
         form :method => :post, 
           :action => "/subscribe" do
             input :type => "hidden", 

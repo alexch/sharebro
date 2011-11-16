@@ -256,40 +256,9 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   post "/subscribe" do
-    if true  # use old style clicky clicky subscribe for now
-      feeds = []
-      succeeded = []
-      errors = []
-      user_ids = params[:user_ids].split(',')
-      start = Time.now
-      user_ids.each do |user_id|
-        break if Time.now > (start + 20)
-
-        bro = google_data.bro(user_id)
-      
-        response = subscribe bro.lipsum, "#{bro.full_name}'s Shares"
-        if response.is_a? String
-          feeds << response
-        else
-          errors << response
-        end
-
-        response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
-        if response.is_a? String
-          feeds << response
-          succeeded << user_id
-        else
-          errors << response
-        end
-
-      end
-
-      app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id, :remaining => user_ids - succeeded)).to_html
-    else
-      user_ids = params[:user_ids].split(',')
-      Ant.request(:object, :class => "Subscribe", :user_ids => user_ids)
-      app_page(Subscribed.new(:feeds => [feed_name], :errors => [], :user_id => google_data.user_id)).to_html
-    end
+    user_ids = params[:user_ids].split(',')
+    Ant.request(:object, :class => "Subscribe", :account_id => current_account["_id"], :user_ids => user_ids)
+    app_page(Subscribed.new()).to_html
   end
   
 end
