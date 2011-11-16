@@ -70,6 +70,9 @@ class Ant
         klass = job['class'].constantize
         object = klass.new(job)
         object.perform
+
+      when 'hourly'
+        say "cuckoo"
         
       else
         raise "unknown action #{job['action']}"  # todo: test
