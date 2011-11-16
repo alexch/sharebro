@@ -1,5 +1,6 @@
 Authentication and Authorization for Google APIs
 http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html
+
 ClientLogin for Installed Applications
  "accounts that use 2-step verification, SAML, or Open ID are not compatible with ClientLogin"
  

@@ -1,7 +1,15 @@
 class GoogleApi
+  include Say
   attr_reader :access_token
   
   def initialize access_token
+    if String === access_token
+      # DO SOMETHING SMART
+      access_token = Marshal.load(Base64.decode64(access_token))
+      puts "testing access token"
+      x = access_token.get "/reader/api/0/user-info"
+      d { x }
+    end
     @access_token = access_token
   end
   
@@ -14,13 +22,11 @@ class GoogleApi
     params = parts[1] || ""
     params = params.split('&') + ["output=json", "ck=#{ck}", "client=sharebro"]
   end
-    
   
   def fetch_json api_path
     parts = api_path.split('?')  # todo: use URI object
     api_path = parts[0] + '?' + get_params(api_path).join('&')
-
-    puts "fetching #{api_path}"  # todo: proper log
+    say "fetching #{api_path}"
     response = @access_token.get api_path
     
     unless response.code.to_i == 200

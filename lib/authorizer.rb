@@ -21,7 +21,6 @@ class Authorizer
         "oauth_consumer_secret" => ENV['OAUTH_CONSUMER_SECRET']
       }
     end
-    p config
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
     @scope = "http://www.google.com/reader/api/"
     
@@ -67,6 +66,10 @@ class Authorizer
       :oauth_token => oauth_token,
       :oauth_verifier => oauth_verifier,
     )
+  end
+  
+  def access_token_from_string access_token_string
+    OAuth::AccessToken.from_hash(consumer, {:oauth_token => access_token_string, :oauth_token_secret => oauth_token_secret})
   end
 end
 
