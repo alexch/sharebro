@@ -22,6 +22,7 @@ class Ant
 
   def self.next
     jobs = Jobs.free_jobs
+    puts "#{jobs.size} free jobs"
     if jobs.empty?
       if @last_checked and Time.now.hour != @last_checked.hour
         @last_checked = Time.now

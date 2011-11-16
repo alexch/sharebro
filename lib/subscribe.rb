@@ -1,14 +1,5 @@
 # todo: real users, thereby access to this specific user's bro list
 
-if ENV['RACK_ENV'] == 'development'
-  require 'wrong'
-  include Wrong::D
-else
-  def d msg=nil
-    puts "#{msg} #{caller.first}: #{yield.inspect}"
-  end
-end
-
 class Subscribe # < Job
   include Say 
 
@@ -36,16 +27,15 @@ class Subscribe # < Job
   def perform
     account_id = job['account_id']
     @account = Accounts.get account_id
-    d { @account }
-    
     bro_ids = job['user_ids']
 
     subscribed = []
     bro_ids.each do |user_id|
-      d("subscribing #{user_id}") { user_id }
       bro = google_data.bro(user_id)
+      feed_name = "#{bro.given_name}'s Shared Items"
+      say("subscribing #{account_id} to #{user_id} as #{feed_name}")
       # subscribe bro.lipsum, "#{bro.full_name}'s Shares"
-      response = subscribe bro.shared_items_atom_url, "Y#{bro.given_name}'s Shared Items"
+      response = subscribe bro.shared_items_atom_url, feed_name
       say response
     end
   end
