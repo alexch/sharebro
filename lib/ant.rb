@@ -5,6 +5,7 @@ require 'ext'
 
 # an ant is a worker
 class Ant
+  extend Say
 
   def self.request action, params = {}
     if Class === action
@@ -22,7 +23,8 @@ class Ant
 
   def self.next
     jobs = Jobs.free_jobs
-    puts "#{jobs.size} free jobs"
+    
+    # hourly: todo: test or remove
     if jobs.empty?
       if @last_checked and Time.now.hour != @last_checked.hour
         @last_checked = Time.now
@@ -32,7 +34,10 @@ class Ant
         nil
       end
     else
-      new(jobs.first)
+
+      doc = jobs.first
+      say "performing job #{doc["_id"]}"  # todo: does this clutter the log?
+      new(doc)
     end
   end
 
@@ -53,7 +58,7 @@ class Ant
     @job = job
     job['state'] = 'active'
     job['active_at'] = Time.now.iso8601
-    Jobs.put(job)
+    Jobs.put(job)  # why do we always put? should distinguish between queueing and executing
   end
 
   def perform
