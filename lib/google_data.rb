@@ -44,7 +44,7 @@ class GoogleData < LoveSeat
 
     # Does the db exist?
     response = GoogleData.db.info
-    d("GoogleData db info") { response }
+    # d("GoogleData db info") { response }
     GoogleData.init  # why?
 
     @google_api = google_api
