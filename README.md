@@ -63,7 +63,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * make "links" an RSS feed
 
 # TODO (app):
-* bug: "Subscribe" needs to be backgrounded
+* admin page with log
 * save off old shared items (broadcast state JSON)
   * for all known users? why not?
 * simple S icon
