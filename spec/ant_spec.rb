@@ -106,13 +106,14 @@ describe Ant do
       end
     end
     
-    describe 'the "object" job' do
+    describe 'object job' do
       it "works" do
       end
       
       before do
         @msg = "hello"
-        Ant.request :object, :class => "Ant::Echo", :text => @msg
+        # if we pass a class to #request, then that signifies the object job type
+        Ant.request Ant::Echo, :text => @msg
         @ant = Ant.next
         @output = capturing { @ant.perform }
       end

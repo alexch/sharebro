@@ -7,10 +7,15 @@ require 'ext'
 class Ant
 
   def self.request action, params = {}
+    if Class === action
+      params['class'] = action.to_s
+      action = 'object'
+    end
+      
     doc = {
       type: 'job',
       created_at: Time.now.iso8601,
-      action: action,
+      action: action.to_s,
     }.merge(params)
     Jobs.put(doc)
   end

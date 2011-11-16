@@ -65,12 +65,6 @@ class Sharebro < Sinatra::Application
     end
   end  
 
-  before do
-    d { session.class }
-    d { session.to_hash }
-    d { @google_data }
-  end
-
   get '/favicon.ico' do
     send_file "#{here}/favicon.ico"
   end
@@ -93,60 +87,109 @@ class Sharebro < Sinatra::Application
   
   ## auth needed from here on
   
-  get '/sharebros' do
-    app_page(Sharebros.new(:google_data => google_data)).to_html
+  before do
+    puts "in before"
+    # old way: store access_token in session
+    if session[:access_token]
+      session.delete(:access_token)
+    end
+
+    # proper way: store account id in session
+    if session[:authenticated_id]
+      authenticated_id = session[:authenticated_id]
+      @current_account = Accounts.get authenticated_id
+      if @current_account.nil?
+        # can't find the account, so clean the session
+        session.delete(:authenticated_id)
+      end
+      
+      puts "testing access token"
+      current_account
+      puts "got account"
+      google_api
+      puts "got api"
+      
+    end
+    
+    d { session.class }
+    d { session.to_hash }
+    d { @current_account }
+    puts "done before"
   end
   
-  def google_api
-    GoogleApi.new(access_token)
+  def signed_in?
+    @current_account
+  end
+
+  # only call current_account if you need it, cause it'll redirect if there is none
+  # otherwise call signed_in? to check
+  def current_account
+    @current_account || (redirect "/auth_needed")
   end
   
   def access_token
-    # exchange the request token for an AccessToken
-    # todo: memoize? store in session?
-    session[:access_token] || (redirect "/auth_needed")
+    google_api.access_token
   end
   
-  def login_status    
-    if session[:access_token]
+  def login_status
+    if signed_in?
       LoginStatus::Authenticated.new(google_data: google_data)
     else
       LoginStatus::Unauthenticated
     end
   end
 
-  def app_page main
-    AppPage.new(main: main, login_status: login_status)
+  def google_api
+    @google_api ||= begin
+      puts "creating google_api"
+      if (access_token_data = current_account["google"]["accessToken"])
+        d { access_token_data }
+        GoogleApi.new(access_token_data)
+      else
+        # todo: get a new one
+      end
+    end
+  end
+  
+  def fetch_json api_path
+    google_api.fetch_json(api_path)
   end
 
   def google_data
     @google_data ||= GoogleData.new(google_api)
   end
 
-  get "/googled" do
-    app_page(Googled.new(:google_data => google_data)).to_html
-  end
-  
   def create_authorizer(options = {})
     Authorizer.new({:callback_url => "http://#{app_host}/oauth_callback"} << options )
   end
 
+  def app_page main
+    AppPage.new(main: main, login_status: login_status)
+  end
+
+  get '/sharebros' do
+    app_page(Sharebros.new(:google_data => google_data)).to_html
+  end
+  
+  get "/googled" do
+    app_page(Googled.new(:google_data => google_data)).to_html
+  end
+  
   # todo: proper widget page
   def message_page title, msg_html
-        <<-HTML
-        <html>
-        <title>sharebro.org - #{title}</title>
-        <body>
+    <<-HTML
+    <html>
+    <title>sharebro.org - #{title}</title>
+    <body>
 
-          <h1><a href="/">sharebro.org</a> - #{title}</h1>
+      <h1><a href="/">sharebro.org</a> - #{title}</h1>
 
-          <div style="border: 3px solid green; padding: 2em; max-width: 30em; margin: auto;">
+      <div style="border: 3px solid green; padding: 2em; max-width: 30em; margin: auto;">
 #{msg_html}
-        </div>
-        </body></html>
-        HTML
-    end
-    
+    </div>
+    </body></html>
+    HTML
+  end
   
   get "/auth_needed" do
     message_page "authorization needed", <<-HTML
@@ -176,28 +219,26 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
 
   get "/oauth_callback" do
+    puts "in oauth_callback"
     authorizer = create_authorizer(:request_token => session[:request_token])
-    session[:access_token] = access_token = authorizer.access_token(
+    access_token = authorizer.access_token(
       oauth_verifier: params[:oauth_verifier], 
       oauth_token: params[:oauth_token],
     )
+    @google_api = GoogleApi.new(access_token)
+    d("in oauth_callback"){@google_api}
+    @current_account = Accounts.write(google_data.user_id, access_token)
+    d("in oauth_callback"){@current_account}
+    
+    session[:authenticated_id] = @current_account["_id"]
     session.delete(:request_token)
     redirect "/sharebros"
   end
   
   get "/unauth" do
     session.delete(:access_token)
+    session.delete(:authenticated_id)
     redirect "/"
-  end
-
-  ## raw API call UI (sandboxy)
-  
-  def google_api
-    @google_api ||= GoogleApi.new(access_token)
-  end
-  
-  def fetch_json api_path
-    google_api.fetch_json(api_path)
   end
 
   get "/sandbox" do
@@ -210,52 +251,45 @@ You will need to sign in to your Google account and then click "Grant Access". T
     redirect "/sandbox?api_path=#{CGI.escape params[:api_path]}"
   end
 
-  def subscribe feed_url, feed_name, folder_name = "Shares"
-    response = google_api.subscribe feed_url, feed_name, folder_name
-    if response == {:response => "OK"}
-      return feed_name
-    else
-      return response
-    end
-  end
-  
   post "/subscribe_you" do
-    you = google_data.you
-    feed_name = "#{you.full_name}'s Shares"
-    subscribe you.lipsum, feed_name
-    app_page(Subscribed.new(:feeds => [feed_name], :errors => [], :user_id => google_data.user_id)).to_html
+    redirect "/subscribe?user_ids=#{google_data.user_id}"
   end
   
   post "/subscribe" do
-    feeds = []
-    succeeded = []
-    errors = []
-    user_ids = params[:user_ids].split(',')
-    start = Time.now
-    user_ids.each do |user_id|
-      break if Time.now > (start + 10)
+    if true  # use old style clicky clicky subscribe for now
+      feeds = []
+      succeeded = []
+      errors = []
+      user_ids = params[:user_ids].split(',')
+      start = Time.now
+      user_ids.each do |user_id|
+        break if Time.now > (start + 20)
 
-      bro = google_data.bro(user_id)
+        bro = google_data.bro(user_id)
       
-      response = subscribe bro.lipsum, "#{bro.full_name}'s Shares"
-      if response.is_a? String
-        feeds << response
-      else
-        errors << response
+        response = subscribe bro.lipsum, "#{bro.full_name}'s Shares"
+        if response.is_a? String
+          feeds << response
+        else
+          errors << response
+        end
+
+        response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
+        if response.is_a? String
+          feeds << response
+          succeeded << user_id
+        else
+          errors << response
+        end
+
       end
 
-      response = subscribe bro.shared_items_atom_url, "#{bro.given_name}'s Shared Items"
-      if response.is_a? String
-        feeds << response
-        succeeded << user_id
-      else
-        errors << response
-      end
-
+      app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id, :remaining => user_ids - succeeded)).to_html
+    else
+      user_ids = params[:user_ids].split(',')
+      Ant.request(:object, :class => "Subscribe", :user_ids => user_ids)
+      app_page(Subscribed.new(:feeds => [feed_name], :errors => [], :user_id => google_data.user_id)).to_html
     end
-
-    app_page(Subscribed.new(:feeds => feeds, :errors => errors, :user_id => google_data.user_id, :remaining => user_ids - succeeded)).to_html
-    
   end
   
 end

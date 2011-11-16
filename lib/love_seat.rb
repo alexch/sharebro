@@ -9,9 +9,14 @@ class LoveSeat
     @server = nil
   end
 
+  # todo: move into Environment module
+  def self.environment
+    (ENV['RACK_ENV'] || "development").to_s
+  end
+
   def self.database_name
     base_name = self.name.downcase
-    if ENV['RACK_ENV'] == "test"
+    if environment == "test"
       "#{base_name}_test"
     else
       base_name
@@ -50,8 +55,8 @@ class LoveSeat
     init
   end
 
-  def self.docs(type, view_name="all", options = {})
-    view = db.view("#{type}/#{view_name}", options)
+  def self.docs(design, view_name="all", options = {})
+    view = db.view("#{design}/#{view_name}", options)
     expected_rows = if options[:limit]
       [options[:limit], view["total_rows"]].min
     else
@@ -71,8 +76,14 @@ class LoveSeat
   end
 
   # todo: omg test
+  # todo: make a whole better API
+  # arguments:
+  #  key
+  #  options: 
+  #   design (required)
+  #   view (default: "all") 
   def self.get key, options = {}
-    # d(key) { options }
+    # d("getting #{key}") { options }
     design = options[:design]
     view = options[:view] || "all"
     
@@ -83,12 +94,12 @@ class LoveSeat
       if docs.empty?
         result = nil  # raise RestClient::ResourceNotFound instead?
       else
-        result = docs.pop
+        doc = docs.pop
         if options[:housekeeping] and !docs.empty?
           GoogleData.delete_many(docs)
         end
       end
-      result
+      doc
     end
   rescue RestClient::ResourceNotFound => e
     p e
@@ -107,6 +118,13 @@ class LoveSeat
     db.bulk_delete()  # flush
   end
   
+  ### instances
+  
+  # todo: use more formal proxy macro
+  def db
+    self.class.db
+  end
+    
   ### pagination
   
   class Page
