@@ -58,7 +58,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 * better colors
 * tagline
-* logo
+* logo (Superman style?)
 * better site design
 * make "links" an RSS feed
 

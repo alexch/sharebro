@@ -258,8 +258,22 @@ You will need to sign in to your Google account and then click "Grant Access". T
   post "/subscribe" do
     user_ids = params[:user_ids].split(',')
     Ant.request(:object, :class => "Subscribe", :account_id => current_account["_id"], :user_ids => user_ids)
-    app_page(Subscribed.new()).to_html
+    app_page(Subscribed).to_html
+  end
+  
+  # admin only
+  
+  ALEX_GOOGLE_USER_ID = "15504357426492542506"
+
+  def admin?
+    current_account['google']['userId'] == ALEX_GOOGLE_USER_ID
+  end
+
+  get "/admin" do
+    redirect '/' unless 
+    app_page(Admin).to_html
   end
   
 end
+
 
