@@ -68,8 +68,11 @@ class Googled < Widget
       hr
           
       item name: "preferences", 
-        url: raw_url("/reader/api/0/preference/stream/list")
+        url: raw_url("/reader/api/0/preference/list")
         
+      item name: "stream preferences", 
+        url: raw_url("/reader/api/0/preference/stream/list")
+
     end
   end
 end

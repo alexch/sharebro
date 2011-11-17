@@ -32,7 +32,7 @@ class Sharebro < Sinatra::Application
   end
   
   enable :show_exceptions  # until we get a better exception reporting mechanism
-  
+  enable :method_override  # POST _method=delete => DELETE
   enable :sessions
     # http://stackoverflow.com/questions/6115136/in-a-sinatra-app-on-heroku-session-is-not-shared-across-dynos
   set :session_secret, ENV['SESSION_SECRET'] || 'tetrafluoride'
@@ -51,10 +51,7 @@ class Sharebro < Sinatra::Application
 
   attr_reader :here
 
-  def say msg
-    puts "" + Time.now + " - #{msg}"
-  end
-
+  include Say
   
   def app_host
     case ENV['RACK_ENV']
@@ -67,6 +64,11 @@ class Sharebro < Sinatra::Application
 
   get '/favicon.ico' do
     send_file "#{here}/favicon.ico"
+  end
+  
+  get '/sendto-icon.ico' do
+    send_file "#{here}/favicon.ico"
+#    send_file "#{here}/img/sharebro-logo.png"
   end
 
   # google oauth verification file
@@ -270,8 +272,71 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
 
   get "/admin" do
-    redirect '/' unless 
+    redirect '/' unless admin?
     app_page(Admin).to_html
+  end
+  
+  
+  def prefs_to_hash prefs
+    h = {}
+    prefs.each do |pref|
+      d { pref }
+      h[pref['id']] = pref['value']
+    end
+    h
+  end
+  
+  get '/send_to' do
+    app_page(Raw.new(:params => data)).to_html
+  end
+  
+  # see http://www.google.com/reader/settings?display=edit-extras , click "Send To"
+  
+  post '/send_to_your_mom' do
+    data = nil
+    
+    prefs = google_api.preference_list["prefs"]
+    prefs = prefs_to_hash(prefs)
+    if prefs["custom-item-links"]
+      value = prefs["custom-item-links"]
+      d { value }
+      value_hash = JSON.parse(value)
+    else
+      value_hash = {
+        "builtinLinksEnabledState" => [],
+        "customLinks" => []        
+      }
+    end
+    
+    # customLinks == "Send To"
+    customLinks = value_hash['customLinks']
+    customLinks.delete_if{|entry|
+      entry['url'] =~ %r{^http://sharebro.org}
+    }
+    customLinks << {
+      "url" => "http://sharebro.org/send_to?sharebro_id=#{current_account["_id"]}&title=${title}&url=${url}&source=${source}",
+      "iconUrl" => "http://sharebro.org/favicon.ico",
+      "enabled" => true,
+      "name" => "Sharebro"
+    }
+    
+    set_params = {"k" => "custom-item-links",
+      "v" => JSON.dump(value_hash),
+    }
+
+    response = google_api.post_json "/reader/api/0/preference/set", set_params
+    
+    data = {
+      :customLinks => customLinks,
+      :set_params => set_params,
+      :response => response
+    }
+
+    app_page(Raw.new(:data => data)).to_html
+  end
+  
+  delete '/send_to_your_mom' do
+    "not implemented"
   end
   
 end

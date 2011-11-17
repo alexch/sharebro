@@ -4,10 +4,13 @@ class Sharebros < Widget
 
   external :style, <<-CSS
   div.subscribe {
-    float: right;
+    border: 2px solid orange;
     margin: .5em;
-    margin-top: -2em;  /* hack to make it appear inside header */
     max-width: 20em;
+    text-align: center;
+  }
+  div.subscribe input {
+    font-size: 24pt;
   }
   CSS
 
@@ -35,28 +38,26 @@ class Sharebros < Widget
     p {
       text "After clicking the 'Subscribe in Reader' button below, you will have a "
       b { a "Shares", :href => you.shares_in_reader }
-      text " folder in Google Reader."
-    }
-    
-    p {
+      text " folder in Google Reader. "
       b "'People You Follow (1000+)' returns!"
     }
+
+    div.subscribe do
+      form :method => :post, 
+        :action => "/subscribe" do
+          input :type => "hidden", 
+            :name => "user_ids",
+            :value => ([you] + @google_data.following).map{|bro| bro.user_id}.join(',')
+          input :type => "submit", :value => "Subscribe in Reader"
+      end
+    end
+    
     
     section "You" do
       widget you
     end
     
     section "People You Follow" do
-      div.subscribe do
-        form :method => :post, 
-          :action => "/subscribe" do
-            input :type => "hidden", 
-              :name => "user_ids",
-              :value => ([you] + @google_data.following).map{|bro| bro.user_id}.join(',')
-            input :type => "submit", :value => "Subscribe in Reader"
-        end
-      end
-      div.clear
       @google_data.following.each{|bro| widget bro}
     end
     

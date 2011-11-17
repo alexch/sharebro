@@ -40,6 +40,7 @@ class GoogleApi
   end
 
   def post_json api_path, post_params = {}
+    post_params[:T] = edit_token
     parts = api_path.split('?')  # todo: use URI object
     api_path = "#{parts[0]}?#{get_params(api_path).join('&')}"
     response = @access_token.post api_path, post_params
@@ -97,8 +98,13 @@ class GoogleApi
     fetch_json "/reader/api/0/unread-count?allcomments=true"
   end
   
+  def preference_list
+    fetch_json "/reader/api/0/preference/list"
+  end
+  
   ###
   
+  # Google makes you fetch an edit token for every post
   def edit_token
     response = access_token.get "/reader/api/0/token?ck=#{ck}&client=sharebro"
     unless response.code.to_i == 200
@@ -119,8 +125,7 @@ class GoogleApi
         s: "feed/#{feed_url}",
         ac: "subscribe",
         t: title,
-        a: "user/-/label/#{user_label}",
-        T: edit_token
+        a: "user/-/label/#{user_label}"
       }
     # s The feed identifier. This is the URL of the feed preceeded by feed/, for example feed/http://blog.martindoms.com/feed/ for this blog’s RSS feed.
     # ac  The action to take on this feed. Possible values are subscribe to subscribe, unsubscribe to unsubscribe and edit to edit the feed.
