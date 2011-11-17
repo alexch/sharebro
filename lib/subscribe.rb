@@ -35,17 +35,16 @@ class Subscribe # < Job
       say("subscribing #{account_id} to #{user_id} as #{feed_name}")
       # subscribe bro.lipsum, "#{bro.full_name}'s Shares"
       response = subscribe bro.shared_items_atom_url, feed_name
-      say response
+      say response.inspect if response[:response] != "OK"
     end
   end
   
   def subscribe feed_url, feed_name, folder_name = "Shares"
     response = google_api.subscribe feed_url, feed_name, folder_name
     if response == {:response => "OK"}
-      return feed_name
-    else
-      return response
+      response[:feed_name] = feed_name
     end
+    response
   end
 
 end
