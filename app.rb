@@ -14,10 +14,9 @@ else
   end
 end
 
-d("inside before") { ENV }
-puts ENV['HEROKU_EMAIL']
-puts ENV['HEROKU_PASSWORD']
-
+puts ENV.inspect
+puts "email=#{ENV['HEROKU_EMAIL']}"
+puts "pass=#{ENV['HEROKU_PASSWORD']}"
 
 require_in("lib")
 require_in("web")
