@@ -14,6 +14,11 @@ else
   end
 end
 
+d("inside before") { ENV }
+puts ENV['HEROKU_EMAIL']
+puts ENV['HEROKU_PASSWORD']
+
+
 require_in("lib")
 require_in("web")
 
@@ -104,16 +109,8 @@ class Sharebro < Sinatra::Application
         # can't find the account, so clean the session
         session.delete(:authenticated_id)
       end
-      
-      puts "testing access token"
-      current_account
-      puts "got account"
-      google_api
-      puts "got api"
-      
     end
     
-    d { session.class }
     d { session.to_hash }
     d { @current_account }
     puts "done before"
