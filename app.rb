@@ -14,10 +14,7 @@ else
   end
 end
 
-puts ENV.inspect
-puts "email=#{ENV['HEROKU_EMAIL']}"
-puts "pass=#{ENV['HEROKU_PASSWORD']}"
-
+puts "requiring"
 require_in("lib")
 require_in("web")
 
@@ -333,6 +330,11 @@ You will need to sign in to your Google account and then click "Grant Access". T
   
   delete '/send_to_your_mom' do
     "not implemented"
+  end
+  
+  get '/env' do
+    redirect '/' unless admin?
+    app_page(Raw.new(:data => ENV.to_hash)).to_html
   end
   
 end
