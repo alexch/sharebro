@@ -9,6 +9,7 @@ gem "awesome_print"
 gem "oauth"
 gem "couchrest" # todo: write my own couch lib
 gem "peach"
+gem "heroku"
 
 group :development do
   gem "rake"
