@@ -161,3 +161,17 @@ http://codeclimber.googlecode.com/svn-history/r101/GoogleReaderConnector/trunk/R
 
 	Sort by "magic"
 	r=a solo su /items/ids
+	
+	
+	
+* sort subscriptions
+	https://groups.google.com/forum/#!searchin/fougrapi/subscriptions$20order/fougrapi/rr9ZWA_R47Y/fRa-gM8vp-AJ
+	> order? I know that I can read this
+	> from http://www.google.com/reader/api/0/preference/stream/list but I am
+	> unaware of any URL that would allow me to edit.
+	You can POST to
+	http://www.google.com/reader/api/0/preference/stream/set with
+	parameters "s" (the stream to set the preference for), "k" (the
+	preference key, "subscription-ordering" in this case) and "v" (the
+	value, the concatenated IDs in this case).
+

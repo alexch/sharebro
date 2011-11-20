@@ -50,44 +50,59 @@ Um, we don't really have any good ones yet. Sorry.
 
 this will fire up the server and launch <http://localhost:9292>, and use `rerun` so it'll relaunch if you change a file. Since I'm on Mac it also runs `open http://localhost:9292` but that'll fail on other systems so don't worry about it.
 
-# BUGS
+# TODO (tech)
 
-* reconcile google_ids and friends entries
-
-# TODO (site):
-
-* better colors
-* tagline
-* logo (Superman style?)
-* better site design
-* make "links" an RSS feed
-
-# TODO (app):
-* admin page with log
-* save off old shared items (broadcast state JSON)
-  * for all known users? why not?
-* simple S icon
-* shared items API
-* share bookmarklet
- * see min as a way to strip extranous content http://min.artequalswork.com/js/m.js
-* see Road Map page
-* shared comments
-  * see http://www.salmon-protocol.org/
-* reorder subscription list: put "Shares" folder at the top
-* riddlr-esque features:
-  * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
-  * add various blogs to 'shared' tag and see if they show up in folder
-  * "Send To Sharebro"
-
+* reconcile google_ids and friends entry counts
 * re-fetch friends list
 * catch exceptions in e.g.
 	* http://www.airbrake.io/
 	* exceptional
+* carefully read http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+* use https://github.com/rkh/rack-protection if it won't break stuff
+
+# TODO (site design):
+
+* better colors
+* tagline
+* logo
+  * simple \S/ icon
+  * turn logo into favicon.ico
+
+# TODO (features and design):
+
+* check lipsumar feeds first
+
+* sort subscriptions
+* admin page: log
+* save off old shared items (broadcast state JSON)
+  * for all known users? why not?
+* reorder subscription list: put "Shares" folder at the top
+* riddlr-esque features:
+  * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
+* "Send To Sharebro" or "Send to Shares"
+* use Ridllr's "Shared Items" public tag
+
+* provide an API for other reader apps
+
+* share bookmarklet
+ * see min as a way to strip extranous content http://min.artequalswork.com/js/m.js
+
+* see Road Map page
+
+* shared comments
+  * see http://www.salmon-protocol.org/
+
+* make "links" an RSS feed
+* OPML export
+  * http://www.opml.org/spec
+  * http://www.opml.org/spec2
+* refresh google friends list
 
 # TODO (promo)
 
-* iconistan: +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
-  http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
+* "spread the word" iconistan sidebar
+  * : +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
+  * http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org
 * add to Chrome Store
 * write a Safari Extension
   * http://developer.apple.com/programs/safari/

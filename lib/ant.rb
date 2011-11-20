@@ -4,6 +4,9 @@ require 'jobs'
 require 'ext'
 
 # an ant is a worker
+#
+# for an arguably better system see http://blog.leshill.org/blog/2011/04/03/using-resque-and-resque-scheduler-on-heroku.html
+
 class Ant
   extend Say
 

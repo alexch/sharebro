@@ -1,0 +1,16 @@
+# https://groups.google.com/d/msg/heroku/vNz06ZvTUQg/Ns6_CvJ4yHIJ
+
+# unix command line
+
+heroku config:add HEROKU_APP_NAME="myapp" \
+ HEROKU_EMAIL="me@example.com" \
+ HEROKU_PASSWORD="secret"
+
+# ruby
+
+require 'heroku'
+heroku = Heroku::Client.new(ENV["HEROKU_EMAIL"], ENV["HEROKU_PASSWORD"])
+heroku.ps_scale(ENV["HEROKU_APP_NAME"], type: "worker", qty: 0)
+heroku.ps_scale("sharebro", type: "worker", qty: 2)
+
+

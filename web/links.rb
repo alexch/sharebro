@@ -75,19 +75,22 @@ class Links < Widget
         comment: "Chrome Extension that fixes some whitespace and layout issues. Sharing still gone."
       item name: "Google Reader Plus Theme fixed", url: "http://userstyles.org/styles/55568/google-reader-plus-theme-fixed", 
         comment: "i think he \"fixed\" it a bit too much but it's a start -- hosted at userstyles.org"
-      item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", 
-        comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served off the author's web site",
-        quote: "My point in making this plugin is that the share feature should be OPEN and STANDARD. I'm willing to gather a community and define a standard way to share items (anything) via bookmarklet or even a new sharing button in ALL reader apps ! Just like you can tweet any link, you could share any feed item.",
-        author: "Emmanuel Pire"
+
       item name: "Google Reader Compact", url: "http://userscripts.org/scripts/show/116890", 
         comment: "CSS munging userscript by lipsumar"
       p '  By the way, beware of userscripts.org! They have deliberately misleading ads. Click the "Install" button in the upper right, not any big "Download" button in the center of the page.'
+
       item name: "Google Reader Compact Minimal For Small Screen", 
         url: "http://userscripts.org/scripts/show/116957",
         author: "Massimiliano Ferrari"
+
       item name: "Google Reader Compact (Stb)", author: "http://userscripts.org/users/369554",      
         url: "http://userscripts.org/scripts/show/117389", 
         comment: "via https://plus.google.com/u/0/105170258389555213273/posts/8iy46vmYt1Q; A simplified version of an existent Script > http://goo.gl/165A9"
+        
+      item name: "FTFY G-Reader", 
+        url: "https://chrome.google.com/webstore/detail/miblblopaoafnidomnpjcngoipapiehc",
+        author: "http://www.2app.in/"
     end
     
     section "Replacement Readers" do
@@ -108,6 +111,11 @@ class Links < Widget
       item name: "Shareaholic",
        comment: "a \"share this on X\" (on steroids) browser plugin for the 6 major browsers",
        url: "http://www.shareaholic.com/tools/"
+
+       item name: "Google Reader Share", url: "http://userscripts.org/scripts/show/117058", 
+         comment: "puts a 'Share' button inside the new Reader that adds the current item to your personal RSS feed, served off the author's web site",
+         quote: "My point in making this plugin is that the share feature should be OPEN and STANDARD. I'm willing to gather a community and define a standard way to share items (anything) via bookmarklet or even a new sharing button in ALL reader apps ! Just like you can tweet any link, you could share any feed item.",
+         author: "Emmanuel Pire"
 
       item name: "RSS Share",
         comment: "a Chrome extension that attempts G+/Reader integration",
