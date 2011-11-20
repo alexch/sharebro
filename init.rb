@@ -16,6 +16,7 @@ $root = here
   $:<<path
 end
 
+# todo: unit test name munging code
 def require_in dir_name
   # require all in/below $root/dir
   files = Dir.chdir("#{$root}/#{dir_name}"){Dir.glob("**/*.rb")}

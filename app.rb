@@ -289,7 +289,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   get '/send_to' do
-    app_page(Raw.new(:params => data)).to_html
+    app_page(Raw.new(:data => params)).to_html
   end
   
   # see http://www.google.com/reader/settings?display=edit-extras , click "Send To"
@@ -337,7 +337,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
     app_page(Raw.new(:data => data)).to_html
   end
   
-  delete '/send_to_your_mom' do
+  delete '/send_to' do
     "not implemented"
   end
   
