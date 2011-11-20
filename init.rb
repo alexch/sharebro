@@ -7,7 +7,6 @@ Widget = Erector::Widget
 require 'ap'
 require 'peach'
 
-
 here = File.expand_path File.dirname(__FILE__)
 $root = here
 
@@ -21,10 +20,10 @@ def require_in dir_name
   # require all in/below $root/dir
   files = Dir.chdir("#{$root}/#{dir_name}"){Dir.glob("**/*.rb")}
   files.sort.map{|f| f.gsub(/\.rb$/, '')}.each do |feature|
-    puts "requiring #{feature}"
+    # puts "requiring #{feature}"
     require feature
   end
-  # 
+  # other code -- delete this?
   #   # alphabetize to correct for inconsistent filesystem load order
   #   # to be safe, all files should 'require' all their dependencies, which will 
   #   # assure loading in correct (not alphabetical) order, but autoloading is 

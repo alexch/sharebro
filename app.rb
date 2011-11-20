@@ -23,6 +23,7 @@ load File.expand_path( "#{here}/monkey/consumer.rb")
 
 class Sharebro < Sinatra::Application
   include Erector::Mixin
+  include Say
   
   session_domain = begin case ENV['RACK_ENV']
     when 'production'
@@ -52,7 +53,6 @@ class Sharebro < Sinatra::Application
 
   attr_reader :here
 
-  include Say
   
   def app_host
     case ENV['RACK_ENV']
@@ -106,10 +106,6 @@ class Sharebro < Sinatra::Application
         session.delete(:authenticated_id)
       end
     end
-    
-    d { session.to_hash }
-    d { @current_account }
-    puts "done before"
   end
   
   def signed_in?
@@ -138,7 +134,6 @@ class Sharebro < Sinatra::Application
     @google_api ||= begin
       puts "creating google_api"
       if (access_token_data = current_account["google"]["accessToken"])
-        d { access_token_data }
         GoogleApi.new(access_token_data)
       else
         # todo: get a new one
@@ -162,8 +157,23 @@ class Sharebro < Sinatra::Application
     AppPage.new(main: main, login_status: login_status)
   end
 
+  def lipsumar_feeds
+    google_user_ids = google_data.bros.map(&:user_id)
+    require 'open-uri'
+    exists_url = "http://lipsumarium.com/greader/feedexists?_USER_IDS=#{google_user_ids.join(',')}"
+    x = open(exists_url).read
+    response = JSON.parse(x)
+    if response["status"] == "ok"
+      response["data"]
+    end
+    # note that it's OK to return nil here
+  rescue => e
+    # don't let a lipsumar error slow us down
+    say_error e
+  end
+
   get '/sharebros' do
-    app_page(Sharebros.new(:google_data => google_data)).to_html
+    app_page(Sharebros.new(:google_data => google_data, :lipsumar_feeds => lipsumar_feeds)).to_html
   end
   
   get "/googled" do

@@ -2,7 +2,7 @@ require 'cgi'
 
 class BroBox < Widget
   
-  needs :bro
+  needs :bro, :lipsumar_feeds => {}
   attr_reader :bro
 
   # http://www.quirksmode.org/css/tables.html
@@ -76,7 +76,7 @@ class BroBox < Widget
       }
 
       # todo: only show if it exists
-      if bro.user_id
+      if @lipsumar_feeds[bro.user_id]
         tr {
           th "lipsumarium"
           

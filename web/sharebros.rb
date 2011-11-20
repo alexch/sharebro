@@ -1,6 +1,6 @@
 class Sharebros < Widget
   include Sections
-  needs :google_data
+  needs :google_data, :lipsumar_feeds => {}
 
   external :style, <<-CSS
   div.subscribe {
@@ -33,6 +33,10 @@ class Sharebros < Widget
   def raw_url api_path
     "/raw?api_path=#{URI.escape(api_path)}"
   end
+  
+  def bro_box bro
+    widget BroBox, :bro => bro, :lipsumar_feeds => @lipsumar_feeds
+  end
 
   def content
     p {
@@ -53,19 +57,19 @@ class Sharebros < Widget
     end
     
     section "You" do
-      widget BroBox, :bro => you
+      bro_box you
     end
     
     section "People You Follow" do
-      @google_data.following.each{|bro| widget BroBox, bro: bro}
+      @google_data.following.each{|bro| bro_box bro}
     end
     
     section "People Who Follow You (But You Don't Follow Them Back)" do
-      @google_data.followers.each{|bro| widget BroBox, bro: bro}
+      @google_data.followers.each{|bro| bro_box bro}
     end
     
     section "Others" do
-      @google_data.others.each{|bro| widget BroBox, bro: bro}
+      @google_data.others.each{|bro| bro_box bro}
     end 
     
     p {
