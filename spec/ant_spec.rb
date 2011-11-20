@@ -72,7 +72,7 @@ describe Ant do
 
       it "logs the output" do
         logs = Logs.logs
-        logs.size.should == 1
+        assert { logs.size == 1 }
         logs.first['at'].should == @now.universal
         logs.first['message'].should == "hi"
       end

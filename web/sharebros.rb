@@ -52,21 +52,20 @@ class Sharebros < Widget
       end
     end
     
-    
     section "You" do
-      widget you
+      widget BroBox, :bro => you
     end
     
     section "People You Follow" do
-      @google_data.following.each{|bro| widget bro}
+      @google_data.following.each{|bro| widget BroBox, bro: bro}
     end
     
     section "People Who Follow You (But You Don't Follow Them Back)" do
-      @google_data.followers.each{|bro| widget bro}
+      @google_data.followers.each{|bro| widget BroBox, bro: bro}
     end
     
     section "Others" do
-      @google_data.others.each{|bro| widget bro}
+      @google_data.others.each{|bro| widget BroBox, bro: bro}
     end 
     
     p {

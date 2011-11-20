@@ -170,7 +170,7 @@ class Sharebro < Sinatra::Application
     app_page(Googled.new(:google_data => google_data)).to_html
   end
   
-  # todo: proper widget page
+  # todo: proper widget-based message page
   def message_page title, msg_html
     <<-HTML
     <html>
@@ -269,7 +269,6 @@ You will need to sign in to your Google account and then click "Grant Access". T
     app_page(Admin).to_html
   end
   
-  
   def prefs_to_hash prefs
     h = {}
     prefs.each do |pref|
@@ -285,7 +284,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
   
   # see http://www.google.com/reader/settings?display=edit-extras , click "Send To"
   
-  post '/send_to_your_mom' do
+  post '/add_send_to_sharebro' do
     data = nil
     
     prefs = google_api.preference_list["prefs"]

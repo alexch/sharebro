@@ -50,7 +50,7 @@ Um, we don't really have any good ones yet. Sorry.
 
 this will fire up the server and launch <http://localhost:9292>, and use `rerun` so it'll relaunch if you change a file. Since I'm on Mac it also runs `open http://localhost:9292` but that'll fail on other systems so don't worry about it.
 
-# TODO (tech)
+# TODO (technical)
 
 * reconcile google_ids and friends entry counts
 * re-fetch friends list
@@ -59,6 +59,8 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 	* exceptional
 * carefully read http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
 * use https://github.com/rkh/rack-protection if it won't break stuff
+* refactor Sharebros page to not just use GoogleData
+* redesign LoveSeat API
 
 # TODO (site design):
 

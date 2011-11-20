@@ -1,18 +1,17 @@
 require 'cgi'
 
-class Bro < Widget
+class Bro
   def self.from_friends friends
     friends["friends"].map do |data|
-       Bro.new(:hash => data)
+       Bro.new(data)
     end
-  end  
-  
-  needs :hash
-  def initialize options
-    super options
-    
-    # d { @hash }
-    
+  end
+
+  # todo: rename hash to google_friend_data or something
+  def initialize hash
+    @hash = hash
+
+    # todo: extract into module, maybe inside Erector
     @hash.each do |k, value|
       var_name = k.snake_case.to_sym
       instance_variable_set "@#{var_name}", value
@@ -22,51 +21,7 @@ class Bro < Widget
     @profile_id = @profile_ids.first if @profile_ids
   end
 
-  attr_reader :given_name, :user_id
-
-  # http://www.quirksmode.org/css/tables.html
-  external :style, <<-CSS
-  .bro {
-    border: 2px solid #e2e2f6;
-    margin: 1em 0;  
-    background-color: white;
-    padding: 2px;
-  }
-  .bro table {
-    text-align: left;
-    margin: 2px;
-  }
-  .bro table tr th {
-    text-align: right;
-    vertical-align: top;
-  }
-  .bro table tr.titles th {
-    text-align: center;
-    vertical-align: top;
-  }
-  .bro table.feeds th {
-    text-align: right;
-    vertical-align: middle;
-  }
-
-  .bro table.feeds {
-    border-spacing: 10px;
-  }
-
-  .bro img {
-    float: left;
-    margin: 2px 8px 2px 2px;
-  }
-  
-  .bro table.feeds a {
-    border: 1px solid blue;
-    margin: 4px;
-    padding: 3px;
-    white-space:nowrap;
-  }
-
-  CSS
-  
+  attr_reader :given_name, :user_id, :profile_id, :location, :occupation 
   
   def shared_items_page_url
     "http://www.google.com/reader/shared/#{@public_user_name || @user_id}"
@@ -99,100 +54,22 @@ class Bro < Widget
   def shares_in_reader label_name = "Shares"
     stream_in_reader "user/#{@user_id}/label/#{label_name}"
   end
-    
 
-  def feeds
-    table.feeds {
-
-      if @user_id
-        tr {
-          th { a "#{@given_name}'s Shared Items", :href => shared_items_page_url }
-          td { 
-            a "atom", :href => shared_items_atom_url
-          }
-          td {
-            a "open in Reader", :href => shared_items_in_reader
-          }
-        }
-      end
-
-      tr {
-        th {          
-          a "#{@given_name}'s G+ posts", :href => "https://plus.google.com/#{@profile_id}/posts"
-        }
-        td {
-          a "RSS", :href => plusr_feed
-        }
-        td {
-          a "open in Reader", :href => in_reader(plusr_feed)
-        }
-      }
-
-      if @user_id
-        tr {
-          th "lipsumarium"
-          
-          td {
-            a "RSS", :href => lipsum
-          }
-          td {
-            a "open in Reader", :href=> in_reader(lipsum)
-          }
-        }        
-      end
-    }
-  end
-  
   def full_name
     @display_name || @given_name || "Google Id #{@user_id || "Unknown"}"
   end
   
-  def content
-    div.bro do
-      if @photo_url
-        img src: "http://s2.googleusercontent.com/#{@photo_url}"
-      end
-
-      h3.bro_name {
-        if @profile_id
-          a @display_name, :href => "https://plus.google.com/#{@profile_id}/about"
-        else
-          text @display_name || "Anonymous"
-        end
-      }
-
-      table.info {
-        if @location
-          tr {
-            th "location"
-            td @location
-          }
-        end
-        if @occupation
-          tr {
-            th "occupation"
-            td @occupation
-          }
-        end
-        tr {
-          th "type"
-          td {            
-            text type_string
-          }
-        }
-        
-      
-        tr {
-          th "feeds"
-          td {
-            feeds
-          }
-        }
-      }
-      div.clear
-    end
+  def profile_photo?
+    @photo_url
   end
-
+  
+  def profile_photo_url
+    "http://s2.googleusercontent.com/#{@photo_url}"
+  end
+  
+  def profile_url
+    "https://plus.google.com/#{@profile_id}/about"
+  end
 
   def type_string
     a = [

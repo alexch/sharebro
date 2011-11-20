@@ -5,8 +5,10 @@ require 'ext'
 
 # an ant is a worker
 #
-# for an arguably better system see http://blog.leshill.org/blog/2011/04/03/using-resque-and-resque-scheduler-on-heroku.html
-
+# for an arguably better system see 
+#   http://blog.leshill.org/blog/2011/04/03/using-resque-and-resque-scheduler-on-heroku.html
+#   https://github.com/ajmurmann/resque-heroku-autoscaler
+#
 class Ant
   extend Say
 
@@ -39,7 +41,8 @@ class Ant
     else
 
       doc = jobs.first
-      say "performing job #{doc["_id"]}"  # todo: does this clutter the log?
+      # todo: this clutters the log, so make a verbose mode somehow
+      # say "performing job #{doc["_id"]}"
       new(doc)
     end
   end
