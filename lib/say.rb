@@ -16,6 +16,13 @@ module Say
   end
 
   def say_error e, details = nil, extra = {}
-    say "#{e.class}: #{e.message}#{" - #{details}" if details} - #{e.backtrace[0..2].join('|')}", {:error => true, :backtrace => e.backtrace}.merge(extra)
+    options = {:error => true}.merge(extra)
+    if e.is_a? Exception
+      msg = "#{e.class}: #{e.message}#{" - #{details}" if details} - #{e.backtrace[0..2].join('|')}"
+      options[:backtrace] = e.backtrace
+    else
+      msg = msg.to_s
+    end
+    say msg, options
   end
 end

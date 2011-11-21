@@ -310,7 +310,6 @@ You will need to sign in to your Google account and then click "Grant Access". T
     require 'net/http'
     doc = Nokogiri::XML(xml)
     puts doc.to_xml
-    d {doc / '/xmlns:feed'}
     continuation = doc.xpath('/xmlns:feed/gr:continuation')
     d { continuation }
     entries = doc.xpath('/xmlns:feed/xmlns:entry')
@@ -322,11 +321,20 @@ You will need to sign in to your Google account and then click "Grant Access". T
       d { item_links.length }
 
       # item_link = entry.xpath('./xmlns:link[rel=alternate]').first # not working because xpath sucks
-      item_link = if item_links.length == 1
-        item_links.first
-      else
-        item_links.detect{|link| link['rel'] == 'alternate'}
-      end
+      item_link = 
+        if item_links.empty?
+          # maybe it's a Note
+          puts entry.to_xml
+          say_error "Weird -- item #{entry_id} has no link", :xml => entry.to_xml
+          nil
+        elsif item_links.length == 1
+          item_links.first
+        else
+          item_links.detect{|link| link['rel'] == 'alternate'}
+        end
+
+      next if item_link.nil?
+
       href = item_link['href']
 
       # finally, dereference proxy to get *real* original item href

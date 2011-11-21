@@ -50,18 +50,6 @@ Um, we don't really have any good ones yet. Sorry.
 
 this will fire up the server and launch <http://localhost:9292>, and use `rerun` so it'll relaunch if you change a file. Since I'm on Mac it also runs `open http://localhost:9292` but that'll fail on other systems so don't worry about it.
 
-# TODO (technical)
-
-* reconcile google_ids and friends entry counts
-* re-fetch friends list
-* catch exceptions in e.g.
-	* http://www.airbrake.io/
-	* exceptional
-* carefully read http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
-* use https://github.com/rkh/rack-protection if it won't break stuff
-* refactor Sharebros page to not just use GoogleData
-* redesign LoveSeat API
-
 # TODO (site design):
 
 * better colors
@@ -72,6 +60,18 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 # TODO (features and design):
 
+* "Send To Sharebro" or "Send to Shares"
+  * works, now make it real
+  * BUG: reauth should redirect back to "Send To" page with original parameters
+
+* "Subscribe in Reader" should add lipsumar feeds that exist
+
+* "clean up" step
+  * remove nonexistent lipsumar feeds from Shares
+  * add "Send To Sharebro" link
+  * put "Shares" at the top  
+  * take items in Ridllr's "Shared Items" public tag and mark them as broadcast
+
 * landing page steps:
   * signed in?
     1. add 'Send To' link unless already in there
@@ -81,16 +81,13 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
     2. ???
     3. profit
 
-* sort subscriptions
-  * put "Shares" at the topa
 * admin page: log
 * save off old shared items (broadcast state JSON)
   * for all known users? why not?
 * reorder subscription list: put "Shares" folder at the top
 * riddlr-esque features:
   * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
-* "Send To Sharebro" or "Send to Shares"
-* use Ridllr's "Shared Items" public tag
+
 
 * provide an API for other reader apps
 
@@ -129,3 +126,16 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * make friend with reporters
   * http://www.readwriteweb.com/archives/author/john-paul-titlow.php
   * Sarah Perez at TechCrunch
+
+# TODO (technical)
+
+* reconcile google_ids and friends entry counts
+* re-fetch friends list
+* catch exceptions in e.g.
+	* http://www.airbrake.io/
+	* exceptional
+* carefully read http://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI
+* use https://github.com/rkh/rack-protection if it won't break stuff
+* refactor Sharebros page to not just use GoogleData
+* redesign LoveSeat API
+
