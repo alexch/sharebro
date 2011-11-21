@@ -10,6 +10,8 @@ gem "oauth"
 gem "couchrest" # todo: write my own couch lib
 gem "peach"
 gem "heroku"
+gem 'nokogiri-pretty'
+
 
 group :development do
   gem "rake"

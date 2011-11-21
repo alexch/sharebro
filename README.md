@@ -72,9 +72,17 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 # TODO (features and design):
 
-* check lipsumar feeds first
+* landing page steps:
+  * signed in?
+    1. add 'Send To' link unless already in there
+    2. update your subscriptions
+  * not signed in?
+    1. sign in
+    2. ???
+    3. profit
 
 * sort subscriptions
+  * put "Shares" at the topa
 * admin page: log
 * save off old shared items (broadcast state JSON)
   * for all known users? why not?
@@ -100,8 +108,11 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   * http://www.opml.org/spec2
 * refresh google friends list
 
+* check out addtoany.com
+
 # TODO (promo)
 
+* screenshot walkthrough
 * "spread the word" iconistan sidebar
   * : +1, FB Like, Tweet, AddToAny by Lockerz, Digg, etc.
   * http://digg.com/submit?phase=2&url=http%3A%2F%2Fsharebro.org

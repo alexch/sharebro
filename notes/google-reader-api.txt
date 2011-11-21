@@ -121,6 +121,20 @@ remember off-hand the URL for that.
 
 http://lifehacker.com/5339214/supercharge-google-reader-with-send-to-links
 
+Send To links will not be going away
+https://groups.google.com/forum/#!topic/fougrapi/KFwShKzmvW4
+
+How do I use Send To to share items on Google+?
+http://www.google.com/support/forum/p/reader/thread?tid=3696ba39aaccb42f&hl=en
+
+/reader/api/0/stream/items/ids?s=user/-/label/foo&n=10&includeAllDirectStreamIds=true
+
+http://code.google.com/p/google-reader-api/wiki/ItemId :
+Long form: The prefix tag:google.com,2005:reader/item/ followed by the ID as an unsigned base 16 number that is 0-padded so that it's always 16 characters wide.
+Short form: The ID as a signed base 10 number.
+
+
+
 
 ## misc
 
@@ -155,7 +169,6 @@ http://codeclimber.googlecode.com/svn-history/r101/GoogleReaderConnector/trunk/R
 	http://www.google.com/reader/api/0/stream/items/contents (with i=ids passed as data in POST + token T) 
 
 	Mark all feed as read
-
 	http://www.google.com/reader/api/0/mark-all-as-read s=feed/[feedUrl] (POST)
 
 
@@ -163,8 +176,11 @@ http://codeclimber.googlecode.com/svn-history/r101/GoogleReaderConnector/trunk/R
 	r=a solo su /items/ids
 	
 	
+Most recent item read in Reader:
+/reader/api/0/stream/items/ids?s=user/-/state/com.google/read&n=1
+(includes usec timestamp)
 	
-* sort subscriptions
+# sort subscriptions
 	https://groups.google.com/forum/#!searchin/fougrapi/subscriptions$20order/fougrapi/rr9ZWA_R47Y/fRa-gM8vp-AJ
 	> order? I know that I can read this
 	> from http://www.google.com/reader/api/0/preference/stream/list but I am
@@ -174,4 +190,18 @@ http://codeclimber.googlecode.com/svn-history/r101/GoogleReaderConnector/trunk/R
 	parameters "s" (the stream to set the preference for), "k" (the
 	preference key, "subscription-ordering" in this case) and "v" (the
 	value, the concatenated IDs in this case).
+
+
+# find feeds
+
+https://groups.google.com/forum/#!topic/fougrapi/emOAlCuGSCk
+
+http://www.google.com/reader/api/0/feed-finder?q=cnn&output=json
+
+"You should be able to use num= and start= to page through those results."
+
+
+localhost:9292/send_to?sharebro_id=title=Ruby%201.9.2%2C%20Rails%203%2C%20Riak%20and%20Ripple&url=http%3A%2F%2Fjit.nuance9.com%2F2010%2F07%2Fruby-192-rails-3-riak-and-ripple.html&source=Just%20In%20Time
+
+
 

@@ -21,7 +21,7 @@ task :run do
       # ...and the SIGTERM is passed up and kilss foreman :-(
     end
   end
-  exec "rerun rackup"
+  exec "rerun -- rackup -s thin"
   # note: rerun doesn't work with foreman since foreman seems to eat SIGQUIT signals
 end
 

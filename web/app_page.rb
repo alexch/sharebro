@@ -245,7 +245,7 @@ div.contents div.item {
     contents
 
     div.bottom do
-      p "Content on this site is copyright (c) Alex Chaffee unless otherwise noted. All the good stuff will availble under an open source license."
+        p "Content on this site is Copyright (c) 2011 Alex Chaffee unless otherwise noted. All the good stuff will be available under an open source license."
     end
 
   end

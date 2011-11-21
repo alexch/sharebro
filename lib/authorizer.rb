@@ -22,7 +22,7 @@ class Authorizer
       }
     end
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
-    @scope = "http://www.google.com/reader/api/"
+    @scope = "http://www.google.com/reader/api/ http://www.google.com/reader/atom/"
     
     @request_token = options[:request_token]
     @access_token = options[:access_token]

@@ -21,8 +21,10 @@ class GoogleApi
     params = parts[1] || ""
     params = params.split('&') + ["output=json", "ck=#{ck}", "client=sharebro"]
   end
-  
-  def fetch_json api_path
+
+  # todo: rewrite the hell out of this whole object
+
+  def fetch_json api_path, options = {}
     parts = api_path.split('?')  # todo: use URI object
     api_path = parts[0] + '?' + get_params(api_path).join('&')
     say "fetching #{api_path}"
@@ -32,7 +34,11 @@ class GoogleApi
       # d { error(response) }
       error response
     else
-      JSON.parse(response.body)
+      if options[:raw]
+        {:body => response.body}
+      else
+        JSON.parse(response.body)
+      end
     end
   rescue => e
     # d { e }
@@ -133,6 +139,18 @@ class GoogleApi
     # r A label to remove from the feed. This is in the format user/[UserID]/label/[LabelName]. As usual UserID can be replaced with a single dash. For example, to remove the label “MyLabel” you’d use the string user/-/label/MyLabel
     # a A label to add to the feed. See the notes for the r argument above.
     # T Your token (see Part I if you’re unsure of what this is). This is an argument in every POST call.
+  end
+  
+  def share feed_url, item_id
+    # http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/#item-editing
+    # 
+    post_json "/reader/api/0/edit-tag",
+      {
+        i: item_id,
+        a: "user/-/state/com.google/broadcast",
+        s: "feed/#{feed_url}",
+        ac: "edit",
+      }
   end
   
 end
