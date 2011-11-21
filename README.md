@@ -61,18 +61,23 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 # TODO (features and design):
 
 * "Send To Sharebro" or "Send to Shares"
-  * works, now make it real
   * BUG: reauth should redirect back to "Send To" page with original parameters
+  * works, now make it real
+  * can it pop up or go back to reader?
+  * proper "i did it!" message, maybe with a countdown to closing the tab
 
 * "Subscribe in Reader" should add lipsumar feeds that exist
 
 * "clean up" step
   * remove nonexistent lipsumar feeds from Shares
   * add "Send To Sharebro" link
-  * put "Shares" at the top  
+  * put "Shares" at the top
   * take items in Ridllr's "Shared Items" public tag and mark them as broadcast
 
-* landing page steps:
+* Reorder subscription list: put "Shares" folder at the top  
+
+* New Landing Page
+  * make the old one "/about" or something
   * signed in?
     1. add 'Send To' link unless already in there
     2. update your subscriptions
@@ -81,31 +86,32 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
     2. ???
     3. profit
 
+* Spam your friends (ask them to join sharebro too)
+
 * admin page: log
 * save off old shared items (broadcast state JSON)
   * for all known users? why not?
-* reorder subscription list: put "Shares" folder at the top
 * riddlr-esque features:
   * https://www.google.com/reader/view/user%2F-%2Flabel%2FPeople%20you%20follow
 
+* Provide an API for other reader apps
 
-* provide an API for other reader apps
+* Share bookmarklet
+ * look at "min" as a way to strip extranous content from the current page http://min.artequalswork.com/js/m.js
 
-* share bookmarklet
- * see min as a way to strip extranous content http://min.artequalswork.com/js/m.js
-
-* see Road Map page
+* update Road Map page
 
 * shared comments
   * see http://www.salmon-protocol.org/
 
-* make "links" an RSS feed
+* make "links" into an RSS feed
+
 * OPML export
   * http://www.opml.org/spec
   * http://www.opml.org/spec2
+
 * refresh google friends list
 
-* check out addtoany.com
 
 # TODO (promo)
 
@@ -126,6 +132,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * make friend with reporters
   * http://www.readwriteweb.com/archives/author/john-paul-titlow.php
   * Sarah Perez at TechCrunch
+* check out addtoany.com -- propose to get their "Reader" link to work again via Sharebro
 
 # TODO (technical)
 

@@ -171,10 +171,13 @@ http://codeclimber.googlecode.com/svn-history/r101/GoogleReaderConnector/trunk/R
 	Mark all feed as read
 	http://www.google.com/reader/api/0/mark-all-as-read s=feed/[feedUrl] (POST)
 
-
 	Sort by "magic"
 	r=a solo su /items/ids
 	
+	Add a note:
+	http://stackoverflow.com/questions/1041389/adding-notes-using-google-readers-api
+	http://tecjunkie.blogspot.com/2011/05/google-reader-add-note-without-sharing.html
+	http://stackoverflow.com/questions/4996049/google-reader-api-how-do-you-share-by-article-url-as-oppose-to-item-id
 	
 Most recent item read in Reader:
 /reader/api/0/stream/items/ids?s=user/-/state/com.google/read&n=1
