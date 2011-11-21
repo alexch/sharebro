@@ -357,7 +357,11 @@ You will need to sign in to your Google account and then click "Grant Access". T
       entry_id = entry.xpath('./xmlns:id').text
       # finally flag that sucker
       x = google_api.share feed_url, entry_id
-      say_error x if x != {:response=>"OK"}
+      if x != {:response=>"OK"}
+        say_error x
+      else
+        return message_page("Shared", "Shared '#{params['title']}' from #{params['source']}")
+      end
     else
       puts "todo: continuation"
     end
