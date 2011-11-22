@@ -289,95 +289,31 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   get '/send_to' do
-    item = params.pluck("title", "url", "source")    
-    item_url = item["url"]
-    feed = google_api.fetch_json("/reader/api/0/feed-finder?q=#{CGI.escape item["url"]}")
-    feed_url = feed["feed"].first["href"]
-    atom = google_api.fetch_json("http://www.google.com/reader/atom/feed/#{feed_url}?n=100", :raw => true)
-    if atom[:error]
-      if atom[:error][:response][:code] == "401"
-        redirect '/auth'
-      else
-        # todo: better error page
-        return app_page(Raw.new(:data => atom))
-      end
-    end
     
-    xml = atom[:body].force_encoding "UTF-8"
-    # d { xml }    
-
-    require 'nokogiri'
-    require 'net/http'
-    doc = Nokogiri::XML(xml)
-    puts doc.to_xml
-    continuation = doc.xpath('/xmlns:feed/gr:continuation')
-    d { continuation }
-    entries = doc.xpath('/xmlns:feed/xmlns:entry')
-    entry = entries.detect do |entry|
-      # todo: make an object out of this?
-      entry_id = entry.xpath('./xmlns:id').text
-      d { entry_id }
-      item_links = entry.xpath('./xmlns:link')
-      d { item_links.length }
-
-      # item_link = entry.xpath('./xmlns:link[rel=alternate]').first # not working because xpath sucks
-      item_link = 
-        if item_links.empty?
-          # maybe it's a Note
-          puts entry.to_xml
-          say_error "Weird -- item #{entry_id} has no link", :xml => entry.to_xml
-          nil
-        elsif item_links.length == 1
-          item_links.first
-        else
-          item_links.detect{|link| link['rel'] == 'alternate'}
-        end
-
-      next if item_link.nil?
-
-      href = item_link['href']
-
-      # finally, dereference proxy to get *real* original item href
-      if href =~ %r{http://feedproxy.google.com}
-        # http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html
-        response = Net::HTTP.get_response(URI(href))
-        if response.code != "301"
-          say_error "expected redirect from #{href} but got #{response.code}"
-        end
-        href = response['Location']
-        if href
-          href = href.split('?').first  # there's probably a cleaner way to do this (strip the query params)
-        end
-      end      
-      href == item_url
-    end
+    item = params.pluck("title", "url", "source")
     
-    if entry
-      puts entry.to_xml
-      entry_id = entry.xpath('./xmlns:id').text
-      # finally flag that sucker
-      x = google_api.share feed_url, entry_id
-      if x != {:response=>"OK"}
-        say_error x
-      else
-        return message_page("Shared", "Shared '#{params['title']}' from #{params['source']}")
-      end
+    cmd = SendTo.new(google_api, params["url"])    
+
+    result = cmd.perform
+    d { result }
+    case result
+    when :needs_auth
+      redirect '/auth'
+    when :error, :not_found
+      return app_page(Raw.new(
+        :title => result.to_s,
+        :data => {:params => params}.merge(cmd.info))).to_html
+    when :not_found
+      return message_page("Not Shared", "Couldn't find '#{params['title']}' from #{params['source']}")
+    when :ok
+      return message_page("Shared", "Shared '#{params['title']}' from #{params['source']}")
     else
-      puts "todo: continuation"
+      return app_page(Raw.new(
+        :title => "unknown result #{result}", 
+        :data => {:params => params}.merge(cmd.info))).to_html
     end
-
-    # todo: message page, not raw
-      
-    app_page(Raw.new(:data => {
-      "params" => params,
-      "item" => item,
-      "feed" => feed,
-      "atom" => atom,
-      "entry" => entry && entry.to_xml
-    }
-    )).to_html
   end
-  
+ 
   # see http://www.google.com/reader/settings?display=edit-extras , click "Send To"
   
   post '/add_send_to_sharebro' do
