@@ -62,10 +62,10 @@ pre {
   font-size: 2.5em;
   font-weight: 800;
 }
-.top a {
+.top h1 a {
   text-decoration: none;
 }
-.top a:visited {
+.top h1 a:visited {
   color: black;
 }
 .top .status {
@@ -88,8 +88,8 @@ pre {
 .main {
   margin: 1em;
   max-width: 44em;
-  margin: auto;
-  padding: 0 14em;
+  margin: 0 1em;
+  padding: 0 14em 0 1em;
 }
 
 .bottom {
@@ -153,12 +153,12 @@ li.item span.comment:before {
   content: " -- ";
 }
 
-/* nav */
-div.nav, div.contents {
+div.contents {
   background-color: #f5f2f5;
   overflow: auto;
   padding: .5em 2em .5em .5em;
   margin: 1em;
+  font-size: 10pt;
 }
 
 li {
@@ -168,9 +168,6 @@ li {
 }
 div.nav ul, div.contents ul {
   -webkit-padding-start: 10px;
-}
-div.nav li.item span.comment {
-  display: none;
 }
 div.contents div.item {
   margin: .5em 0 1em 1em;
@@ -236,12 +233,11 @@ div.contents div.item {
         a "sharebro.org", :href => '/'
         (span.page_name (" - " + main_name.downcase)) if @main   # todo: humanize name
       end
-    end
 
-    div.left {
       nav
-    }
-
+      div.clear
+    end
+    
     div.right {
       @extra_right = output.placeholder
     }

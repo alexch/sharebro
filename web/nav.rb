@@ -1,8 +1,33 @@
 class Nav < Widget
   include Sections
+  
+  external :style, <<-CSS
+  div.nav {
+    float: right;
+    font-family: Verdana, sans-serif;
+    padding: 2px;
+    margin: 2px 0 0;
+  }
+  div.nav ul {
+    display: inline;
+    color: #339;
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  div.nav li {
+    margin: 2px;
+    padding: 2px;
+    display: inline;
+    border: 1px solid black;
+    padding: 2px;
+  }
+  div.nav li.item span.comment {
+    display: none;
+  }
+  CSS
+  
   def content
     div.nav do
-      h3 "This Site"
       ul do
         item name: "Home", url: "/"
         item name: "Sharebros", comment: "your personal network of sharebros", url: "/sharebros"
@@ -15,8 +40,7 @@ class Nav < Widget
         item name: "Vision", url: "/vision",
         comment: "not quite a manifesto, but more than a mission statement"
         item name: "Source Code", url: "http://github.com/alexch/sharebro", comment: "hosted on github"
-        hr
-        item name: "Google API Sandbox [technical]" ,url: "/googled", comment: "low-level Google API sandbox"
+        item name: "Sandbox [technical]", url: "/googled", comment: "low-level Google API sandbox"
 
       end
     end
