@@ -10,6 +10,8 @@ class Authorizer
   
   def initialize options = {}
     @here = File.expand_path File.dirname(__FILE__)
+    
+    # todo: use Config
     config_file = "#{here}/../oauth.yaml"
     puts "looking for #{config_file}"
     if File.exist?(config_file)

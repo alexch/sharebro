@@ -3,7 +3,7 @@ require "links"
 class AppPage < Erector::Widgets::Page
   include Sections
   
-  needs main: nil, login_status: nil
+  needs main: nil, login_status: nil, message: nil
   
   # todo: use SCSS
   external :style, <<-CSS
@@ -85,7 +85,7 @@ pre {
   overflow: hidden;
 }
 
-  .main {
+.main {
   margin: 1em;
   max-width: 44em;
   margin: auto;
@@ -105,6 +105,14 @@ pre {
 .bottom p { margin:auto;}
 
 /* individual styling */
+
+div.message {
+  max-with: 40em;
+  padding: 8px 2em;
+  border: 2px solid orange;
+  margin: auto;
+  text-align: center;
+}
 
 div.box {
   padding: 1em;
@@ -239,6 +247,7 @@ div.contents div.item {
     }
 
     div.main do
+      div.message @message if @message
       main_content
     end
 

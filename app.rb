@@ -115,7 +115,7 @@ class Sharebro < Sinatra::Application
   # only call current_account if you need it, cause it'll redirect if there is none
   # otherwise call signed_in? to check
   def current_account
-    @current_account || (redirect "/auth_needed")
+    @current_account || (puts "no current account; redirecting"; redirect "/auth_needed?back=#{back_pack}")
   end
   
   def access_token
@@ -149,12 +149,8 @@ class Sharebro < Sinatra::Application
     @google_data ||= GoogleData.new(google_api)
   end
 
-  def create_authorizer(options = {})
-    Authorizer.new({:callback_url => "http://#{app_host}/oauth_callback"} << options )
-  end
-
   def app_page main
-    AppPage.new(main: main, login_status: login_status)
+    AppPage.new(main: main, login_status: login_status, message: "We are currently experimenting with authorization. If things don't work right, please try again soon.")
   end
 
   def lipsumar_feeds
@@ -171,7 +167,7 @@ class Sharebro < Sinatra::Application
     # don't let a lipsumar error slow us down
     say_error e
   end
-
+  
   get '/sharebros' do
     app_page(Sharebros.new(:google_data => google_data, :lipsumar_feeds => lipsumar_feeds)).to_html
   end
@@ -202,7 +198,7 @@ class Sharebro < Sinatra::Application
     The action you just attempted requires authorization from google. 
 
     <p style='font-size: 18pt; background: #f0fff0; text-align: center;'>
-    <a href="/auth"><b>Click here</b> to start the OAuth Tango.</a>
+    <a href="/sign_in?back=#{params[:back]}"><b>Click here</b> to start the OAuth Tango.</a>
     </p>
 
     <p>
@@ -212,20 +208,54 @@ You will need to sign in to your Google account and then click "Grant Access". T
     <p>
     You can revoke access at any time at Google's site (under 'My Account') but we will preserve your data so you can use it later.
     HTML
-    
   end
   
-  get "/auth" do
+  # force an authorization
+  get "/sign_in" do
+    back_to = if params[:back]
+      back_unpack   # kind of lame that we have to unpack then let the authorizer repack
+    else
+      "/"
+    end
+    authorize(back_to)
+  end
+  
+  get "/sign_out" do
+    unauth
+    redirect "/"
+  end
+
+  def unauth
+    session.delete(:access_token)
+    session.delete(:authenticated_id)
+  end
+
+  # base64 encode
+  def back_pack path = nil
+    path ||= request.fullpath   # set it here so a client can pass "nil" to mean "you figure it out"
+    ([path].pack("m").gsub("\n", '')).tap{|s| say "packed #{path} into #{s}"}
+  end
+
+  # base64 decode
+  def back_unpack path = params[:back]
+    path.unpack("m").first.tap{|u| say "unpacked #{path} into #{u}"}
+  end
+
+  def create_authorizer(options = {})
+    Authorizer.new({:callback_url => "#{request.base_url}/oauth_callback?back=#{back_pack options[:back]}"} << options )
+  end
+
+  def authorize back = nil
     session.delete(:request_token)
-    authorizer = create_authorizer 
+    authorizer = create_authorizer :back => back
     session[:request_token] = authorizer.request_token #.token
     puts "redirecting to #{authorizer.authorize_url}"
     redirect authorizer.authorize_url
   end
 
   get "/oauth_callback" do
-    puts "in oauth_callback"
-    authorizer = create_authorizer(:request_token => session[:request_token])
+    puts "in oauth_callback -- back=#{params[back].inspect}"
+    authorizer = create_authorizer :request_token => session[:request_token]
     access_token = authorizer.access_token(
       oauth_verifier: params[:oauth_verifier], 
       oauth_token: params[:oauth_token],
@@ -237,15 +267,10 @@ You will need to sign in to your Google account and then click "Grant Access". T
     
     session[:authenticated_id] = @current_account["_id"]
     session.delete(:request_token)
-    redirect "/sharebros"
+
+    redirect params[:back] ? (back_unpack params[:back]) : "/sharebros"
   end
   
-  get "/unauth" do
-    session.delete(:access_token)
-    session.delete(:authenticated_id)
-    redirect "/"
-  end
-
   get "/sandbox" do
     path = params[:api_path]
     data = fetch_json(path)
@@ -298,7 +323,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
     d { result }
     case result
     when :needs_auth
-      redirect '/auth'
+      authorize("/send_to?.....")
     when :error, :not_found
       return app_page(Raw.new(
         :title => result.to_s,
@@ -317,6 +342,9 @@ You will need to sign in to your Google account and then click "Grant Access". T
   # see http://www.google.com/reader/settings?display=edit-extras , click "Send To"
   
   post '/add_send_to_sharebro' do
+    
+    # todo: make response more pretty, probably a redirect too
+    
     data = nil
     
     prefs = google_api.preference_list["prefs"]
@@ -360,7 +388,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   delete '/send_to' do
-    "not implemented"
+    message_page("not implemented", "sorry, but to remove the Send To Sharebro link, use the Google Reader Settings")
   end
   
   get '/env' do
