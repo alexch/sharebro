@@ -145,4 +145,6 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * use https://github.com/rkh/rack-protection if it won't break stuff
 * refactor Sharebros page to not just use GoogleData
 * redesign LoveSeat API
-
+* use or borrow from other ruby greader libs
+  * https://github.com/rstacruz/greader
+  * https://github.com/jnunemaker/googlereader [dead?]
