@@ -49,9 +49,13 @@ class GoogleData < LoveSeat
 
     @google_api = google_api
     @user_id = user_id || google_api.user_id
-
+    
+    #grab used to be here
+  end
+  
+  def grab
     grab_user_info
-    grab_friends  
+    grab_friends    
   end
   
   # "grab" means try to get it from the db first, otherwise fetch from google API and save it
