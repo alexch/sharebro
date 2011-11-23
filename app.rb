@@ -147,6 +147,12 @@ class Sharebro < Sinatra::Application
 
   def google_data
     @google_data ||= GoogleData.new(google_api)
+    if @google_data.user_id.nil?
+      redirect "/auth_needed?back=#{back_pack}"
+    else
+      @google_data.grab
+      return @google_data
+    end
   end
 
   def app_page main
