@@ -37,7 +37,7 @@ class GoogleData < LoveSeat
   end
   
   attr_reader :google_api, :user_id, :user_info, :friends
-  
+
   def initialize(google_api, user_id = nil)
     GoogleData.db.create!
     # GoogleData.clear  ## DANGER - wipes all data -- only use in development

@@ -1,3 +1,5 @@
+require 'net/http'
+
 class GoogleApi
   include Say
   attr_reader :access_token
@@ -6,9 +8,16 @@ class GoogleApi
     if String === access_token
       # DO SOMETHING SMART
       access_token = Marshal.load(Base64.decode64(access_token))
-      puts "testing access token"
-      access_token.get "/reader/api/0/user-info"
     end
+    
+    puts "checking access token by fetching user-info"
+    response = access_token.get "/reader/api/0/user-info"
+    if response.code.to_i == 200
+      @user_info = JSON.parse(response.body)
+    else
+      raise OAuth::Unauthorized, response  # bad token, most likely
+    end
+
     @access_token = access_token
   end
   
@@ -31,7 +40,6 @@ class GoogleApi
     response = @access_token.get api_path
     
     unless response.code.to_i == 200
-      # d { error(response) }
       error response
     else
       if options[:raw]
@@ -41,7 +49,6 @@ class GoogleApi
       end
     end
   rescue => e
-    # d { e }
     return error(response, e)
   end
 
@@ -51,7 +58,6 @@ class GoogleApi
     api_path = "#{parts[0]}?#{get_params(api_path).join('&')}"
     response = @access_token.post api_path, post_params
     unless response.code.to_i == 200
-      # d { error(response) }
       error response
     else
       if response.body == "OK"
@@ -61,7 +67,6 @@ class GoogleApi
       end
     end
   rescue => e
-    # d { e }
     return error(response, e)
   end
   
@@ -79,13 +84,13 @@ class GoogleApi
     end
     {:error => h}
   end 
-  
+
   def user_id
     user_info["userId"]
   end
-  
+
   def user_info
-    @user_info ||= fetch_json "/reader/api/0/user-info"
+    @user_info
   end
   
   def friends
@@ -114,14 +119,12 @@ class GoogleApi
   def edit_token
     response = access_token.get "/reader/api/0/token?ck=#{ck}&client=sharebro"
     unless response.code.to_i == 200
-      d { error(response) }
       error response
     else
       body = response.body
       return body
     end
   rescue => e
-    # d { e }
     return error(response, e)    
   end
   

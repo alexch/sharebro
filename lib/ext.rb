@@ -50,6 +50,7 @@ class Object
   def raise_with_helpfulness(*args)
     raise_without_helpfulness(*args)
   rescue TypeError => e
+    d { e }
     raise_without_helpfulness args.first.inspect if ['exception class/object expected', 'exception object expected'].include?(e.to_s)
     raise_without_helpfulness e
   end

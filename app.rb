@@ -92,18 +92,21 @@ class Sharebro < Sinatra::Application
   
   before do
     puts "in before"
-    # old way: store access_token in session
-    if session[:access_token]
-      session.delete(:access_token)
+
+    # clean up old cookies
+    [:access_token, :authenticated_id].each do |name|
+      if session[name]
+        session.delete(name)
+      end
     end
 
     # proper way: store account id in session
-    if session[:authenticated_id]
-      authenticated_id = session[:authenticated_id]
-      @current_account = Accounts.get authenticated_id
+    if session[:current_account_id]
+      current_account_id = session[:current_account_id]
+      @current_account = Accounts.get current_account_id
       if @current_account.nil?
         # can't find the account, so clean the session
-        session.delete(:authenticated_id)
+        session.delete(:current_account_id)
       end
     end
   end
@@ -118,10 +121,6 @@ class Sharebro < Sinatra::Application
     @current_account || (puts "no current account; redirecting"; redirect "/auth_needed?back=#{back_pack}")
   end
   
-  def access_token
-    google_api.access_token
-  end
-  
   def login_status
     if signed_in?
       LoginStatus::Authenticated.new(google_data: google_data)
@@ -132,15 +131,28 @@ class Sharebro < Sinatra::Application
 
   def google_api
     @google_api ||= begin
-      puts "creating google_api"
       if (access_token_data = current_account["google"]["accessToken"])
         GoogleApi.new(access_token_data)
       else
-        # todo: get a new one
+        # no api access token, so authorize
+        authorize
       end
+    rescue OAuth::Unauthorized => e
+      # uh-oh, bad token, so we're not authorized after all
+      # in the future, we will separate authentication (login) from authorization (oauth) but for now, 
+      # we just have to do the oauth tango again, so we'll mark the current account as having no
+      # token and redirect to oauth
+      say "deleting bad access token"
+      @current_account['google'].delete('accessToken')
+      Accounts.put(@current_account)
+      authorize
     end
   end
-  
+
+  def access_token
+    google_api.access_token
+  end
+    
   def fetch_json api_path
     google_api.fetch_json(api_path)
   end
@@ -227,7 +239,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
 
   def unauth
     session.delete(:access_token)
-    session.delete(:authenticated_id)
+    session.delete(:current_account_id)
   end
 
   # base64 encode
@@ -256,17 +268,19 @@ You will need to sign in to your Google account and then click "Grant Access". T
   get "/oauth_callback" do
     puts "in oauth_callback -- back=#{params[back].inspect}"
     authorizer = create_authorizer :request_token => session[:request_token]
+    session.delete(:request_token)
+
     access_token = authorizer.access_token(
       oauth_verifier: params[:oauth_verifier], 
       oauth_token: params[:oauth_token],
     )
+    
     @google_api = GoogleApi.new(access_token)
     d("in oauth_callback"){@google_api}
     @current_account = Accounts.write(google_data.user_id, access_token)
     d("in oauth_callback"){@current_account}
     
-    session[:authenticated_id] = @current_account["_id"]
-    session.delete(:request_token)
+    session[:current_account_id] = @current_account["_id"]
 
     redirect params[:back] ? (back_unpack params[:back]) : "/sharebros"
   end
@@ -307,7 +321,6 @@ You will need to sign in to your Google account and then click "Grant Access". T
   def prefs_to_hash prefs
     h = {}
     prefs.each do |pref|
-      d { pref }
       h[pref['id']] = pref['value']
     end
     h
@@ -351,7 +364,6 @@ You will need to sign in to your Google account and then click "Grant Access". T
     prefs = prefs_to_hash(prefs)
     if prefs["custom-item-links"]
       value = prefs["custom-item-links"]
-      d { value }
       value_hash = JSON.parse(value)
     else
       value_hash = {
