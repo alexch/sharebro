@@ -50,7 +50,7 @@ class GoogleData < LoveSeat
     @google_api = google_api
     @user_id = user_id || google_api.user_id
     
-    #grab used to be here
+    grab
   end
   
   def grab

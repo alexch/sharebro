@@ -109,6 +109,12 @@ class Sharebro < Sinatra::Application
   end
   
   def signed_in?
+    unless @current_account.nil? || @google_api.nil?
+      if !@current_account['google']['accessToken'].nil? && (@google_api.access_token.response.instance_of? Net::HTTPUnauthorized)
+        #should we delete the accessToken from the db at this point or just let it get overwritten?
+        redirect "/auth_needed?back=#{back_pack}"
+      end
+    end
     @current_account
   end
 
@@ -147,12 +153,6 @@ class Sharebro < Sinatra::Application
 
   def google_data
     @google_data ||= GoogleData.new(google_api)
-    if @google_data.user_id.nil?
-      redirect "/auth_needed?back=#{back_pack}"
-    else
-      @google_data.grab
-      return @google_data
-    end
   end
 
   def app_page main

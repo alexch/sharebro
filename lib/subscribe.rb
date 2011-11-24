@@ -21,8 +21,6 @@ class Subscribe # < Job
   
   def google_data
     @google_data ||= GoogleData.new(google_api)
-    @google_data.grab
-    return @google_data
   end
 
   def perform
