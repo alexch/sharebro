@@ -36,6 +36,12 @@ Put them in a file in the root level called `oauth.yaml` that looks like this:
     oauth_consumer_key: example.com
     oauth_consumer_secret: ABC123xyzPDQ
 
+For local dev with oauth, use:
+
+    ---
+    oauth_consumer_key: anonymous
+    oauth_consumer_secret: anonymous
+
 ## Run the tests
 
 Um, we don't really have any good ones yet. Sorry.

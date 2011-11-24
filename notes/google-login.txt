@@ -35,3 +35,7 @@ The specification still uses a parameter name ‘oauth_consumer_key‘ for backw
 
 In OAuth 1.0, the secret half of each set of credentials is defined as a symmetric shared secret. This means that both the client and server must have access to the same secret string. However, OAuth supports an RSA-based authentication method which uses an asymmetric client secret. The different credentials are explained in more detailed later on.
 
+for dev on localhost, use anonymous
+http://www.google.com/support/forum/p/apps-apis/thread?tid=6501e15dcfe2e807&hl=en
+oauth_consumer_key: anonymous
+oauth_consumer_secret: anonymous
