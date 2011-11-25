@@ -5,6 +5,9 @@ ClientLogin for Installed Applications
  "accounts that use 2-step verification, SAML, or Open ID are not compatible with ClientLogin"
  
 
+https://developers.google.com/+/api/oauth
+
+
 http://code.google.com/apis/accounts/
 What are authentication and authorization?
 
@@ -20,6 +23,7 @@ The OAuth 2.0 open-standard protocol allows users to authorize access to their d
 
 The hybrid protocol uses both OpenID and OAuth, to provide both authentication and authorization in a single-step process.
 http://step2.googlecode.com/svn/spec/openid_oauth_extension/latest/openid_oauth_extension.html
+https://code.google.com/apis/accounts/docs/OpenID.html#oauth  -- "Implementing OAuth with Federated Login (Hybrid Protocol)"
 
 
 

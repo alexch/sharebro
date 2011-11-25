@@ -1,4 +1,6 @@
 require 'cgi'
+require 'net/http'
+require 'net/https'
 
 class Bro
   def self.from_friends friends
@@ -35,6 +37,10 @@ class Bro
     "http://www.google.com/reader/view/#stream/user%2F#{@user_id}%2Fstate%2Fcom.google%2Fbroadcast"
   end
   
+  def plus_posts_url
+    "https://plus.google.com/#{@profile_id}/posts"
+  end
+   
   def plusr_feed 
     "http://plu.sr/feed.php?plusr=#{@profile_id}"
   end
@@ -57,6 +63,23 @@ class Bro
 
   def full_name
     @display_name || @given_name || "Google Id #{@user_id || "Unknown"}"
+  end
+  
+  def has_plus?
+    @has_plus ||= begin
+
+      # this nonsense is because plus posts are https
+      uri = URI(plus_posts_url)
+      http = Net::HTTP.new(uri.host, 443)
+      http.use_ssl = true
+      response = http.head(uri.path)
+      d(full_name) {response}
+      if response.code.to_i != 200
+        false
+      else
+        true
+      end
+    end
   end
   
   def profile_photo?

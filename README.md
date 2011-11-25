@@ -134,6 +134,7 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   * Reeder - Silvio
   * NewsBlur
   * HiveMined
+  * Feed Demon
 * promote & use @sharebro twitter account
 * make friend with reporters
   * http://www.readwriteweb.com/archives/author/john-paul-titlow.php
@@ -142,8 +143,8 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 # TODO (technical)
 
-* reconcile google_ids and friends entry counts
 * re-fetch friends list
+* reconcile google_ids and friends entry counts
 * catch exceptions in e.g.
 	* http://www.airbrake.io/
 	* exceptional

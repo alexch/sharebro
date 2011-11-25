@@ -62,10 +62,11 @@ class BroBox < Widget
           }
         }
       end
-
+      
+      # if bro.has_plus?    # currently takes way too long to figure this out on the fly
       tr {
         th {          
-          a "#{bro.given_name}'s G+ posts", :href => "https://plus.google.com/#{bro.profile_id}/posts"
+          a "#{bro.given_name}'s Google Plus Posts", :href => bro.plus_posts_url
         }
         td {
           a "RSS", :href => bro.plusr_feed
@@ -75,7 +76,6 @@ class BroBox < Widget
         }
       }
 
-      # todo: only show if it exists
       if @lipsumar_feeds[bro.user_id]
         tr {
           th "lipsumarium"

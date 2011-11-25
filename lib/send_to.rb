@@ -1,17 +1,6 @@
 require 'nokogiri'
 require 'net/http'
 
-
-# -    app_page(Raw.new(:data => {
-# -      "params" => params,
-# -      "item" => item,
-# -      "feed" => feed,
-# -      "atom" => atom,
-# -      "entry" => entry && entry.to_xml
-# -    }
-# -    )).to_html
-
-
 # sorta command-patterny -- encapsulates the send_to feature
 class SendTo
   def initialize google_api, item_url
@@ -75,7 +64,7 @@ class SendTo
       if href =~ %r{http://feedproxy.google.com}
         # http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html
         response = Net::HTTP.get_response(URI(href))
-        if response.code != "301"
+        if response.code.to_i != 301
           say_error "expected redirect from #{href} but got #{response.code}"
         else
           href = response['Location']
