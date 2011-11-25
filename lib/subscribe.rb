@@ -31,7 +31,7 @@ class Subscribe # < Job
     subscribed = []
     bro_ids.each do |user_id|
       bro = google_data.bro(user_id)
-      feed_name = "#{bro.given_name}'s Shared Items"
+      feed_name = "#{bro.full_name}'s Shared Items"
       say("subscribing #{account_id} to #{user_id} as #{feed_name}")
       # subscribe bro.lipsum, "#{bro.full_name}'s Shares"
       response = subscribe bro.shared_items_atom_url, feed_name
