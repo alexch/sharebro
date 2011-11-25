@@ -164,22 +164,11 @@ class Sharebro < Sinatra::Application
   def app_page main
     AppPage.new(main: main, login_status: login_status, message: "We are currently experimenting with authorization. If things don't work right, please try again soon.")
   end
-
-  def lipsumar_feeds
-    google_user_ids = google_data.bros.map(&:user_id)
-    require 'open-uri'
-    exists_url = "http://lipsumarium.com/greader/feedexists?_USER_IDS=#{google_user_ids.join(',')}"
-    x = open(exists_url).read
-    response = JSON.parse(x)
-    if response["status"] == "ok"
-      response["data"]
-    end
-    # note that it's OK to return nil here
-  rescue => e
-    # don't let a lipsumar error slow us down
-    say_error e
-  end
   
+  def lipsumar_feeds
+    Lipsumar.new(google_data).lipsumar_feeds
+  end
+
   get '/sharebros' do
     app_page(Sharebros.new(:google_data => google_data, :lipsumar_feeds => lipsumar_feeds)).to_html
   end

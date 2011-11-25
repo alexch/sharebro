@@ -28,13 +28,26 @@ class Subscribe # < Job
     @account = Accounts.get account_id
     bro_ids = job['user_ids']
 
-    subscribed = []
     bro_ids.each do |user_id|
       bro = google_data.bro(user_id)
       feed_name = "#{bro.full_name}'s Shared Items"
       say("subscribing #{account_id} to #{user_id} as #{feed_name}")
-      # subscribe bro.lipsum, "#{bro.full_name}'s Shares"
       response = subscribe bro.shared_items_atom_url, feed_name
+      say response.inspect if response[:response] != "OK"
+    end
+    
+    lipsumar_feeds = Lipsumar.new(google_data).lipsumar_feeds
+    
+    bro_ids.each do |user_id|
+      bro = google_data.bro(user_id)
+      feed_name = "#{bro.full_name}'s Lipsumarium Shares"      
+      response = if lipsumar_feeds[user_id]
+        say("subscribing #{account_id} to #{bro.lipsum}")        
+        subscribe bro.lipsum, "#{bro.full_name}'s Lipsumarium Shares", "Lipsumarium Shares"
+      else
+        say("unsubscribing #{account_id} from #{bro.lipsum}")        
+        unsubscribe bro.lipsum
+      end
       say response.inspect if response[:response] != "OK"
     end
   end
@@ -43,6 +56,14 @@ class Subscribe # < Job
     response = google_api.subscribe feed_url, feed_name, folder_name
     if response == {:response => "OK"}
       response[:feed_name] = feed_name
+    end
+    response
+  end
+
+  def unsubscribe feed_url
+    response = google_api.unsubscribe feed_url
+    if response == {:response => "OK"}
+      response[:feed_url] = feed_url
     end
     response
   end

@@ -127,7 +127,15 @@ class GoogleApi
   rescue => e
     return error(response, e)    
   end
-  
+
+
+  # s The feed identifier. This is the URL of the feed preceeded by feed/, for example feed/http://blog.martindoms.com/feed/ for this blog’s RSS feed.
+  # ac  The action to take on this feed. Possible values are subscribe to subscribe, unsubscribe to unsubscribe and edit to edit the feed.
+  # t The title to give the feed, only relevant in subscribe and edit actions.
+  # r A label to remove from the feed. This is in the format user/[UserID]/label/[LabelName]. As usual UserID can be replaced with a single dash. For example, to remove the label “MyLabel” you’d use the string user/-/label/MyLabel
+  # a A label to add to the feed. See the notes for the r argument above.
+  # T Your token (see Part I if you’re unsure of what this is). This is an argument in every POST call.
+
   def subscribe feed_url, title, user_label
     post_json "/reader/api/0/subscription/edit",
       {
@@ -136,12 +144,14 @@ class GoogleApi
         t: title,
         a: "user/-/label/#{user_label}"
       }
-    # s The feed identifier. This is the URL of the feed preceeded by feed/, for example feed/http://blog.martindoms.com/feed/ for this blog’s RSS feed.
-    # ac  The action to take on this feed. Possible values are subscribe to subscribe, unsubscribe to unsubscribe and edit to edit the feed.
-    # t The title to give the feed, only relevant in subscribe and edit actions.
-    # r A label to remove from the feed. This is in the format user/[UserID]/label/[LabelName]. As usual UserID can be replaced with a single dash. For example, to remove the label “MyLabel” you’d use the string user/-/label/MyLabel
-    # a A label to add to the feed. See the notes for the r argument above.
-    # T Your token (see Part I if you’re unsure of what this is). This is an argument in every POST call.
+  end
+  
+  def unsubscribe feed_url
+    post_json "/reader/api/0/subscription/edit",
+      {
+        s: "feed/#{feed_url}",
+        ac: "unsubscribe",
+      }
   end
   
   def share feed_url, item_id
