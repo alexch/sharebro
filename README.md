@@ -26,15 +26,21 @@ Once you install CouchDB, leave it as an "Admin Party" so we don't need a local 
 
 Note that we require Ruby 1.9.2 or greater.
     
-## Install your own oauth.yaml file
+## Install your own config.yaml file
 
 You need to get oauth creds from Google. [TODO: links]  (sharebro.org has its own creds that I'm not putting in the git repo, though you can learn them if I make you an admin of the heroku app.)
 
-Put them in a file in the root level called `oauth.yaml` that looks like this:
+Put them in a file under a directory called 'local' called `config.yaml` that looks like this:
 
     ---
     oauth_consumer_key: example.com
     oauth_consumer_secret: ABC123xyzPDQ
+    
+"local" is `.gitignore`d so if you deploy to Heroku you need to add those as environment variables, e.g.
+
+    heroku config:add OAUTH_CONSUMER_KEY="example.com" OAUTH_CONSUMER_SECRET="ABC123xyzPDQ"
+
+If you end up deploying to Heroku you can put heroku email/password creds in there too, which will be important if we want to scale heroku workers from inside heroku web processes. More on that later once it works :-)
 
 ## Run the tests
 
