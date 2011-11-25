@@ -1,38 +1,22 @@
 require 'oauth'
-require 'yaml'
-fhere = File.expand_path File.dirname(__FILE__)
+require 'configuration'
 
 # Wrapper around oauth gem
 class Authorizer
   
-  attr_reader :here, :config
-  attr_writer :callback_url
-  
   def initialize options = {}
     @here = File.expand_path File.dirname(__FILE__)
-    
-    # todo: use Config
-    config_file = "#{here}/../oauth.yaml"
-    puts "looking for #{config_file}"
-    if File.exist?(config_file)
-      @config = YAML::load(File.read(config_file))
-    else
-      puts "#{config_file} not found"
-      @config = {
-        "oauth_consumer_key" => ENV['OAUTH_CONSUMER_KEY'],
-        "oauth_consumer_secret" => ENV['OAUTH_CONSUMER_SECRET']
-      }
-    end
+    config_file = "#{@here}/../local/config.yaml"
+    @config = Configuration.new(config_file)
+
     @callback_url = options[:callback_url] || "http://sharebro.org/oauth_callback"
-    @scope = "http://www.google.com/reader/api/ http://www.google.com/reader/atom/"
-    
+    @scope = "http://www.google.com/reader/api/ http://www.google.com/reader/atom/"    
     @request_token = options[:request_token]
     @access_token = options[:access_token]
   end
   
   def consumer
-    @consumer ||= OAuth::Consumer.new config["oauth_consumer_key"],
-      config["oauth_consumer_secret"],
+    @consumer ||= OAuth::Consumer.new @config.oauth_consumer_key, @config.oauth_consumer_secret,
       {
         :site=>"https://www.google.com",
         :request_token_path=>"/accounts/OAuthGetRequestToken",
