@@ -153,7 +153,7 @@ li.item span.comment:before {
   content: " -- ";
 }
 
-div.contents {
+div.box, div.toc {
   background-color: #f5f2f5;
   overflow: auto;
   padding: .5em 2em .5em .5em;
@@ -166,10 +166,10 @@ li {
   -webkit-margin-end: 0px;
   -webkit-padding-start: 0px;
 }
-div.nav ul, div.contents ul {
+div.nav ul, div.toc ul {
   -webkit-padding-start: 10px;
 }
-div.contents div.item {
+div.toc div.item {
   margin: .5em 0 1em 1em;
 }
 
@@ -247,7 +247,7 @@ div.contents div.item {
       main_content
     end
 
-    contents
+    toc
 
     div.bottom do
         p "Content on this site is Copyright (c) 2011 Alex Chaffee unless otherwise noted. All the good stuff will be available under an open source license."

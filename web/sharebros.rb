@@ -29,10 +29,6 @@ class Sharebros < Widget
   def you
     @google_data.you
   end
-
-  def raw_url api_path
-    "/raw?api_path=#{URI.escape(api_path)}"
-  end
   
   def bro_box bro
     widget BroBox, :bro => bro, :lipsumar_feeds => @lipsumar_feeds

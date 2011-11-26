@@ -40,7 +40,7 @@ class Nav < Widget
         item name: "Vision", url: "/vision",
         comment: "not quite a manifesto, but more than a mission statement"
         item name: "Source Code", url: "http://github.com/alexch/sharebro", comment: "hosted on github"
-        item name: "Sandbox [technical]", url: "/googled", comment: "low-level Google API sandbox"
+        item name: "Sandbox", url: "/sandbox", comment: "low-level Google API sandbox [technical]"
 
       end
     end

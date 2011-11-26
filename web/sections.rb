@@ -54,10 +54,10 @@ module Sections
     anchors << [name, abbr]
   end
 
-  def contents
+  def toc
     unless anchors.empty?
       x = capture do
-        div.contents do
+        div.toc do
           h3 "This Page"
           anchors.each do |name, abbr|
             div.item { a name, href: "##{abbr}" }

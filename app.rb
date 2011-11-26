@@ -172,11 +172,7 @@ class Sharebro < Sinatra::Application
   get '/sharebros' do
     app_page(Sharebros.new(:google_data => google_data, :lipsumar_feeds => lipsumar_feeds)).to_html
   end
-  
-  get "/googled" do
-    app_page(Googled.new(:google_data => google_data)).to_html
-  end
-  
+    
   # todo: proper widget-based message page
   def message_page title, msg_html
     <<-HTML
@@ -274,14 +270,16 @@ You will need to sign in to your Google account and then click "Grant Access". T
     redirect params[:back] ? (back_unpack params[:back]) : "/sharebros"
   end
   
-  get "/sandbox" do
-    path = params[:api_path]
-    data = fetch_json(path)
-    app_page(Sandbox.new(path: path, data: data)).to_html    
+  get "/googled" do
+    redirect '/sandbox'
   end
 
-  get "/raw" do
-    redirect "/sandbox?api_path=#{CGI.escape params[:api_path]}"
+  get "/sandbox" do
+    path = params[:path]
+    data = if path && !path.empty?
+      fetch_json(path)
+    end
+    app_page(Sandbox.new(path: path, data: data)).to_html    
   end
 
   post "/subscribe_you" do
