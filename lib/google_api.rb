@@ -154,6 +154,15 @@ class GoogleApi
       }
   end
   
+  def remove_label feed_url, user_label
+    post_json "/reader/api/0/subscription/edit",
+      {
+        s: "feed/#{feed_url}",
+        ac: "edit",
+        r: "user/-/label/#{user_label}"
+      }
+  end
+  
   def share feed_url, item_id
     # http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/#item-editing
     # 

@@ -42,7 +42,11 @@ class Bro
   end
    
   def plusr_feed 
-    "http://plu.sr/feed.php?plusr=#{@profile_id}"
+    "http://plu.sr/feed.php?plusr=#{@profile_id}&short=true"
+  end
+  
+  def plusr_feed_original 
+    "http://plu.sr/feed.php?plusr=#{@profile_id}`"
   end
   
   def lipsum
@@ -67,13 +71,11 @@ class Bro
   
   def has_plus?
     @has_plus ||= begin
-
       # this nonsense is because plus posts are https
       uri = URI(plus_posts_url)
       http = Net::HTTP.new(uri.host, 443)
       http.use_ssl = true
       response = http.head(uri.path)
-      d(full_name) {response}
       if response.code.to_i != 200
         false
       else
