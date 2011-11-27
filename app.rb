@@ -320,7 +320,6 @@ You will need to sign in to your Google account and then click "Grant Access". T
     cmd = SendTo.new(google_api, params["url"])    
 
     result = cmd.perform
-    d { result }
     case result
     when :needs_auth
       authorize("/send_to?.....")
@@ -331,7 +330,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
     when :not_found
       return message_page("Not Shared", "Couldn't find '#{params['title']}' from #{params['source']}")
     when :ok
-      return message_page("Shared", "Shared '#{params['title']}' from #{params['source']}")
+      return message_page("Shared", "Shared '<a href='#{params['url']}'>#{params['title']}</a>' from feed '#{params['source']}'")
     else
       return app_page(Raw.new(
         :title => "unknown result #{result}", 
