@@ -15,7 +15,7 @@ gem 'nokogiri-pretty'
 
 group :development do
   gem "rake"
-  gem "rerun"
+  gem "rerun", ">=0.6.3"
   gem "foreman"
   
   # should test gems go in a different group?
