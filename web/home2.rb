@@ -15,21 +15,25 @@ class Home2 < Widget
   
   def content
 
-    section "What just happened to Google Reader?" do
-      p {
-        text "Google ", a("removed a lot of features", href: "/features"), " from Google Reader, gutting thousands of vibrant online communities in an attempt to move their members to Google Plus."
-      }
+    if !signed_in?
+      section "What just happened to Google Reader?" do
+        p {
+          text "Google ", a("removed a lot of features", href: "/features"), " from Google Reader, gutting thousands of vibrant online communities in an attempt to move their members to Google Plus."
+        }
 
-      p {
-        text "This site is a hub for efforts to replace what was lost. "
-        text "See ", a("the about page", "/about"), " for more info."
-      }      
+        p {
+          text "This site is a hub for efforts to replace what was lost. "
+          text "See ", a("the about page", "/about"), " for more info."
+        }      
+      end
     end
 
     section "What can I do?" do
 
-      if !signed_in?
-        item( name: "Sign In", url: "/sign_in") {
+      if signed_in?
+        p "Cool! You're signed in. Now you can..."
+      else
+        item( name: "Sign In", url: "/sign_in?back=L2hvbWUy") {   # that means "home2" :-)
           text " and allow Sharebro to read your Google Reader info"
         }
       end

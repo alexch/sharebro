@@ -273,9 +273,9 @@ You will need to sign in to your Google account and then click "Grant Access". T
     )
     
     @google_api = GoogleApi.new(access_token)
-    d("in oauth_callback"){@google_api}
+    # d("in oauth_callback"){@google_api}
     @current_account = Accounts.write(google_data.user_id, access_token)
-    d("in oauth_callback"){@current_account}
+    # d("in oauth_callback"){@current_account}
     
     session[:current_account_id] = @current_account["_id"]
 
