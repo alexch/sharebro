@@ -40,7 +40,6 @@ class SendTo
     entry = entries.detect do |entry|
       # todo: make an object out of this?
       entry_id = entry.xpath('./xmlns:id').text
-      @info[:entry_id] = entry_id
       item_links = entry.xpath('./xmlns:link')
 
       # item_link = entry.xpath('./xmlns:link[rel=alternate]').first # not working because xpath sucks
@@ -59,31 +58,21 @@ class SendTo
       next if item_link.nil?
 
       href = item_link['href']
-
-      # finally, dereference proxy to get *real* original item href
-      if href =~ %r{http://feedproxy.google.com}
-        # http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html
-        response = Net::HTTP.get_response(URI(href))
-        if response.code.to_i != 301
-          say_error "expected redirect from #{href} but got #{response.code}"
-        else
-          href = response['Location']
-          if href
-            href = href.split('?').first  # there's probably a cleaner way to do this (strip the query params)
-          end
-        end
-      end      
-      href == item_url
+      d { href }
+      item_url == href or item_url == dereference(href)
     end
 
     if entry
+      @info[:entry_id] = entry.xpath('./xmlns:id').text
       @info[:entry_xml] = entry.to_xml
       entry_id = entry.xpath('./xmlns:id').text
+      
       # finally flag that sucker
-      x = google_api.share feed_url, entry_id
-      if x != {:response=>"OK"}
-        @info[:share_result] = x
-        say_error x
+      api_response = google_api.share feed_url, entry_id
+      d { api_response }
+      if api_response != {:response=>"OK"}
+        @info[:share_result] = api_response
+        say_error api_response
         return :error
       else
         return :ok
@@ -93,4 +82,22 @@ class SendTo
       return :not_found
     end
   end
+  
+  def dereference href
+    # finally, dereference proxy to get *real* original item href
+    if href =~ %r{http://feedproxy.google.com}
+      # http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html
+      response = Net::HTTP.get_response(URI(href))
+      if response.code.to_i != 301
+        say_error "expected redirect from #{href} but got #{response.code}"
+      else
+        href = response['Location']
+        if href
+          href = href.split('?').first  # there's probably a cleaner way to do this (strip the query params)
+        end
+      end
+    end
+    href
+  end
+  
 end

@@ -4,6 +4,7 @@ class Subscribe # < Job
   include Say 
 
   attr_reader :job
+  
   def initialize(job)
     @job = job
   end
@@ -24,7 +25,11 @@ class Subscribe # < Job
   end
   
   def bro_ids
-    job['user_ids']
+    if !job['user_ids'] or job['user_ids'].empty?
+      ([google_data.you] + google_data.following).map{|bro| bro.user_id}
+    else
+      job['user_ids']
+    end      
   end
 
   def bros
@@ -83,7 +88,7 @@ class Subscribe # < Job
   end
 
   def subscribe_to_lipsumar
-    lipsumar_feeds = Lipsumar.new(google_data).lipsumar_feeds    
+    lipsumar_feeds = Lipsumar.new(google_data).lipsumar_feeds
     bros.each do |bro|
       response = if lipsumar_feeds[bro.user_id]
         feed_name = "#{bro.full_name}'s Lipsumarium Shares"      

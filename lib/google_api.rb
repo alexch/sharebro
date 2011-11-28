@@ -165,14 +165,14 @@ class GoogleApi
   
   def share feed_url, item_id
     # http://blog.martindoms.com/2010/01/20/using-the-google-reader-api-part-3/#item-editing
-    # 
-    post_json "/reader/api/0/edit-tag",
-      {
-        i: item_id,
-        a: "user/-/state/com.google/broadcast",
-        s: "feed/#{feed_url}",
-        ac: "edit",
-      }
+    say "sharing #{feed_url} #{item_id}"
+    params = {
+      i: item_id,
+      a: "user/-/state/com.google/broadcast",
+      s: "feed/#{feed_url}",
+      ac: "edit",
+    }
+    post_json "/reader/api/0/edit-tag", params
   end
   
 end

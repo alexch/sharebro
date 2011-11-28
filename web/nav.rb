@@ -31,6 +31,7 @@ class Nav < Widget
       ul do
         item name: "Home", url: "/"
         item name: "Sharebros", comment: "your personal network of sharebros", url: "/sharebros"
+        # item name: "About", url: "/links", comment: "about the Sharebro site"
         item name: "Links", url: "/links",
         comment: "a collection of dozens of articles and eulogies"
         item name: "Missing Features", url: "/features",

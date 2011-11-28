@@ -11,7 +11,7 @@ module Sections
     div(:class => css_class) do
       h2 name
       ul do
-        yield
+        yield if block_given?
       end
     end
   end
@@ -21,7 +21,11 @@ module Sections
     name = options[:name] || options[:url]
     li.item do
       if name
-        a.name name, href: options[:url], title: options[:comment], alt: name
+        if options[:url]
+          a.name name, href: options[:url], title: options[:comment], alt: name
+        else
+          b.name name, title: options[:comment]
+        end
       end
       if options[:author]
         text " by #{options[:author]}"

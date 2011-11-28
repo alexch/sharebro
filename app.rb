@@ -162,11 +162,23 @@ class Sharebro < Sinatra::Application
   end
 
   def app_page main
-    AppPage.new(main: main, login_status: login_status, message: "We are currently experimenting with authorization. If things don't work right, please try again soon.")
+    AppPage.new(main: main, login_status: login_status)
+    #, message: "We are currently experimenting with authorization. If things don't work right, please try again soon.")
   end
   
   def lipsumar_feeds
     Lipsumar.new(google_data).lipsumar_feeds
+  end
+
+
+  get '/about' do
+    app_page(About).to_html
+  end
+
+  
+  get '/home2' do
+    params = {current_account: signed_in? ? current_account : nil}
+    app_page(Home2.new(params)).to_html
   end
 
   get '/sharebros' do
@@ -287,7 +299,7 @@ You will need to sign in to your Google account and then click "Grant Access". T
   end
   
   post "/subscribe" do
-    user_ids = params[:user_ids].split(',')
+    user_ids = params[:user_ids] && params[:user_ids].split(',')
     Ant.request(:object, :class => "Subscribe", :account_id => current_account["_id"], :user_ids => user_ids)
     app_page(Subscribed).to_html
   end
@@ -303,14 +315,6 @@ You will need to sign in to your Google account and then click "Grant Access". T
   get "/admin" do
     redirect '/' unless admin?
     app_page(Admin).to_html
-  end
-  
-  def prefs_to_hash prefs
-    h = {}
-    prefs.each do |pref|
-      h[pref['id']] = pref['value']
-    end
-    h
   end
   
   get '/send_to' do
@@ -334,55 +338,21 @@ You will need to sign in to your Google account and then click "Grant Access". T
     else
       return app_page(Raw.new(
         :title => "unknown result #{result}", 
-        :data => {:params => params}.merge(cmd.info))).to_html
+        :data => {:params => params}.merge(cmd.info)
+        )).to_html
     end
   end
  
   # see http://www.google.com/reader/settings?display=edit-extras , click "Send To"
   
-  post '/add_send_to_sharebro' do
-    
-    # todo: make response more pretty, probably a redirect too
-    
-    data = nil
-    
-    prefs = google_api.preference_list["prefs"]
-    prefs = prefs_to_hash(prefs)
-    if prefs["custom-item-links"]
-      value = prefs["custom-item-links"]
-      value_hash = JSON.parse(value)
+  post '/add_send_to_link' do
+    cmd = AddSendToLink.new(google_api, current_account)
+    result = cmd.perform
+    if result == :ok
+      message_page("added Send To Sharebro link", "added 'Send To' link -- go look for it in Google Reader")
     else
-      value_hash = {
-        "builtinLinksEnabledState" => [],
-        "customLinks" => []        
-      }
+      app_page(Raw.new(:title => "error adding Send To link", :data => {:params => params}.merge(cmd.info))).to_html
     end
-    
-    # customLinks == "Send To"
-    customLinks = value_hash['customLinks']
-    customLinks.delete_if{|entry|
-      entry['url'] =~ %r{^http://sharebro.org}
-    }
-    customLinks << {
-      "url" => "http://sharebro.org/send_to?sharebro_id=#{current_account["_id"]}&title=${title}&url=${url}&source=${source}",
-      "iconUrl" => "http://sharebro.org/favicon.ico",
-      "enabled" => true,
-      "name" => "Sharebro"
-    }
-    
-    set_params = {"k" => "custom-item-links",
-      "v" => JSON.dump(value_hash),
-    }
-
-    response = google_api.post_json "/reader/api/0/preference/set", set_params
-    
-    data = {
-      :customLinks => customLinks,
-      :set_params => set_params,
-      :response => response
-    }
-
-    app_page(Raw.new(:data => data)).to_html
   end
   
   delete '/send_to' do

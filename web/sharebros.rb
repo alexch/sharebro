@@ -43,12 +43,8 @@ class Sharebros < Widget
     }
 
     div.subscribe do
-      form :method => :post, 
-        :action => "/subscribe" do
-          input :type => "hidden", 
-            :name => "user_ids",
-            :value => ([you] + @google_data.following).map{|bro| bro.user_id}.join(',')
-          input :type => "submit", :value => "Subscribe in Reader"
+      form :method => :post, :action => "/subscribe" do
+        input :type => "submit", :value => "Resubscribe in Reader"
       end
     end
     

@@ -46,7 +46,7 @@ class Bro
   end
   
   def plusr_feed_original 
-    "http://plu.sr/feed.php?plusr=#{@profile_id}`"
+    "http://plu.sr/feed.php?plusr=#{@profile_id}"
   end
   
   def lipsum
