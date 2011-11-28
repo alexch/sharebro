@@ -42,6 +42,12 @@ Put them in a file under a directory called 'local' called `config.yaml` that lo
 
 If you end up deploying to Heroku you can put heroku email/password creds in there too, which will be important if we want to scale heroku workers from inside heroku web processes. More on that later once it works :-)
 
+For local dev with oauth, use:
+
+    ---
+    oauth_consumer_key: anonymous
+    oauth_consumer_secret: anonymous
+
 ## Run the tests
 
 Um, we don't really have any good ones yet. Sorry.
