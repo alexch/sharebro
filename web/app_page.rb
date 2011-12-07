@@ -3,7 +3,7 @@ require "links"
 class AppPage < Erector::Widgets::Page
   include Sections
   
-  needs main: nil, login_status: nil, message: nil
+  needs main: nil, login_status: nil, message: nil, show_toc: true
   
   # todo: use SCSS
   external :style, <<-CSS
@@ -247,7 +247,7 @@ div.toc div.item {
       main_content
     end
 
-    toc
+    toc if @show_toc
 
     div.bottom do
         p "Content on this site is Copyright (c) 2011 Alex Chaffee unless otherwise noted. All the good stuff will be available under an open source license."

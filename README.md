@@ -118,6 +118,9 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 
 * refresh google friends list
 
+* add a link to the Google page where users can revoke access tokens (just to make them feel good)
+  * https://accounts.google.com/b/0/IssuedAuthSubTokens
+
 
 # TODO (promo)
 
@@ -140,6 +143,9 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
   * http://www.readwriteweb.com/archives/author/john-paul-titlow.php
   * Sarah Perez at TechCrunch
 * check out addtoany.com -- propose to get their "Reader" link to work again via Sharebro
+* contact people on the Google Support thread and ask them to try sharebro
+  * http://www.google.com/support/forum/p/reader/thread?tid=3ae360cc3912946f&hl=en
+
 
 # TODO (technical)
 
@@ -155,3 +161,8 @@ this will fire up the server and launch <http://localhost:9292>, and use `rerun`
 * use or borrow from other ruby greader libs
   * https://github.com/rstacruz/greader
   * https://github.com/jnunemaker/googlereader [dead?]
+* examine Atom e.g. http://www.google.com/reader/public/atom/user%2F15504357426492542506%2Fbundle%2FPeople%20you%20follow
+  <link rel="replies" href="http://www.firstthings.com/blogs/firstthoughts/2011/11/25/when-pepper-spray-is-excessive-force/#comments" type="text/html"/>
+  <link rel="replies" href="http://www.firstthings.com/blogs/firstthoughts/2011/11/25/when-pepper-spray-is-excessive-force/feed/atom/" type="application/atom+xml"/>
+
+  

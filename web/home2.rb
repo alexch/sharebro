@@ -12,7 +12,7 @@ class Home2 < Widget
   def signed_in?
     @current_account
   end
-  
+    
   def content
 
     if !signed_in?

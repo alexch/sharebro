@@ -53,7 +53,6 @@ class Sharebro < Sinatra::Application
 
   attr_reader :here
 
-  
   def app_host
     case ENV['RACK_ENV']
     when 'production'
@@ -91,8 +90,6 @@ class Sharebro < Sinatra::Application
   ## auth needed from here on
   
   before do
-    puts "in before"
-
     # clean up old cookies
     [:access_token, :authenticated_id].each do |name|
       if session[name]
@@ -145,7 +142,9 @@ class Sharebro < Sinatra::Application
       say "deleting bad access token"
       @current_account['google'].delete('accessToken')
       Accounts.put(@current_account)
-      authorize
+      
+      # todo: message, not automatic /auth_needed
+      redirect "/auth_needed?back=#{back_pack}"
     end
   end
 
@@ -161,8 +160,8 @@ class Sharebro < Sinatra::Application
     @google_data ||= GoogleData.new(google_api)
   end
 
-  def app_page main
-    AppPage.new(main: main, login_status: login_status)
+  def app_page main, page_options = {}
+    AppPage.new({main: main, login_status: login_status} << page_options)
     #, message: "We are currently experimenting with authorization. If things don't work right, please try again soon.")
   end
   
@@ -175,10 +174,9 @@ class Sharebro < Sinatra::Application
     app_page(About).to_html
   end
 
-  
   get '/home2' do
     params = {current_account: signed_in? ? current_account : nil}
-    app_page(Home2.new(params)).to_html
+    app_page(Home2.new(params), show_toc: false).to_html
   end
 
   get '/sharebros' do

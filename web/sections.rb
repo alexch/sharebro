@@ -57,7 +57,7 @@ module Sections
     a name: abbr
     anchors << [name, abbr]
   end
-
+  
   def toc
     unless anchors.empty?
       x = capture do

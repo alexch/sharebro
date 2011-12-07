@@ -106,6 +106,7 @@ class About < Widget
       item name: "Alex Chaffee", url: "http://alexchaffee.com"
       item name: "Emmanuel Pire", url: "http://userscripts.org/users/338834"
       item name: "Nick Chaffee"
+      item name: "Tim Broder", url: "https://github.com/broderboy"
     end
 
 
