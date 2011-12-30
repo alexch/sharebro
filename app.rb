@@ -68,10 +68,6 @@ class Sharebro < Sinatra::Application
     send_file "#{here}/google66d87a0b5d48cf21.html"
   end
   
-  get "/" do
-    app_page(Home).to_html
-  end
-
   # build plain-widget pages
   [Links, Features, RoadMap, Vision].each do |widget|
     get "/#{widget.name.downcase}" do
@@ -161,14 +157,13 @@ class Sharebro < Sinatra::Application
     Lipsumar.new(google_data).lipsumar_feeds
   end
 
+  get "/" do
+    params = {current_account: signed_in? ? current_account : nil}
+    app_page(Home.new(params), show_toc: false).to_html
+  end
 
   get '/about' do
     app_page(About).to_html
-  end
-
-  get '/home2' do
-    params = {current_account: signed_in? ? current_account : nil}
-    app_page(Home2.new(params), show_toc: false).to_html
   end
 
   get '/sharebros' do
