@@ -1,8 +1,11 @@
 require 'nokogiri'
 require 'net/http'
+require 'util'
 
 # sorta command-patterny
 class AddSendToLink
+  include Util
+  
   def initialize google_api, current_account
     @google_api, @current_account = google_api, current_account
     @info = {}
@@ -18,7 +21,6 @@ class AddSendToLink
     end
     h
   end
-  
 
   def perform
     # todo: make response more pretty, probably a redirect too
@@ -36,18 +38,23 @@ class AddSendToLink
         "customLinks" => []        
       }
     end
+
+    
+    link_host = app_host
+    link_name = "Sharebro"
+    link_name += " [#{link_host}]" unless production?
     
     # customLinks == "Send To"
     customLinks = value_hash['customLinks']
     customLinks.delete_if{|entry|
-      entry['url'] =~ %r{^http://sharebro.org}
+      entry['url'] =~ %r{^http://#{link_host}}
     }
 
     customLinks << {
-      "url" => "http://sharebro.org/send_to?sharebro_id=#{current_account["_id"]}&title=${title}&url=${url}&source=${source}",
+      "url" => "http://#{link_host}/send_to?sharebro_id=#{current_account["_id"]}&title=${title}&url=${url}&source=${source}&item_id=${item-id}",
       "iconUrl" => "http://sharebro.org/favicon.ico",
       "enabled" => true,
-      "name" => "Sharebro"
+      "name" => link_name
     }
     @info[:custom_links] = customLinks
     

@@ -36,6 +36,7 @@ class Nav < Widget
     div.nav do
       ul do
         item name: "Home", url: "/"
+        item name: "About", url: "/about"
         item name: "Sharebros", comment: "your personal network of sharebros", url: "/sharebros"
         # item name: "About", url: "/links", comment: "about the Sharebro site"
         item name: "Links", url: "/links",

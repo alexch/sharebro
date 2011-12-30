@@ -31,7 +31,7 @@ class Home2 < Widget
     section "Using Sharebro" do
 
       if signed_in?
-        p "Cool! You're signed in. Now you can..."
+        p "OK! You're signed in. Now you can..."
       else
         p {          
           a("Sign In", href: "/sign_in?back=L2hvbWUy", class: "big")   # that means "home2" :-)

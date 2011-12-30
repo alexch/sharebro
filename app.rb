@@ -24,6 +24,7 @@ load File.expand_path( "#{here}/monkey/consumer.rb")
 class Sharebro < Sinatra::Application
   include Erector::Mixin
   include Say
+  include Util
   
   session_domain = begin case ENV['RACK_ENV']
     when 'production'
@@ -52,15 +53,6 @@ class Sharebro < Sinatra::Application
   end
 
   attr_reader :here
-
-  def app_host
-    case ENV['RACK_ENV']
-    when 'production'
-      "sharebro.org"
-    else
-      "localhost:9292"
-    end
-  end  
 
   get '/favicon.ico' do
     send_file "#{here}/favicon.ico"
@@ -317,9 +309,9 @@ You will need to sign in to your Google account and then click "Grant Access". T
   
   get '/send_to' do
     
-    item = params.pluck("title", "url", "source")
+    item = params.pluck("title", "url", "source", "item_id")
     
-    cmd = SendTo.new(google_api, params["url"])    
+    cmd = SendTo.new(google_api, params["url"])
 
     result = cmd.perform
     case result

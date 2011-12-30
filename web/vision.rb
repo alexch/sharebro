@@ -1,6 +1,10 @@
 class Vision < Widget
+  include Sections
   
   def content
+    
+  section "Vision" do
+    
   p "Basically, the original Share feature on Google Reader let you post to your own public feed. Google stopped providing this free public feed to its users. We propose to replace it."
 
   p "Instead of having you feed hosted at google.com, it will be at sharebro.org"
@@ -24,9 +28,9 @@ class Vision < Widget
 
   p "sharebro.org could be only a hub, and act as an aggregator of feeds, friend connections (public or private) and comments but not actually host any RSS content. We're in the process of refining this concept. If you help, you're welcome."
 
-  hr
-
-  h2 "A functional proof of concept"
+  end
+  
+  section "A functional proof of concept" do
 
   p "Emmanuel Pire made an implementation of this concept, to prove it can work, and so that sharebros can still share without social networks until we bring sharebro.org"
 
@@ -34,8 +38,10 @@ class Vision < Widget
   url "http://userscripts.org/scripts/show/117058"
 
   p "Once we have something working at sharebro.org, we will provide an easy way to switch without loosing content or friends."
+  
+  end
 
-  h2 "How does it work currently ?"
+  section "How does it work currently?" do
 
   h3 "Client side"
 
@@ -57,6 +63,6 @@ class Vision < Widget
 
   p "Communication between the plugin and server is done through REST and JSONP."
 
-
+  end
   end
 end
