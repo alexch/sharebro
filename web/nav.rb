@@ -3,26 +3,32 @@ class Nav < Widget
   
   external :style, <<-CSS
   div.nav {
-    float: right;
+    float: left;
     font-family: Verdana, sans-serif;
-    padding: 2px;
-    margin: 2px 0 0;
+    padding: 2px 0 0;
+    margin: 2px 0 -2px;
   }
   div.nav ul {
     display: inline;
     color: #339;
     font-size: 11px;
-    margin-bottom: 2px;
   }
   div.nav li {
-    margin: 2px;
-    padding: 2px;
+    margin: 2px 0 0;
+    padding: 2px 6px;
     display: inline;
     border: 1px solid black;
-    padding: 2px;
+    border-left: none;
+    background-color: #e2e2f2;
+  }
+  div.nav li:first-child {
+    border-left: 1px solid black;
   }
   div.nav li.item span.comment {
     display: none;
+  }
+  div.nav li:hover {
+    background-color: white;
   }
   CSS
   

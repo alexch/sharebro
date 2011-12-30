@@ -16,25 +16,26 @@ class Home2 < Widget
   def content
 
     if !signed_in?
-      section "What just happened to Google Reader?" do
+      section "Sharebro: Restoring Google Reader" do
         p {
           text "Google ", a("removed a lot of features", href: "/features"), " from Google Reader, gutting thousands of vibrant online communities in an attempt to move their members to Google Plus."
         }
 
         p {
           text "This site is a hub for efforts to replace what was lost. "
-          text "See ", a("the about page", "/about"), " for more info."
+          text "See ", a("the about page", href: "/about"), " for more info."
         }      
       end
     end
 
-    section "What can I do?" do
+    section "Using Sharebro" do
 
       if signed_in?
         p "Cool! You're signed in. Now you can..."
       else
-        item( name: "Sign In", url: "/sign_in?back=L2hvbWUy") {   # that means "home2" :-)
-          text " and allow Sharebro to read your Google Reader info"
+        p {          
+          a("Sign In", href: "/sign_in?back=L2hvbWUy", class: "big")   # that means "home2" :-)
+          text " and use Sharebro to do the following:"
         }
       end
       
@@ -49,14 +50,15 @@ class Home2 < Widget
         end
       }
       
-      item(name: "Add a 'Send To' link", comment: "so you can share items from inside Reader via the 'Send To' link menu") {
+      item(name: "Add a 'Send To' link", comment: "and share items from inside Reader again") {
         if signed_in?
           div.subscribe do
             form :method => :post, :action => "/add_send_to_link" do
               input :type => "submit", :value => "Add 'Send To Sharebro' Link"
+              text " into the 'Send To' link menu"
             end
           end
-          text "Even if you've been using Sharebro before, you should do this."
+          text "(Even if you've been using Sharebro before, you should do this.)"
           p "Note that there are still some bugs in the 'Send To Sharebro' feature -- some items simply can't be found."
         end
       }
@@ -70,16 +72,11 @@ class Home2 < Widget
           b "Lipsumarium Shares"
           text " folder in Google Reader once you ", b("resubscribe"), "."
         } 
-      end 
+      end
     end
     
     section("Get involved") do
-      item {
-        text "Join the ", (a "Diaspora Google Group", :href => "https://groups.google.com/group/google-reader-diaspora")," and help us figure out how to fix Reader, or where to go if we can't"
-      }
-      item {
-     text "Join the ", (a "Sharebro Google Group", href:  "https://groups.google.com/group/sharebro"), " and collaborate on this site as a coder or tester"
-      }
+      text "See ", a("the about page", href: "/about#get_involved"), " for more info."      
     end
 
   end

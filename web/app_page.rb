@@ -9,10 +9,11 @@ class AppPage < Erector::Widgets::Page
   external :style, <<-CSS
 
 /* global styles and page layout */
-body { 
+body {
   font-family: arial, helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #B5E4F5;
 }
 
 h1,h2,h3 {
@@ -22,7 +23,9 @@ h1,h2,h3 {
   -webkit-margin-end: 0;
 
   font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
-  font-weight: normal;
+  font-weight: bold;
+/*  color: #3031C2; */
+  color: #500050;
 }
 
 a, a:visited {
@@ -37,6 +40,10 @@ a:visited {
 a:hover {
   text-decoration: underline;
 }
+h1>a,h2>a,h3>a,h1>a:visited,h2>a:visited,h3>a:visited {
+  color: #500050;
+}
+
 li {
   line-height: 1.25em;
   margin-bottom: .5em;
@@ -124,6 +131,7 @@ div.section {
   padding: 1em;
   margin: 1em .5em;
   background-color: #F1F3F5;
+  border: 1px solid #800080;
 }
 
 div.section.urgent h2 {
@@ -140,6 +148,13 @@ div.feature h2 {
   color: blue;
 }
 
+.big {
+  font-size: 14pt;
+  font-weight: bold;
+}
+  CSS
+  
+external :style, <<-CSS
 
 /* (should go in Sections but I don't think externals work from Modules yet) */
 

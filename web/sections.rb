@@ -9,7 +9,9 @@ module Sections
     anchor name
     css_class = ["section", options[:class]].compact
     div(:class => css_class) do
-      h2 name
+      h2 {
+        a name, href: "##{sanitize(name)}"
+      }
       ul do
         yield if block_given?
       end

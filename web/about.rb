@@ -86,7 +86,7 @@ class About < Widget
       li {
         text "Read the ",
         (a "Missing Features", href: "/features"),
-        " list and see if we missed any (I'm sure we did but I have to go have breakfast now)"
+        " list and see if we missed any"
       }
     end
         
