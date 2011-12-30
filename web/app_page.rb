@@ -13,7 +13,8 @@ body {
   font-family: arial, helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #B5E4F5;
+/*  background-color: #B5E4F5; */
+  background-color: #E2EBFD;
 }
 
 h1,h2,h3 {
